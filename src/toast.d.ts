@@ -1,4 +1,4 @@
-import { ComponentRef, DynamicComponentLoader, ApplicationRef } from 'angular2/core';
+import { ComponentRef, DynamicComponentLoader, ApplicationRef, Injector } from 'angular2/core';
 export declare class Toast {
     type: string;
     message: string;
@@ -9,10 +9,11 @@ export declare class Toast {
 export declare class ToastsManager {
     private loader;
     private appRef;
+    private injector;
     container: ComponentRef;
     private options;
     private index;
-    constructor(loader: DynamicComponentLoader, appRef: ApplicationRef, options: any);
+    constructor(loader: DynamicComponentLoader, appRef: ApplicationRef, injector: Injector, options: any);
     show(toast: Toast): void;
     createTimeout(toastId: number): void;
     setupToast(toast: Toast): void;

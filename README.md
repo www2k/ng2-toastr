@@ -3,7 +3,8 @@ Angular 2: Toastr
 
 The project is in progress since it's built with Angular 2 Beta. 
 
-The lib is inspired by [angular-toastr] (https://github.com/Foxandxss/angular-toastr), and will show bootstrap-like toasts.
+The lib is inspired by [angular-toastr] (https://github.com/Foxandxss/angular-toastr), and will show bootstrap-like toasts. 
+Please update Angular 2 to version 2.0.0-beta.2 to avoid any unexpected issues.
 
 ![Examples](toastr-examples.jpg?raw=true "Bootstrap Toasts")
 
