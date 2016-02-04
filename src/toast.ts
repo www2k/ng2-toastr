@@ -1,5 +1,5 @@
 import {Injectable, ComponentRef, ElementRef, DynamicComponentLoader, ApplicationRef,
-  Inject, Optional, Injector, provide} from 'angular2/core';
+  Inject, Optional, Injector, provide, IterableDiffers} from 'angular2/core';
 import {ToastContainer} from './toast-container.component';
 import {ToastOptions} from './toast-options';
 
@@ -23,6 +23,7 @@ export class ToastsManager {
 
   constructor(private loader: DynamicComponentLoader,
               private appRef: ApplicationRef,
+              private injector: Injector,
               @Optional() @Inject(ToastOptions) options) {
     if (options) {
       Object.assign(this.options, options);
@@ -34,7 +35,10 @@ export class ToastsManager {
       // a hack to get app element in shadow dom
       let appElement: ElementRef = this.appRef['_rootComponents'][0].location;
 
-      let bindings = Injector.resolve([provide(ToastOptions, {useValue: <ToastOptions>this.options})]);
+      let bindings = Injector.resolve([
+          provide(IterableDiffers, { useValue: this.injector.get(IterableDiffers) }),
+          provide(ToastOptions, {useValue: <ToastOptions>this.options})
+      ]);
 
       this.loader.loadNextToLocation(ToastContainer, appElement, bindings)
         .then((ref) => {
