@@ -37,4 +37,4 @@ node_modules
 
 # Remove tsc generated js and map file
 *.map
-bundles
+
