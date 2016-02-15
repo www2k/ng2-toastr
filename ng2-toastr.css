@@ -79,8 +79,7 @@ button.toast-close-button {
 }
 #toast-container {
     position: fixed;
-    z-index: 999999;
-    /*overrides*/
+    z-index: 99999;
 }
 #toast-container * {
     -moz-box-sizing: border-box;

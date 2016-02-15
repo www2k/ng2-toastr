@@ -22,7 +22,7 @@ var rename = require('gulp-rename');
 
 gulp.task('bundle-css', function() {
   return gulp.src('./*.css')
-    .pipe(nano())
+    .pipe(nano({zindex: false}))
     .pipe(rename({extname: '.min.css'}))
     .pipe(gulp.dest('bundles'));
 });

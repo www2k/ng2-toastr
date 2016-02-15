@@ -1,4 +1,22 @@
-System.registerDynamic("ng2-toastr/src/toast", ["angular2/core", "./toast-container.component", "./toast-options"], true, function($__require, exports, module) {
+System.registerDynamic("ng2-toastr/src/toast", [], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var Toast = (function() {
+    function Toast(type, message, title) {
+      this.type = type;
+      this.message = message;
+      this.title = title;
+    }
+    return Toast;
+  })();
+  exports.Toast = Toast;
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("ng2-toastr/src/toast-manager", ["angular2/core", "./toast-container.component", "./toast-options", "./toast"], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
@@ -27,20 +45,11 @@ System.registerDynamic("ng2-toastr/src/toast", ["angular2/core", "./toast-contai
   var core_1 = $__require('angular2/core');
   var toast_container_component_1 = $__require('./toast-container.component');
   var toast_options_1 = $__require('./toast-options');
-  var Toast = (function() {
-    function Toast(type, message, title) {
-      this.type = type;
-      this.message = message;
-      this.title = title;
-    }
-    return Toast;
-  })();
-  exports.Toast = Toast;
+  var toast_1 = $__require('./toast');
   var ToastsManager = (function() {
-    function ToastsManager(loader, appRef, injector, options) {
+    function ToastsManager(loader, appRef, options) {
       this.loader = loader;
       this.appRef = appRef;
-      this.injector = injector;
       this.options = {
         autoDismiss: true,
         toastLife: 3000
@@ -54,7 +63,7 @@ System.registerDynamic("ng2-toastr/src/toast", ["angular2/core", "./toast-contai
       var _this = this;
       if (!this.container) {
         var appElement = this.appRef['_rootComponents'][0].location;
-        var bindings = core_1.Injector.resolve([core_1.provide(core_1.IterableDiffers, {useValue: this.injector.get(core_1.IterableDiffers)}), core_1.provide(toast_options_1.ToastOptions, {useValue: this.options})]);
+        var bindings = core_1.Injector.resolve([core_1.provide(toast_options_1.ToastOptions, {useValue: this.options})]);
         this.loader.loadNextToLocation(toast_container_component_1.ToastContainer, appElement, bindings).then(function(ref) {
           _this.container = ref;
           _this.setupToast(toast);
@@ -90,22 +99,22 @@ System.registerDynamic("ng2-toastr/src/toast", ["angular2/core", "./toast-contai
       this.container = null;
     };
     ToastsManager.prototype.error = function(message, title) {
-      var toast = new Toast('error', message, title);
+      var toast = new toast_1.Toast('error', message, title);
       this.show(toast);
     };
     ToastsManager.prototype.info = function(message, title) {
-      var toast = new Toast('info', message, title);
+      var toast = new toast_1.Toast('info', message, title);
       this.show(toast);
     };
     ToastsManager.prototype.success = function(message, title) {
-      var toast = new Toast('success', message, title);
+      var toast = new toast_1.Toast('success', message, title);
       this.show(toast);
     };
     ToastsManager.prototype.warning = function(message, title) {
-      var toast = new Toast('warning', message, title);
+      var toast = new toast_1.Toast('warning', message, title);
       this.show(toast);
     };
-    ToastsManager = __decorate([core_1.Injectable(), __param(3, core_1.Optional()), __param(3, core_1.Inject(toast_options_1.ToastOptions)), __metadata('design:paramtypes', [core_1.DynamicComponentLoader, core_1.ApplicationRef, core_1.Injector, Object])], ToastsManager);
+    ToastsManager = __decorate([core_1.Injectable(), __param(2, core_1.Optional()), __param(2, core_1.Inject(toast_options_1.ToastOptions)), __metadata('design:paramtypes', [core_1.DynamicComponentLoader, core_1.ApplicationRef, Object])], ToastsManager);
     return ToastsManager;
   })();
   exports.ToastsManager = ToastsManager;
@@ -235,7 +244,7 @@ System.registerDynamic("ng2-toastr/src/toast-options", ["angular2/core"], true, 
   return module.exports;
 });
 
-System.registerDynamic("ng2-toastr/ng2-toastr", ["./src/toast", "./src/toast-container.component", "./src/toast-options"], true, function($__require, exports, module) {
+System.registerDynamic("ng2-toastr/ng2-toastr", ["./src/toast", "./src/toast-manager", "./src/toast-container.component", "./src/toast-options"], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
@@ -246,6 +255,7 @@ System.registerDynamic("ng2-toastr/ng2-toastr", ["./src/toast", "./src/toast-con
         exports[p] = m[p];
   }
   __export($__require('./src/toast'));
+  __export($__require('./src/toast-manager'));
   __export($__require('./src/toast-container.component'));
   __export($__require('./src/toast-options'));
   global.define = __define;
