@@ -33,9 +33,8 @@ Please update Angular 2 to version 2.0.0-beta.2 to avoid any unexpected issues.
       providers: [ToastsManager]
     })
     export class AppComponent {
-      public toastr: ToastsManager;
     
-      constructor(toastr: ToastsManager) {
+      constructor(public toastr: ToastsManager) {
       }
         
       showSuccess() {
