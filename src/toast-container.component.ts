@@ -14,7 +14,7 @@ import {ToastOptions} from './toast-options';
     `,
 })
 export class ToastContainer {
-  position = 'absolute';
+  position = 'fixed';
   messageClass = 'toast-message';
   titleClass = 'toast-title';
   positionClass = 'toast-top-right';
