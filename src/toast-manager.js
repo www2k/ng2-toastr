@@ -1,4 +1,6 @@
-System.register(['angular2/core', './toast-container.component', './toast-options', './toast'], function(exports_1) {
+System.register(['angular2/core', './toast-container.component', './toast-options', './toast', 'angular2/src/core/linker/view_container_ref'], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -11,7 +13,7 @@ System.register(['angular2/core', './toast-container.component', './toast-option
     var __param = (this && this.__param) || function (paramIndex, decorator) {
         return function (target, key) { decorator(target, key, paramIndex); }
     };
-    var core_1, toast_container_component_1, toast_options_1, toast_1;
+    var core_1, toast_container_component_1, toast_options_1, toast_1, view_container_ref_1;
     var ToastsManager;
     return {
         setters:[
@@ -26,6 +28,9 @@ System.register(['angular2/core', './toast-container.component', './toast-option
             },
             function (toast_1_1) {
                 toast_1 = toast_1_1;
+            },
+            function (view_container_ref_1_1) {
+                view_container_ref_1 = view_container_ref_1_1;
             }],
         execute: function() {
             ToastsManager = (function () {
@@ -45,8 +50,8 @@ System.register(['angular2/core', './toast-container.component', './toast-option
                     var _this = this;
                     if (!this.container) {
                         // a hack to get app element in shadow dom
-                        var appElement = this.appRef['_rootComponents'][0].location;
-                        var bindings = core_1.Injector.resolve([
+                        var appElement = new view_container_ref_1.ViewContainerRef_(this.appRef['_rootComponents'][0]._hostElement);
+                        var bindings = core_1.ReflectiveInjector.resolve([
                             core_1.provide(toast_options_1.ToastOptions, { useValue: this.options })
                         ]);
                         this.loader.loadNextToLocation(toast_container_component_1.ToastContainer, appElement, bindings)
@@ -82,7 +87,7 @@ System.register(['angular2/core', './toast-container.component', './toast-option
                     }
                 };
                 ToastsManager.prototype.dispose = function () {
-                    this.container.dispose();
+                    this.container.destroy();
                     this.container = null;
                 };
                 ToastsManager.prototype.error = function (message, title) {
@@ -108,7 +113,7 @@ System.register(['angular2/core', './toast-container.component', './toast-option
                     __metadata('design:paramtypes', [core_1.DynamicComponentLoader, core_1.ApplicationRef, Object])
                 ], ToastsManager);
                 return ToastsManager;
-            })();
+            }());
             exports_1("ToastsManager", ToastsManager);
         }
     }

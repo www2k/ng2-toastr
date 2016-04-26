@@ -1,4 +1,6 @@
-System.register(['./src/toast', './src/toast-manager', './src/toast-container.component', './src/toast-options'], function(exports_1) {
+System.register(['./src/toast', './src/toast-manager', './src/toast-container.component', './src/toast-options'], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
     function exportStar_1(m) {
         var exports = {};
         for(var n in m) {

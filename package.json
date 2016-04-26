@@ -1,6 +1,6 @@
 {
   "name": "ng2-toastr",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "bootstrap style of toast for angular 2",
   "main": "index.js",
   "scripts": {
@@ -29,12 +29,12 @@
   },
   "homepage": "https://github.com/PointInside/ng2-toastr#readme",
   "devDependencies": {
-    "angular2": "2.0.0-beta.12",
+    "angular2": "2.0.0-beta.16",
     "systemjs": "~0.19",
     "es6-promise": "^3.0.2",
     "es6-shim": "^0.35.0",
     "rxjs": "5.0.0-beta.2",
-    "zone.js": "0.6.6",
+    "zone.js": "0.6.12",
     "concurrently": "^2.0.0",
     "lite-server": "^2.1.0",
     "typescript": "^1.8.9",
