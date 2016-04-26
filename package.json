@@ -1,8 +1,9 @@
 {
   "name": "ng2-toastr",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "bootstrap style of toast for angular 2",
-  "main": "index.js",
+  "main": "ng2-toastr.js",
+  "typings": "ng2-toastr.d.ts",
   "scripts": {
     "prepublish": "gulp clean && ./node_modules/.bin/tsc && node make.js && gulp bundle-css",
     "build:prod": "NODE_ENV=production webpack -p --progress --color --optimize-minimize --optimize-dedupe --optimize-occurence-order",
