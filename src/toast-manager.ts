@@ -1,5 +1,5 @@
 import {
-  Injectable, ComponentRef, ElementRef, DynamicComponentLoader, ApplicationRef,
+  Injectable, ComponentRef, DynamicComponentLoader, ApplicationRef,
   Inject, Optional, provide, ReflectiveInjector, ViewContainerRef
 } from 'angular2/core';
 import {ToastContainer} from './toast-container.component';
