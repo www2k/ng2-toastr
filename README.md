@@ -1,6 +1,9 @@
 Angular 2: Toastr
 ===================
 
+NOTE: Since there are breaking changes in Angular 2 beta 16. Please reference latest version of ng2-toastr. 
+If you are using Angular 2 beta 15 or below, please reference ng2-toastr version '0.1.8'.
+
 The project is in progress since it's built with Angular 2 Beta. 
 
 The lib is inspired by [angular-toastr] (https://github.com/Foxandxss/angular-toastr), and will show bootstrap-like toasts. 
