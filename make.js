@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-/*eslint no-console: 0, no-sync: 0*/
 'use strict';
+
+/*eslint no-console: 0, no-sync: 0*/
 
 // System.js bundler
 // simple and yet reusable system.js bundler
@@ -15,23 +16,23 @@ const Builder = require('systemjs-builder');
 
 const pkg = require('./package.json');
 const name = pkg.name;
-const targetFolder = 'bundles';
-
+const targetFolder = path.resolve('./bundles');
+console.log(targetFolder)
 async.waterfall([
   cleanBundlesFolder,
   getSystemJsBundleConfig,
-  buildSystemJs({}),
+  buildSystemJs({minify: false, sourceMaps: true, mangle: false}),
   getSystemJsBundleConfig,
-  buildSystemJs({minify: true, sourceMaps: true}),
+  buildSystemJs({minify: true, sourceMaps: true, mangle: false}),
   gzipSystemJsBundle
-], function (err) {
+], err => {
   if (err) {
     throw err;
   }
 });
 
 function getSystemJsBundleConfig(cb) {
-  let config = {
+  const config = {
     baseURL: '..',
     transpiler: 'typescript',
     typescriptOptions: {
@@ -48,48 +49,55 @@ function getSystemJsBundleConfig(cb) {
   };
 
   config.meta = ['angular2', 'rxjs'].reduce((memo, currentValue) => {
-      memo[`${name}/node_modules/${currentValue}/*`] = {build: false};
-  return memo;
-}, {});
+    memo[path.resolve(`node_modules/${currentValue}/*`)] = {build: false};
+    return memo;
+  }, {});
+  config.meta.moment = {build: false};
+  console.log(config.meta)
   return cb(null, config);
 }
 
 function cleanBundlesFolder(cb) {
   return del(targetFolder)
-      .then((paths) => {
+    .then(paths => {
       console.log('Deleted files and folders:\n', paths.join('\n'));
-  cb();
-});
+      cb();
+    });
 }
 
 function buildSystemJs(options) {
-  return function (config, cb) {
-    let fileName = name + (options && options.minify ? '.min' : '') + '.js';
-    let dest = path.resolve(__dirname, targetFolder, fileName);
-    console.log('Bundling system.js file:', fileName, options);
+  return (config, cb) => {
+    const minPostFix = options && options.minify ? '.min' : '';
+    const fileName = `${name}${minPostFix}.js`;
+    const dest = path.resolve(__dirname, targetFolder, fileName);
+    const builder = new Builder();
 
-    let builder = new Builder();
+    console.log('Bundling system.js file:', fileName, options);
     builder.config(config);
     return builder
-        .bundle([name, name].join('/'), dest, options)
-        .then(()=>cb()).catch(cb);
+      .bundle([name, name].join('/'), dest, options)
+      .then(() => cb())
+      .catch(cb);
   };
 }
 
 function gzipSystemJsBundle(cb) {
-  var files = fs.readdirSync(path.resolve(targetFolder))
-      .map(file => path.resolve(targetFolder, file))
-.filter(file => fs.statSync(file).isFile())
-.filter(file => path.extname(file) !== 'gz');
-  return async.eachLimit(files, 1, (file, gzipcb)=> {
-      process.nextTick(()=> {
+  const files = fs
+    .readdirSync(path.resolve(targetFolder))
+    .map(file => path.resolve(targetFolder, file))
+    .filter(file => fs.statSync(file).isFile())
+    .filter(file => path.extname(file) !== 'gz');
+
+  return async.eachSeries(files, (file, gzipcb) => {
+    process.nextTick(() => {
       console.log('Gzipping ', file);
-  const gzip = zlib.createGzip({level: 9});
-  let inp = fs.createReadStream(file);
-  let out = fs.createWriteStream(file + '.gz');
-  inp.on('end', ()=>gzipcb());
-  inp.on('error', err => gzipcb(err));
-  return inp.pipe(gzip).pipe(out);
-});
-}, cb);
+      const gzip = zlib.createGzip({level: 9});
+      const inp = fs.createReadStream(file);
+      const out = fs.createWriteStream(`${file}.gz`);
+
+      inp.on('end', () => gzipcb());
+      inp.on('error', err => gzipcb(err));
+      return inp.pipe(gzip).pipe(out);
+    });
+  }, cb);
 }
