@@ -293,3 +293,5 @@ System.register("ng2-toastr/ng2-toastr", ["./src/toast", "./src/toast-manager", 
     execute: function() {}
   };
 });
+
+//# sourceMappingURL=ng2-toastr.js.map
