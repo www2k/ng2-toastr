@@ -6,7 +6,7 @@ import {ToastOptions} from './toast-options';
   selector: 'toast-container',
   template: `
     <div id="toast-container" [style.position]="position" class="{{positionClass}}">
-      <div *ngFor="#toast of toasts" class="toast-{{toast.type}}" (click)="dismiss(toast)">
+      <div *ngFor="let toast of toasts" class="toast-{{toast.type}}" (click)="dismiss(toast)">
         <div *ngIf="toast.title" class="{{titleClass}}">{{toast.title}}</div>
         <div class="{{messageClass}}">{{toast.message}}</div>
       </div>
