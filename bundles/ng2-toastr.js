@@ -18,7 +18,7 @@ System.register("ng2-toastr/src/toast", [], function(exports_1, context_1) {
   };
 });
 
-System.register("ng2-toastr/src/toast-manager", ["angular2/core", "./toast-container.component", "./toast-options", "./toast", "angular2/src/core/linker/view_container_ref"], function(exports_1, context_1) {
+System.register("ng2-toastr/src/toast-manager", ["@angular/core", "./toast-container.component", "./toast-options", "./toast", "@angular/core/src/linker/view_container_ref"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var __decorate = (this && this.__decorate) || function(decorators, target, key, desc) {
@@ -137,7 +137,7 @@ System.register("ng2-toastr/src/toast-manager", ["angular2/core", "./toast-conta
   };
 });
 
-System.register("ng2-toastr/src/toast-container.component", ["angular2/core", "./toast-options"], function(exports_1, context_1) {
+System.register("ng2-toastr/src/toast-container.component", ["@angular/core", "./toast-options"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var __decorate = (this && this.__decorate) || function(decorators, target, key, desc) {
@@ -222,7 +222,7 @@ System.register("ng2-toastr/src/toast-container.component", ["angular2/core", ".
         };
         ToastContainer = __decorate([core_1.Component({
           selector: 'toast-container',
-          template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"#toast of toasts\" class=\"toast-{{toast.type}}\" (click)=\"dismiss(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{titleClass}}\">{{toast.title}}</div>\n        <div class=\"{{messageClass}}\">{{toast.message}}</div>\n      </div>\n    </div>\n    "
+          template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" class=\"toast-{{toast.type}}\" (click)=\"dismiss(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{titleClass}}\">{{toast.title}}</div>\n        <div class=\"{{messageClass}}\">{{toast.message}}</div>\n      </div>\n    </div>\n    "
         }), __param(0, core_1.Optional()), __param(0, core_1.Inject(toast_options_1.ToastOptions)), __metadata('design:paramtypes', [Object])], ToastContainer);
         return ToastContainer;
       }());
@@ -231,7 +231,7 @@ System.register("ng2-toastr/src/toast-container.component", ["angular2/core", ".
   };
 });
 
-System.register("ng2-toastr/src/toast-options", ["angular2/core"], function(exports_1, context_1) {
+System.register("ng2-toastr/src/toast-options", ["@angular/core"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var __decorate = (this && this.__decorate) || function(decorators, target, key, desc) {

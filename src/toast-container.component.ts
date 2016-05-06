@@ -1,4 +1,4 @@
-import {Component, Optional, Inject} from 'angular2/core';
+import {Component, Optional, Inject} from '@angular/core';
 import {Toast} from './toast';
 import {ToastOptions} from './toast-options';
 

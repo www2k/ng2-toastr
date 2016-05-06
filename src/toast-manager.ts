@@ -1,15 +1,15 @@
 import {
   Injectable, ComponentRef, DynamicComponentLoader, ApplicationRef,
   Inject, Optional, provide, ReflectiveInjector, ViewContainerRef
-} from 'angular2/core';
+} from '@angular/core';
 import {ToastContainer} from './toast-container.component';
 import {ToastOptions} from './toast-options';
 import {Toast} from './toast';
-import {ViewContainerRef_} from 'angular2/src/core/linker/view_container_ref';
+import {ViewContainerRef_} from '@angular/core/src/linker/view_container_ref';
 
 @Injectable()
 export class ToastsManager {
-  container: ComponentRef;
+  container: ComponentRef<any>;
   private options = {
     autoDismiss: true,
     toastLife: 3000,
