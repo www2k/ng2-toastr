@@ -1,4 +1,4 @@
-System.register(['angular2/core', './toast-container.component', './toast-options', './toast', 'angular2/src/core/linker/view_container_ref'], function(exports_1, context_1) {
+System.register(['@angular/core', './toast-container.component', './toast-options', './toast', '@angular/core/src/linker/view_container_ref'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {

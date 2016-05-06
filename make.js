@@ -40,7 +40,7 @@ function getSystemJsBundleConfig(cb) {
     },
     map: {
       typescript: path.resolve('node_modules/typescript/lib/typescript.js'),
-      angular2: path.resolve('node_modules/angular2'),
+      '@angular': path.resolve('node_modules/@angular'),
       rxjs: path.resolve('node_modules/rxjs')
     },
     paths: {
@@ -48,7 +48,7 @@ function getSystemJsBundleConfig(cb) {
     }
   };
 
-  config.meta = ['angular2', 'rxjs'].reduce((memo, currentValue) => {
+  config.meta = ['@angular', 'rxjs'].reduce((memo, currentValue) => {
     memo[path.resolve(`node_modules/${currentValue}/*`)] = {build: false};
     return memo;
   }, {});

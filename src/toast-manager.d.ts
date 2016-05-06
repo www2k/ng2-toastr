@@ -1,9 +1,9 @@
-import { ComponentRef, DynamicComponentLoader, ApplicationRef } from 'angular2/core';
+import { ComponentRef, DynamicComponentLoader, ApplicationRef } from '@angular/core';
 import { Toast } from './toast';
 export declare class ToastsManager {
     private loader;
     private appRef;
-    container: ComponentRef;
+    container: ComponentRef<any>;
     private options;
     private index;
     constructor(loader: DynamicComponentLoader, appRef: ApplicationRef, options: any);
