@@ -1,21 +1,17 @@
-module.exports = {
-  verbose: true,
-  displayErrorDetails: true,
-  context: __dirname,
+var path = require('path');
 
+module.exports = {
   entry: {
-    'ng2-toastr': ['ng2-toastr.js'],
+    'ng2-toastr': './ng2-toastr.ts',
   },
   output: {
     path: './bundles',
-    filename: "[name].min.js",
-    sourceMapFilename: '[name].js.map',
-    chunkFilename: '[id].chunk.js'
+    filename: "[name].js",
+    sourceMapFilename: '[name].js.map'
   },
+  devtool: '#source-map',
   resolve: {
-    cache: false,
-    root: __dirname,
-    extensions: ['', '.webpack.js', '.web.js', '.ts', '.js']
+    extensions: ['', '.ts', '.js'],
   },
   module: {
     loaders: [
@@ -27,11 +23,17 @@ module.exports = {
             noEmitHelpers: false
           }
         },
-        exclude: [ /\.(spec|e2e)\.ts$/, /node_modules\/(?!(ng2-.+))/ ]
-      }
+        exclude: [ /\.(spec|e2e)\.ts$/,
+          './node_modules/rxjs',
+          './node_modules/@angular',
+          './node_modules/angular2-in-memory-web-api',
+        ],
+      },
+
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader',
+      },
     ]
   },
-  noParse: [
-    /zone\.js\/dist\/zone-microtask/
-  ]
 };
