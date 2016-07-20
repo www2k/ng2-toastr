@@ -5,7 +5,6 @@ import {
 import {ToastContainer} from './toast-container.component';
 import {ToastOptions} from './toast-options';
 import {Toast} from './toast';
-import {ViewContainerRef_} from '@angular/core/src/linker/view_container_ref';
 
 @Injectable()
 export class ToastsManager {
@@ -27,7 +26,7 @@ export class ToastsManager {
   show(toast: Toast) {
     if (!this.container) {
       // a hack to get app element in shadow dom
-      let appElement: ViewContainerRef = new ViewContainerRef_(this.appRef['_rootComponents'][0]._hostElement);
+      let appElement: ViewContainerRef =  this.appRef['_rootComponents'][0]['_hostElement'].vcRef;
 
       let bindings = ReflectiveInjector.resolve([
         provide(ToastOptions, { useValue: <ToastOptions>this.options })
