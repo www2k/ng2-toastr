@@ -14,5 +14,3 @@ coverage
 demo
 demo-build
 webpack.config.js
-
-*.js.map
