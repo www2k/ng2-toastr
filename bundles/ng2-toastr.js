@@ -17,7 +17,7 @@ System.registerDynamic("ng2-toastr/src/toast", [], true, function($__require, ex
   return module.exports;
 });
 
-System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toast-container.component", "./toast-options", "./toast", "@angular/core/src/linker/view_container_ref"], true, function($__require, exports, module) {
+System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toast-container.component", "./toast-options", "./toast"], true, function($__require, exports, module) {
   "use strict";
   ;
   var global = this,
@@ -48,7 +48,6 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
   var toast_container_component_1 = $__require('./toast-container.component');
   var toast_options_1 = $__require('./toast-options');
   var toast_1 = $__require('./toast');
-  var view_container_ref_1 = $__require('@angular/core/src/linker/view_container_ref');
   var ToastsManager = (function() {
     function ToastsManager(loader, appRef, options) {
       this.loader = loader;
@@ -65,7 +64,7 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
     ToastsManager.prototype.show = function(toast) {
       var _this = this;
       if (!this.container) {
-        var appElement = new view_container_ref_1.ViewContainerRef_(this.appRef['_rootComponents'][0]._hostElement);
+        var appElement = this.appRef['_rootComponents'][0]['_hostElement'].vcRef;
         var bindings = core_1.ReflectiveInjector.resolve([core_1.provide(toast_options_1.ToastOptions, {useValue: this.options})]);
         this.loader.loadNextToLocation(toast_container_component_1.ToastContainer, appElement, bindings).then(function(ref) {
           _this.container = ref;

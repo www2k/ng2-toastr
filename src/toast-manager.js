@@ -15,7 +15,6 @@ var core_1 = require('@angular/core');
 var toast_container_component_1 = require('./toast-container.component');
 var toast_options_1 = require('./toast-options');
 var toast_1 = require('./toast');
-var view_container_ref_1 = require('@angular/core/src/linker/view_container_ref');
 var ToastsManager = (function () {
     function ToastsManager(loader, appRef, options) {
         this.loader = loader;
@@ -33,7 +32,7 @@ var ToastsManager = (function () {
         var _this = this;
         if (!this.container) {
             // a hack to get app element in shadow dom
-            var appElement = new view_container_ref_1.ViewContainerRef_(this.appRef['_rootComponents'][0]._hostElement);
+            var appElement = this.appRef['_rootComponents'][0]['_hostElement'].vcRef;
             var bindings = core_1.ReflectiveInjector.resolve([
                 core_1.provide(toast_options_1.ToastOptions, { useValue: this.options })
             ]);
