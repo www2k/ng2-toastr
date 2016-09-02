@@ -10,6 +10,7 @@ export declare class ToastContainer {
     constructor(options: any);
     addToast(toast: Toast): void;
     removeToast(toastId: number): void;
+    removeAllToasts(): void;
     dismiss(toast: any): void;
     anyToast(): boolean;
     findToast(toastId: number): Toast;

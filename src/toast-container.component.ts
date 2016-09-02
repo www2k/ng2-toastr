@@ -49,6 +49,10 @@ export class ToastContainer {
     });
   }
 
+  removeAllToasts() {
+    this.toasts = [];
+  }
+
   dismiss(toast) {
     if (!this.autoDismiss) {
       this.removeToast(toast.id);

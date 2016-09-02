@@ -68,6 +68,15 @@ var ToastsManager = (function () {
             }
         }
     };
+    ToastsManager.prototype.clearAllToasts = function () {
+        if (this.container) {
+            var instance = this.container.instance;
+            instance.removeAllToasts();
+            if (!instance.anyToast()) {
+                this.dispose();
+            }
+        }
+    };
     ToastsManager.prototype.dispose = function () {
         this.container.destroy();
         this.container = null;
