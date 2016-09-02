@@ -58,6 +58,9 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
         return toast.id !== toastId;
       });
     };
+    ToastContainer.prototype.removeAllToasts = function() {
+      this.toasts = [];
+    };
     ToastContainer.prototype.dismiss = function(toast) {
       if (!this.autoDismiss) {
         this.removeToast(toast.id);
@@ -217,6 +220,15 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
       if (this.container) {
         var instance = this.container.instance;
         instance.removeToast(toastId);
+        if (!instance.anyToast()) {
+          this.dispose();
+        }
+      }
+    };
+    ToastsManager.prototype.clearAllToasts = function() {
+      if (this.container) {
+        var instance = this.container.instance;
+        instance.removeAllToasts();
         if (!instance.anyToast()) {
           this.dispose();
         }

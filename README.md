@@ -1,10 +1,7 @@
 Angular 2: Toastr
 ===================
 
-NOTE: Since there are breaking changes in Angular 2 beta 16. Please reference latest version of ng2-toastr. 
-If you are using Angular 2 beta 15 or below, please reference ng2-toastr version '0.1.8'.
-
-The project is in progress since it's built with Angular 2 Beta. 
+NOTE: Latest version 0.4.0. Adds support for angular 2.0.0-rc.6.
 
 The lib is inspired by [angular-toastr] (https://github.com/Foxandxss/angular-toastr), and will show bootstrap-like toasts. 
 Please update Angular 2 to version 2.0.0-beta.16 to avoid any unexpected issues.
@@ -25,15 +22,33 @@ Please update Angular 2 to version 2.0.0-beta.16 to avoid any unexpected issues.
     
     ```
 
-3. Use Angular Dependency Inject 'ToastsManager' class
+3. Add ToastModule into your AppModule class. `app.module.ts` would look like this:
+
+```javascript
+
+    import {NgModule} from '@angular/core';
+    import {BrowserModule} from '@angular/platform-browser';
+    import {AppComponent} from './app.component';
+    import {ToastModule} from 'ng2-toastr/ng2-toastr';
+    
+    @NgModule({
+      imports: [BrowserModule, ToastModule],
+      declarations: [AppComponent],
+      bootstrap: [AppComponent],
+    })
+    export class AppModule {
+    
+    }
+```
+
+4. Inject 'ToastsManager' class in your component class.
 
 ```javascript
     import { ToastsManager } from 'ng2-toastr/ng2-toastr';
     
     @Component({
       selector: 'awesome-component',
-      template: '<button class="btn btn-default" (click)="showSuccess()">Toastr Tester</button>',
-      providers: [ToastsManager]
+      template: '<button class="btn btn-default" (click)="showSuccess()">Toastr Tester</button>'
     })
     export class AppComponent {
     
