@@ -105,21 +105,28 @@ CSS class for message within toast.
 #####titleClass: (string)
 CSS class for title within toast.
 
-Use Angular 2 dependency inject for custom configurations. Here is code when you bootstrap your app:
+Use dependency inject for custom configurations. You can either inject into `app.module.ts` or any component class:
 
 ```javascript
-    import {provide} from 'angular2/core';
-    import {ToastOptions} from "ng2-toastr/ng2-toastr";
+    import {NgModule} from '@angular/core';
+    import {BrowserModule} from '@angular/platform-browser';
+    import {AppComponent} from './app.component';
+    import {ToastModule, ToastOptions} from 'ng2-toastr/ng2-toastr';
     
     let options = <ToastOptions>{
       autoDismiss: false,
       positionClass: 'toast-bottom-right',
     };
+        
+    @NgModule({
+      imports: [BrowserModule, ToastModule],
+      declarations: [AppComponent],
+      providers: [{provide: ToastOptions, useValue: options}],
+      bootstrap: [AppComponent],
+    })
+    export class AppModule {
     
-    bootstrap(AppComponent, [
-      ... ,   
-      {provide: ToastOptions, useValue: options}
-    ]);
+    }
 
 ```
 
