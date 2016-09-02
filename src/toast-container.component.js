@@ -45,6 +45,9 @@ var ToastContainer = (function () {
             return toast.id !== toastId;
         });
     };
+    ToastContainer.prototype.removeAllToasts = function () {
+        this.toasts = [];
+    };
     ToastContainer.prototype.dismiss = function (toast) {
         if (!this.autoDismiss) {
             this.removeToast(toast.id);

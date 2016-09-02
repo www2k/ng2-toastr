@@ -11,6 +11,7 @@ export declare class ToastsManager {
     createTimeout(toastId: number): void;
     setupToast(toast: Toast): void;
     clearToast(toastId: number): void;
+    clearAllToasts(): void;
     dispose(): void;
     error(message: string, title?: string): void;
     info(message: string, title?: string): void;

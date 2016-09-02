@@ -66,6 +66,16 @@ export class ToastsManager {
     }
   }
 
+  clearAllToasts() {
+    if (this.container) {
+      let instance = this.container.instance;
+      instance.removeAllToasts();
+      if (!instance.anyToast()) {
+        this.dispose();
+      }
+    }
+  }
+
   dispose() {
     this.container.destroy();
     this.container = null;
