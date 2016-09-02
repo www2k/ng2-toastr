@@ -190,7 +190,7 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
       if (!this.container) {
         var rootComponent = this.appRef.componentTypes[0];
         var appContainer = this.injector.get(rootComponent).viewContainerRef;
-        console.log('container: ', appContainer);
+        console.log('container: ', this.injector.get(rootComponent));
         var providers = core_1.ReflectiveInjector.resolve([{
           provide: toast_options_1.ToastOptions,
           useValue: this.options

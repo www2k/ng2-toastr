@@ -29,7 +29,7 @@ export class ToastsManager {
       // get app root view component ref
       const rootComponent = this.appRef.componentTypes[0];
       let appContainer: ViewContainerRef = this.injector.get(rootComponent).viewContainerRef;
-      console.log('container: ', appContainer);
+      console.log('container: ', this.injector.get(rootComponent));
       // get options providers
       let providers = ReflectiveInjector.resolve([
         {provide: ToastOptions, useValue: <ToastOptions>this.options }

@@ -34,7 +34,7 @@ var ToastsManager = (function () {
             // get app root view component ref
             var rootComponent = this.appRef.componentTypes[0];
             var appContainer = this.injector.get(rootComponent).viewContainerRef;
-            console.log('container: ', appContainer);
+            console.log('container: ', this.injector.get(rootComponent));
             // get options providers
             var providers = core_1.ReflectiveInjector.resolve([
                 { provide: toast_options_1.ToastOptions, useValue: this.options }
