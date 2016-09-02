@@ -16,9 +16,10 @@ var toast_container_component_1 = require('./toast-container.component');
 var toast_options_1 = require('./toast-options');
 var toast_1 = require('./toast');
 var ToastsManager = (function () {
-    function ToastsManager(loader, appRef, options) {
-        this.loader = loader;
+    function ToastsManager(componentFactoryResolver, appRef, injector, options) {
+        this.componentFactoryResolver = componentFactoryResolver;
         this.appRef = appRef;
+        this.injector = injector;
         this.options = {
             autoDismiss: true,
             toastLife: 3000,
@@ -29,18 +30,19 @@ var ToastsManager = (function () {
         }
     }
     ToastsManager.prototype.show = function (toast) {
-        var _this = this;
         if (!this.container) {
-            // a hack to get app element in shadow dom
-            var appElement = this.appRef['_rootComponents'][0]['_hostElement'].vcRef;
-            var bindings = core_1.ReflectiveInjector.resolve([
-                core_1.provide(toast_options_1.ToastOptions, { useValue: this.options })
+            // get app root view component ref
+            var rootComponent = this.appRef.componentTypes[0];
+            var appContainer = this.injector.get(rootComponent).viewContainerRef;
+            // get options providers
+            var providers = core_1.ReflectiveInjector.resolve([
+                { provide: toast_options_1.ToastOptions, useValue: this.options }
             ]);
-            this.loader.loadNextToLocation(toast_container_component_1.ToastContainer, appElement, bindings)
-                .then(function (ref) {
-                _this.container = ref;
-                _this.setupToast(toast);
-            });
+            // create and load ToastContainer
+            var toastFactory = this.componentFactoryResolver.resolveComponentFactory(toast_container_component_1.ToastContainer);
+            var childInjector = core_1.ReflectiveInjector.fromResolvedProviders(providers, appContainer.parentInjector);
+            this.container = appContainer.createComponent(toastFactory, appContainer.length, childInjector);
+            this.setupToast(toast);
         }
         else {
             this.setupToast(toast);
@@ -90,9 +92,9 @@ var ToastsManager = (function () {
     };
     ToastsManager = __decorate([
         core_1.Injectable(),
-        __param(2, core_1.Optional()),
-        __param(2, core_1.Inject(toast_options_1.ToastOptions)), 
-        __metadata('design:paramtypes', [core_1.DynamicComponentLoader, core_1.ApplicationRef, Object])
+        __param(3, core_1.Optional()),
+        __param(3, core_1.Inject(toast_options_1.ToastOptions)), 
+        __metadata('design:paramtypes', [core_1.ComponentFactoryResolver, core_1.ApplicationRef, core_1.Injector, Object])
     ], ToastsManager);
     return ToastsManager;
 }());
