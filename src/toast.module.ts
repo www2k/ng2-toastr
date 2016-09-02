@@ -7,7 +7,8 @@ import {ToastsManager} from './toast-manager';
   imports: [CommonModule],
   declarations: [ToastContainer],
   exports: [ToastContainer],
-  providers: [ToastsManager]
+  providers: [ToastsManager],
+  entryComponents: [ToastContainer]
 })
 export class ToastModule {
 
