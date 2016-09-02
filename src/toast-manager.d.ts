@@ -1,12 +1,12 @@
-import { ComponentRef, DynamicComponentLoader, ApplicationRef } from '@angular/core';
+import { ComponentRef, ApplicationRef, ComponentFactoryResolver } from '@angular/core';
 import { Toast } from './toast';
 export declare class ToastsManager {
-    private loader;
+    private componentFactoryResolver;
     private appRef;
     container: ComponentRef<any>;
     private options;
     private index;
-    constructor(loader: DynamicComponentLoader, appRef: ApplicationRef, options: any);
+    constructor(componentFactoryResolver: ComponentFactoryResolver, appRef: ApplicationRef, options: any);
     show(toast: Toast): void;
     createTimeout(toastId: number): void;
     setupToast(toast: Toast): void;

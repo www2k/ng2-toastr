@@ -6,4 +6,5 @@ __export(require('./src/toast'));
 __export(require('./src/toast-manager'));
 __export(require('./src/toast-container.component'));
 __export(require('./src/toast-options'));
+__export(require('./src/toast.module'));
 //# sourceMappingURL=ng2-toastr.js.map

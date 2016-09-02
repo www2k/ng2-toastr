@@ -1,6 +1,5 @@
-import {
-  Injectable, ComponentRef, DynamicComponentLoader, ApplicationRef,
-  Inject, Optional, provide, ReflectiveInjector, ViewContainerRef
+import {Injectable, ComponentRef, ApplicationRef,
+  Inject, Optional, ReflectiveInjector, ViewContainerRef, ComponentFactoryResolver, Injector
 } from '@angular/core';
 import {ToastContainer} from './toast-container.component';
 import {ToastOptions} from './toast-options';
@@ -15,8 +14,9 @@ export class ToastsManager {
   };
   private index = 0;
 
-  constructor(private loader: DynamicComponentLoader,
+  constructor(private componentFactoryResolver: ComponentFactoryResolver,
               private appRef: ApplicationRef,
+              // private injector: Injector,
               @Optional() @Inject(ToastOptions) options) {
     if (options) {
       Object.assign(this.options, options);
@@ -25,18 +25,20 @@ export class ToastsManager {
 
   show(toast: Toast) {
     if (!this.container) {
-      // a hack to get app element in shadow dom
-      let appElement: ViewContainerRef =  this.appRef['_rootComponents'][0]['_hostElement'].vcRef;
+      // get app root view component ref
+      let appContainer: ViewContainerRef = this.appRef['_rootComponents'][0]['_hostElement'].vcRef;
 
-      let bindings = ReflectiveInjector.resolve([
-        provide(ToastOptions, { useValue: <ToastOptions>this.options })
+      // get options providers
+      let providers = ReflectiveInjector.resolve([
+        {provide: ToastOptions, useValue: <ToastOptions>this.options }
       ]);
 
-      this.loader.loadNextToLocation(ToastContainer, appElement, bindings)
-        .then((ref) => {
-          this.container = ref;
-          this.setupToast(toast);
-        });
+      // create and load ToastContainer
+      let toastFactory = this.componentFactoryResolver.resolveComponentFactory(ToastContainer);
+      let childInjector = ReflectiveInjector.fromResolvedProviders(providers, appContainer.parentInjector);
+      this.container = appContainer.createComponent(toastFactory, appContainer.length, childInjector);
+      this.setupToast(toast);
+
     } else {
       this.setupToast(toast);
     }
