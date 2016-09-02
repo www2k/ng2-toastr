@@ -7,8 +7,7 @@ import {ToastsManager} from './toast-manager';
 @NgModule({
   imports: [CommonModule],
   declarations: [ToastContainer],
-  exports: [ToastContainer],
-  providers: [ToastOptions, ToastsManager]
+  exports: [ToastContainer]
 })
 export class ToastModule {
 
