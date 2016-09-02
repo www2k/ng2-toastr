@@ -1,3 +1,4 @@
+"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -96,6 +97,6 @@ var ToastsManager = (function () {
         __metadata('design:paramtypes', [core_1.ComponentFactoryResolver, core_1.ApplicationRef, core_1.Injector, Object])
     ], ToastsManager);
     return ToastsManager;
-})();
+}());
 exports.ToastsManager = ToastsManager;
 //# sourceMappingURL=toast-manager.js.map

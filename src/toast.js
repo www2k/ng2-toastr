@@ -1,3 +1,4 @@
+"use strict";
 var Toast = (function () {
     function Toast(type, message, title) {
         this.type = type;
@@ -5,6 +6,6 @@ var Toast = (function () {
         this.title = title;
     }
     return Toast;
-})();
+}());
 exports.Toast = Toast;
 //# sourceMappingURL=toast.js.map

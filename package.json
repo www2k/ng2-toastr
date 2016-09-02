@@ -12,7 +12,8 @@
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "lite": "lite-server",
-    "start": "concurrently \"npm run tsc:w\" \"npm run lite\" "
+    "start": "concurrently \"npm run tsc:w\" \"npm run lite\" ",
+    "prepublish": "gulp clean && tsc && node make.js && gulp bundle-css"
   },
   "repository": {
     "type": "git",
