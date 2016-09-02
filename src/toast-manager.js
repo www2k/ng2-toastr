@@ -101,10 +101,10 @@ var ToastsManager = (function () {
         core_1.Injectable(),
         __param(2, core_1.Optional()),
         __param(2, core_1.Inject(toast_options_1.ToastOptions)), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof core_1.DynamicComponentLoader !== 'undefined' && core_1.DynamicComponentLoader) === 'function' && _a) || Object, core_1.ApplicationRef, Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof core_1.DynamicComponentLoader !== 'undefined' && core_1.DynamicComponentLoader) === 'function' && _a) || Object, (typeof (_b = typeof core_1.ApplicationRef !== 'undefined' && core_1.ApplicationRef) === 'function' && _b) || Object, Object])
     ], ToastsManager);
     return ToastsManager;
-    var _a;
+    var _a, _b;
 }());
 exports.ToastsManager = ToastsManager;
 //# sourceMappingURL=toast-manager.js.map
