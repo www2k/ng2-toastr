@@ -16,10 +16,11 @@ var toast_container_component_1 = require('./toast-container.component');
 var toast_options_1 = require('./toast-options');
 var toast_1 = require('./toast');
 var ToastsManager = (function () {
-    function ToastsManager(componentFactoryResolver, appRef, injector, options) {
+    function ToastsManager(componentFactoryResolver, appRef, 
+        // private injector: Injector,
+        options) {
         this.componentFactoryResolver = componentFactoryResolver;
         this.appRef = appRef;
-        this.injector = injector;
         this.options = {
             autoDismiss: true,
             toastLife: 3000,
@@ -32,9 +33,7 @@ var ToastsManager = (function () {
     ToastsManager.prototype.show = function (toast) {
         if (!this.container) {
             // get app root view component ref
-            var rootComponent = this.appRef.componentTypes[0];
-            var appContainer = this.injector.get(rootComponent).viewContainerRef;
-            console.log('container: ', this.injector.get(rootComponent));
+            var appContainer = this.appRef['_rootComponents'][0]['_hostElement'].vcRef;
             // get options providers
             var providers = core_1.ReflectiveInjector.resolve([
                 { provide: toast_options_1.ToastOptions, useValue: this.options }
@@ -93,9 +92,9 @@ var ToastsManager = (function () {
     };
     ToastsManager = __decorate([
         core_1.Injectable(),
-        __param(3, core_1.Optional()),
-        __param(3, core_1.Inject(toast_options_1.ToastOptions)), 
-        __metadata('design:paramtypes', [core_1.ComponentFactoryResolver, core_1.ApplicationRef, core_1.Injector, Object])
+        __param(2, core_1.Optional()),
+        __param(2, core_1.Inject(toast_options_1.ToastOptions)), 
+        __metadata('design:paramtypes', [core_1.ComponentFactoryResolver, core_1.ApplicationRef, Object])
     ], ToastsManager);
     return ToastsManager;
 }());

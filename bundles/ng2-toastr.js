@@ -173,10 +173,9 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
   var toast_options_1 = $__require('./toast-options');
   var toast_1 = $__require('./toast');
   var ToastsManager = (function() {
-    function ToastsManager(componentFactoryResolver, appRef, injector, options) {
+    function ToastsManager(componentFactoryResolver, appRef, options) {
       this.componentFactoryResolver = componentFactoryResolver;
       this.appRef = appRef;
-      this.injector = injector;
       this.options = {
         autoDismiss: true,
         toastLife: 3000
@@ -188,9 +187,7 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
     }
     ToastsManager.prototype.show = function(toast) {
       if (!this.container) {
-        var rootComponent = this.appRef.componentTypes[0];
-        var appContainer = this.injector.get(rootComponent).viewContainerRef;
-        console.log('container: ', this.injector.get(rootComponent));
+        var appContainer = this.appRef['_rootComponents'][0]['_hostElement'].vcRef;
         var providers = core_1.ReflectiveInjector.resolve([{
           provide: toast_options_1.ToastOptions,
           useValue: this.options
@@ -245,7 +242,7 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
       var toast = new toast_1.Toast('warning', message, title);
       this.show(toast);
     };
-    ToastsManager = __decorate([core_1.Injectable(), __param(3, core_1.Optional()), __param(3, core_1.Inject(toast_options_1.ToastOptions)), __metadata('design:paramtypes', [core_1.ComponentFactoryResolver, core_1.ApplicationRef, core_1.Injector, Object])], ToastsManager);
+    ToastsManager = __decorate([core_1.Injectable(), __param(2, core_1.Optional()), __param(2, core_1.Inject(toast_options_1.ToastOptions)), __metadata('design:paramtypes', [core_1.ComponentFactoryResolver, core_1.ApplicationRef, Object])], ToastsManager);
     return ToastsManager;
   }());
   exports.ToastsManager = ToastsManager;

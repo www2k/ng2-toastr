@@ -1,5 +1,4 @@
-import {
-  Injectable, ComponentRef, ApplicationRef,
+import {Injectable, ComponentRef, ApplicationRef,
   Inject, Optional, ReflectiveInjector, ViewContainerRef, ComponentFactoryResolver, Injector
 } from '@angular/core';
 import {ToastContainer} from './toast-container.component';
@@ -17,7 +16,7 @@ export class ToastsManager {
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
               private appRef: ApplicationRef,
-              private injector: Injector,
+              // private injector: Injector,
               @Optional() @Inject(ToastOptions) options) {
     if (options) {
       Object.assign(this.options, options);
@@ -27,9 +26,7 @@ export class ToastsManager {
   show(toast: Toast) {
     if (!this.container) {
       // get app root view component ref
-      const rootComponent = this.appRef.componentTypes[0];
-      let appContainer: ViewContainerRef = this.injector.get(rootComponent).viewContainerRef;
-      console.log('container: ', this.injector.get(rootComponent));
+      let appContainer: ViewContainerRef = this.appRef['_rootComponents'][0]['_hostElement'].vcRef;
       // get options providers
       let providers = ReflectiveInjector.resolve([
         {provide: ToastOptions, useValue: <ToastOptions>this.options }
