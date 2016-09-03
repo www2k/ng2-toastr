@@ -136,10 +136,9 @@ Use dependency inject for custom configurations. You can either inject into `app
     
     > cd demo && npm install
     > npm start    
-    
-    
 
-
+Then navigate your browser to http://localhost:3000    
+    
 
 ## TODOs
 
