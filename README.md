@@ -1,7 +1,7 @@
 Angular 2: Toastr
 ===================
 
-![](https://img.shields.io/badge/npm-v0.4.0-brightgreen.svg)
+![![](https://img.shields.io/badge/npm-v0.4.0-brightgreen.svg)](https://www.npmjs.com/package/ng2-toastr)
 
 NOTE: Latest version 0.4.0. Adds support for angular 2.0.0-rc.6.
 
