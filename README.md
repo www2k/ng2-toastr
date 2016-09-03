@@ -1,6 +1,8 @@
 Angular 2: Toastr
 ===================
 
+![](https://img.shields.io/badge/npm-v0.4.0-brightgreen.svg)
+
 NOTE: Latest version 0.4.0. Adds support for angular 2.0.0-rc.6.
 
 The lib is inspired by [angular-toastr] (https://github.com/Foxandxss/angular-toastr), and will show bootstrap-like toasts. 
