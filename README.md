@@ -26,54 +26,54 @@ Please update Angular 2 to version 2.0.0-beta.16 to avoid any unexpected issues.
 
 3. Add ToastModule into your AppModule class. `app.module.ts` would look like this:
 
-```javascript
-
-    import {NgModule} from '@angular/core';
-    import {BrowserModule} from '@angular/platform-browser';
-    import {AppComponent} from './app.component';
-    import {ToastModule} from 'ng2-toastr/ng2-toastr';
+    ```javascript
     
-    @NgModule({
-      imports: [BrowserModule, ToastModule],
-      declarations: [AppComponent],
-      bootstrap: [AppComponent],
-    })
-    export class AppModule {
-    
-    }
-```
+        import {NgModule} from '@angular/core';
+        import {BrowserModule} from '@angular/platform-browser';
+        import {AppComponent} from './app.component';
+        import {ToastModule} from 'ng2-toastr/ng2-toastr';
+        
+        @NgModule({
+          imports: [BrowserModule, ToastModule],
+          declarations: [AppComponent],
+          bootstrap: [AppComponent],
+        })
+        export class AppModule {
+        
+        }
+    ```
 
 4. Inject 'ToastsManager' class in your component class.
 
-```javascript
-    import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-    
-    @Component({
-      selector: 'awesome-component',
-      template: '<button class="btn btn-default" (click)="showSuccess()">Toastr Tester</button>'
-    })
-    export class AppComponent {
-    
-      constructor(public toastr: ToastsManager) {
-      }
+    ```javascript
+        import { ToastsManager } from 'ng2-toastr/ng2-toastr';
         
-      showSuccess() {
-        this.toastr.success('You are awesome!', 'Success!');
-      }
-    
-      showError() {
-        this.toastr.error('This is not good!', 'Oops!');
-      }
-    
-      showWarning() {
-        this.toastr.warning('You are being warned.', 'Alert!');
-      }
-    
-      showInfo() {
-        this.toastr.info('Just some information for you.');
-      }
-    }
-```
+        @Component({
+          selector: 'awesome-component',
+          template: '<button class="btn btn-default" (click)="showSuccess()">Toastr Tester</button>'
+        })
+        export class AppComponent {
+        
+          constructor(public toastr: ToastsManager) {
+          }
+            
+          showSuccess() {
+            this.toastr.success('You are awesome!', 'Success!');
+          }
+        
+          showError() {
+            this.toastr.error('This is not good!', 'Oops!');
+          }
+        
+          showWarning() {
+            this.toastr.warning('You are being warned.', 'Alert!');
+          }
+        
+          showInfo() {
+            this.toastr.info('Just some information for you.');
+          }
+        }
+    ```
 
 
 ### ToastOptions Configurations
@@ -109,28 +109,28 @@ CSS class for title within toast.
 
 Use dependency inject for custom configurations. You can either inject into `app.module.ts` or any component class:
 
-```javascript
-    import {NgModule} from '@angular/core';
-    import {BrowserModule} from '@angular/platform-browser';
-    import {AppComponent} from './app.component';
-    import {ToastModule, ToastOptions} from 'ng2-toastr/ng2-toastr';
-    
-    let options = <ToastOptions>{
-      autoDismiss: false,
-      positionClass: 'toast-bottom-right',
-    };
+    ```javascript
+        import {NgModule} from '@angular/core';
+        import {BrowserModule} from '@angular/platform-browser';
+        import {AppComponent} from './app.component';
+        import {ToastModule, ToastOptions} from 'ng2-toastr/ng2-toastr';
         
-    @NgModule({
-      imports: [BrowserModule, ToastModule],
-      declarations: [AppComponent],
-      providers: [{provide: ToastOptions, useValue: options}],
-      bootstrap: [AppComponent],
-    })
-    export class AppModule {
+        let options = <ToastOptions>{
+          autoDismiss: false,
+          positionClass: 'toast-bottom-right',
+        };
+            
+        @NgModule({
+          imports: [BrowserModule, ToastModule],
+          declarations: [AppComponent],
+          providers: [{provide: ToastOptions, useValue: options}],
+          bootstrap: [AppComponent],
+        })
+        export class AppModule {
+        
+        }
     
-    }
-
-```
+    ```
 
 ## TODOs
 
