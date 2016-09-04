@@ -1,7 +1,7 @@
 Angular 2: Toastr
 ===================
 
-[![](https://img.shields.io/badge/npm-v0.4.1-brightgreen.svg)](https://www.npmjs.com/package/ng2-toastr)
+[![](https://img.shields.io/badge/npm-v0.4.2-brightgreen.svg)](https://www.npmjs.com/package/ng2-toastr)
 
 NOTE: ng2-toastr now supports angular 2.0.0-rc.6. Also supports html message and other custom options for individual toast (See [Override Global Option](#override)). 
 
@@ -111,7 +111,7 @@ CSS class for message within toast.
 #####titleClass: (string)
 CSS class for title within toast.
 
-##### enableHTML: (string)
+##### enableHTML: (boolean)
 Allow input of message to be HTML. Default to false.
 
 Use dependency inject for custom configurations. You can either inject into `app.module.ts` or any component class:
@@ -137,13 +137,14 @@ Use dependency inject for custom configurations. You can either inject into `app
     
     }    
     
-##### <a name='override'></a>Override global option:
+### <a name='override'></a>Override global option:
  
  You can also override `autoDismiss`, `toastLife`, `enableHTML`, `titleClass`, `messageClass` options for individual toast:
     
     this.toastr.sucess('This toast will dismiss in 10 seconds.', null, {toastLife: 10000});
     this.toastr.info('<span style="color: red">Message in red.</span>', null, {enableHTML: true});
-    
+ 
+ NOTE: specify a value for `toastLife` overrides `autoDismiss` and always set `autoDismiss = true`.
 
 ## Run demo app
     
