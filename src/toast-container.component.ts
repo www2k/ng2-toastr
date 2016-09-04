@@ -7,15 +7,12 @@ import {DomSanitizer} from '@angular/platform-browser';
   selector: 'toast-container',
   template: `
     <div id="toast-container" [style.position]="position" class="{{positionClass}}">
-      <div *ngFor="let toast of toasts" class="toast-{{toast.type}}" (click)="dismiss(toast)" [ngSwitch]="toast.enableHTML">
-        <div *ngSwitchCase="true">
-          <div *ngIf="toast.title" [innerHTML]="sanitizer.bypassSecurityTrustHtml(toast.title)"></div>
-          <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(toast.message)"></div>
-        </div> 
-        <div *ngSwitchDefault>
-          <div *ngIf="toast.title" class="{{toast.titleClass || titleClass}}">{{toast.title}}</div>
-          <div class="{{toast.messageClass || messageClass}}">{{toast.message}}</div>
-        </div>         
+      <div *ngFor="let toast of toasts" class="toast-{{toast.type}}" (click)="dismiss(toast)">
+        <div *ngIf="toast.title" class="{{toast.titleClass || titleClass}}">{{toast.title}}</div>
+        <div [ngSwitch]="toast.enableHTML">
+          <span *ngSwitchCase="true" [innerHTML]="sanitizer.bypassSecurityTrustHtml(toast.message)"></span>
+          <span *ngSwitchDefault class="{{toast.messageClass || messageClass}}">{{toast.message}}</span>
+        </div>              
       </div>
     </div>
     `,

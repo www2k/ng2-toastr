@@ -72,6 +72,10 @@ Please update Angular 2 to latest version to avoid any unexpected issues.
           showInfo() {
             this.toastr.info('Just some information for you.');
           }
+          
+          showCustom() {
+            this.toastr.custom('<span style="color: red">Message in red.</span>', null, {enableHTML: true});
+          }
         }
     ```
 
@@ -107,6 +111,9 @@ CSS class for message within toast.
 #####titleClass: (string)
 CSS class for title within toast.
 
+##### enableHTML: (string)
+Allow input of message to be HTML. Default to false.
+
 Use dependency inject for custom configurations. You can either inject into `app.module.ts` or any component class:
 
     
@@ -130,10 +137,11 @@ Use dependency inject for custom configurations. You can either inject into `app
     
     }    
     
-You can also override `autoDismiss` and `toastLife` options for individual toast:
+You can also override `autoDismiss`, `toastLife`, `enableHTML`, `titleClass`, `messageClass` options for individual toast:
 
     
     this.toastr.info('This toast will dismiss in 10 seconds.', null, {toastLife: 10000});
+    this.toastr.info('<span style="color: red">Message in red.</span>', null, {enableHTML: true});
     
 
 ## Run demo app
