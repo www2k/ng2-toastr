@@ -33,8 +33,8 @@ var AppComponent = (function () {
         this.toastr.warning('The toast will auto dismiss in 8 seconds', null, { toastLife: 8000 });
     };
     AppComponent.prototype.showCustomHTML = function () {
-        this.toastr.custom('<span style="color: #bd362f">This message should be in red with blank background. Click to dismiss.</span>', '<span style="font-weight: bold; color: #999999;">Blue Title Message</span>', { enableHTML: true, autoDismiss: false });
-        this.toastr.info('<span style="color: #bd362f">This should be red, </span><br/><span>and multi-line message.</span>', '<span style="font-weight: bold; color: #999999;">Custom Information Message</span>', { enableHTML: true, toastLife: 5000 });
+        this.toastr.custom('<span style="color: #bd362f">This message should be in red with blank background. Click to dismiss.</span>', 'Custom Message', { enableHTML: true, autoDismiss: false });
+        this.toastr.info('<span style="color: #bd362f">This should be red, </span><br/><span>and multi-line message.</span>', 'Custom Information Message', { enableHTML: true, toastLife: 5000 });
     };
     AppComponent = __decorate([
         core_1.Component({

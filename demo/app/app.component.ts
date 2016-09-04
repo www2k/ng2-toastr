@@ -52,9 +52,9 @@ export class AppComponent {
 
   showCustomHTML() {
     this.toastr.custom('<span style="color: #bd362f">This message should be in red with blank background. Click to dismiss.</span>',
-      '<span style="font-weight: bold; color: #999999;">Blue Title Message</span>', {enableHTML: true, autoDismiss: false});
+      'Custom Message', {enableHTML: true, autoDismiss: false});
     this.toastr.info('<span style="color: #bd362f">This should be red, </span><br/><span>and multi-line message.</span>',
-      '<span style="font-weight: bold; color: #999999;">Custom Information Message</span>', {enableHTML: true, toastLife: 5000});
+      'Custom Information Message', {enableHTML: true, toastLife: 5000});
   }
 
 }

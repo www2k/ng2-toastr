@@ -3,7 +3,7 @@ Angular 2: Toastr
 
 [![](https://img.shields.io/badge/npm-v0.4.1-brightgreen.svg)](https://www.npmjs.com/package/ng2-toastr)
 
-NOTE: ng2-toastr now supports angular 2.0.0-rc.6.
+NOTE: ng2-toastr now supports angular 2.0.0-rc.6. Also supports html message and other custom options for individual toast (See [Override Global Option](#override)). 
 
 The lib is inspired by [angular-toastr] (https://github.com/Foxandxss/angular-toastr), and will show bootstrap-like toasts. 
 Please update Angular 2 to latest version to avoid any unexpected issues.
@@ -137,10 +137,11 @@ Use dependency inject for custom configurations. You can either inject into `app
     
     }    
     
-You can also override `autoDismiss`, `toastLife`, `enableHTML`, `titleClass`, `messageClass` options for individual toast:
-
+##### <a name='override'></a>Override global option:
+ 
+ You can also override `autoDismiss`, `toastLife`, `enableHTML`, `titleClass`, `messageClass` options for individual toast:
     
-    this.toastr.info('This toast will dismiss in 10 seconds.', null, {toastLife: 10000});
+    this.toastr.sucess('This toast will dismiss in 10 seconds.', null, {toastLife: 10000});
     this.toastr.info('<span style="color: red">Message in red.</span>', null, {enableHTML: true});
     
 
