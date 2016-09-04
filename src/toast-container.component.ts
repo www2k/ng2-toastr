@@ -20,7 +20,6 @@ export class ToastContainer {
   positionClass = 'toast-top-right';
   toasts: Toast[] = [];
   maxShown = 5;
-  autoDismiss = true;
 
   constructor(@Optional() @Inject(ToastOptions) options) {
     if (options) {
@@ -54,7 +53,7 @@ export class ToastContainer {
   }
 
   dismiss(toast) {
-    if (!toast.autoDismiss && !this.autoDismiss) {
+    if (!toast.autoDismiss) {
       this.removeToast(toast.id);
     }
   }

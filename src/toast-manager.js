@@ -61,6 +61,9 @@ var ToastsManager = (function () {
         if (options && typeof (options.autoDismiss) === 'boolean') {
             toast.autoDismiss = options.autoDismiss;
         }
+        else {
+            toast.autoDismiss = this.options.autoDismiss;
+        }
         if (toast.autoDismiss) {
             if (options && typeof (options.toastLife) === 'number') {
                 this.createTimeout(toast.id, options.toastLife);

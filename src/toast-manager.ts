@@ -58,6 +58,8 @@ export class ToastsManager {
 
     if (options && typeof(options.autoDismiss) === 'boolean') {
       toast.autoDismiss = options.autoDismiss;
+    } else {
+      toast.autoDismiss = this.options.autoDismiss;
     }
 
     if (toast.autoDismiss) {

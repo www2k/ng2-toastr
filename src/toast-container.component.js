@@ -21,7 +21,6 @@ var ToastContainer = (function () {
         this.positionClass = 'toast-top-right';
         this.toasts = [];
         this.maxShown = 5;
-        this.autoDismiss = true;
         if (options) {
             Object.assign(this, options);
         }
@@ -49,7 +48,7 @@ var ToastContainer = (function () {
         this.toasts = [];
     };
     ToastContainer.prototype.dismiss = function (toast) {
-        if (!toast.autoDismiss && !this.autoDismiss) {
+        if (!toast.autoDismiss) {
             this.removeToast(toast.id);
         }
     };

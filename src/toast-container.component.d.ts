@@ -6,7 +6,6 @@ export declare class ToastContainer {
     positionClass: string;
     toasts: Toast[];
     maxShown: number;
-    autoDismiss: boolean;
     constructor(options: any);
     addToast(toast: Toast): void;
     removeToast(toastId: number): void;
