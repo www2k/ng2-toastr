@@ -56,9 +56,12 @@ export class ToastsManager {
     toast.id = ++this.index;
     this.container.instance.addToast(toast);
 
-    toast.autoDismiss = options && options.autoDismiss ? options.autoDismiss : this.options.autoDismiss;
+    if (options) {
+      toast.autoDismiss = options.autoDismiss ||  this.options.autoDismiss;
+    }
+
     if (toast.autoDismiss) {
-      if (options && options.toastLife) {
+      if (options && typeof(options.toastLife) === 'number') {
         this.createTimeout(toast.id, options.toastLife);
       } else {
         this.createTimeout(toast.id);

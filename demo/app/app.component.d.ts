@@ -7,4 +7,5 @@ export declare class AppComponent {
     showWarning(): void;
     showInfo(): void;
     showClickToDismiss(): void;
+    showCustomLife(): void;
 }
