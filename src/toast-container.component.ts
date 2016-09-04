@@ -54,7 +54,7 @@ export class ToastContainer {
   }
 
   dismiss(toast) {
-    if (!this.autoDismiss) {
+    if (!toast.autoDismiss && !this.autoDismiss) {
       this.removeToast(toast.id);
     }
   }

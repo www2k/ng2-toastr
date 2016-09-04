@@ -58,8 +58,8 @@ var ToastsManager = (function () {
     ToastsManager.prototype.setupToast = function (toast, options) {
         toast.id = ++this.index;
         this.container.instance.addToast(toast);
-        if (options) {
-            toast.autoDismiss = options.autoDismiss || this.options.autoDismiss;
+        if (options && typeof (options.autoDismiss) === 'boolean') {
+            toast.autoDismiss = options.autoDismiss;
         }
         if (toast.autoDismiss) {
             if (options && typeof (options.toastLife) === 'number') {

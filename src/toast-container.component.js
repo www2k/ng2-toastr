@@ -49,7 +49,7 @@ var ToastContainer = (function () {
         this.toasts = [];
     };
     ToastContainer.prototype.dismiss = function (toast) {
-        if (!this.autoDismiss) {
+        if (!toast.autoDismiss && !this.autoDismiss) {
             this.removeToast(toast.id);
         }
     };

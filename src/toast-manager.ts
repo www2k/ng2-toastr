@@ -56,8 +56,8 @@ export class ToastsManager {
     toast.id = ++this.index;
     this.container.instance.addToast(toast);
 
-    if (options) {
-      toast.autoDismiss = options.autoDismiss ||  this.options.autoDismiss;
+    if (options && typeof(options.autoDismiss) === 'boolean') {
+      toast.autoDismiss = options.autoDismiss;
     }
 
     if (toast.autoDismiss) {
