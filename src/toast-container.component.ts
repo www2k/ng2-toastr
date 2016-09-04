@@ -6,9 +6,15 @@ import {ToastOptions} from './toast-options';
   selector: 'toast-container',
   template: `
     <div id="toast-container" [style.position]="position" class="{{positionClass}}">
-      <div *ngFor="let toast of toasts" class="toast-{{toast.type}}" (click)="dismiss(toast)">
-        <div *ngIf="toast.title" class="{{titleClass}}">{{toast.title}}</div>
-        <div class="{{messageClass}}">{{toast.message}}</div>
+      <div *ngFor="let toast of toasts" class="toast-{{toast.type}}" (click)="dismiss(toast)" [ngSwitch]="toast.enableHTML">
+        <div *ngSwitchCase="true">
+          <div *ngIf="toast.title" [innerHTML]="toast.title"></div>
+          <div [innerHTML]="toast.message"></div>
+        </div> 
+        <div *ngSwitchDefault>
+          <div *ngIf="toast.title" class="{{toast.titleClass || titleClass}}">{{toast.title}}</div>
+          <div class="{{toast.messageClass || messageClass}}">{{toast.message}}</div>
+        </div>         
       </div>
     </div>
     `,

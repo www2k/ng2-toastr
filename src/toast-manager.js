@@ -58,6 +58,12 @@ var ToastsManager = (function () {
     ToastsManager.prototype.setupToast = function (toast, options) {
         toast.id = ++this.index;
         this.container.instance.addToast(toast);
+        if (options && typeof (options.messageClass) === 'string') {
+            toast.messageClass = options.messageClass;
+        }
+        if (options && typeof (options.titleClass) === 'string') {
+            toast.titleClass = options.titleClass;
+        }
         if (options && typeof (options.autoDismiss) === 'boolean') {
             toast.autoDismiss = options.autoDismiss;
         }
@@ -109,6 +115,10 @@ var ToastsManager = (function () {
     };
     ToastsManager.prototype.warning = function (message, title, options) {
         var toast = new toast_1.Toast('warning', message, title);
+        this.show(toast, options);
+    };
+    ToastsManager.prototype.custom = function (message, title, options) {
+        var toast = new toast_1.Toast('custom', message, title);
         this.show(toast, options);
     };
     ToastsManager = __decorate([

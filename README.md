@@ -1,9 +1,9 @@
 Angular 2: Toastr
 ===================
 
-[![](https://img.shields.io/badge/npm-v0.4.0-brightgreen.svg)](https://www.npmjs.com/package/ng2-toastr)
+[![](https://img.shields.io/badge/npm-v0.4.1-brightgreen.svg)](https://www.npmjs.com/package/ng2-toastr)
 
-NOTE: Latest version 0.4.0. Adds support for angular 2.0.0-rc.6.
+NOTE: ng2-toastr now supports angular 2.0.0-rc.6.
 
 The lib is inspired by [angular-toastr] (https://github.com/Foxandxss/angular-toastr), and will show bootstrap-like toasts. 
 Please update Angular 2 to latest version to avoid any unexpected issues.
@@ -130,7 +130,11 @@ Use dependency inject for custom configurations. You can either inject into `app
     
     }    
     
+You can also override `autoDismiss` and `toastLife` options for individual toast:
 
+    
+    this.toastr.info('This toast will dismiss in 10 seconds.', null, {toastLife: 10000});
+    
 
 ## Run demo app
     

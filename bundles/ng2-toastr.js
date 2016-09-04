@@ -81,7 +81,7 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
     };
     ToastContainer = __decorate([core_1.Component({
       selector: 'toast-container',
-      template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" class=\"toast-{{toast.type}}\" (click)=\"dismiss(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{titleClass}}\">{{toast.title}}</div>\n        <div class=\"{{messageClass}}\">{{toast.message}}</div>\n      </div>\n    </div>\n    "
+      template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" class=\"toast-{{toast.type}}\" (click)=\"dismiss(toast)\" [ngSwitch]=\"toast.enableHTML\">\n        <div *ngSwitchCase=\"true\">\n          <div *ngIf=\"toast.title\" [innerHTML]=\"toast.title\"></div>\n          <div [innerHTML]=\"toast.message\"></div>\n        </div> \n        <div *ngSwitchDefault>\n          <div *ngIf=\"toast.title\" class=\"{{toast.titleClass || titleClass}}\">{{toast.title}}</div>\n          <div class=\"{{toast.messageClass || messageClass}}\">{{toast.message}}</div>\n        </div>         \n      </div>\n    </div>\n    "
     }), __param(0, core_1.Optional()), __param(0, core_1.Inject(toast_options_1.ToastOptions)), __metadata('design:paramtypes', [Object])], ToastContainer);
     return ToastContainer;
   }());
@@ -137,6 +137,7 @@ System.registerDynamic("ng2-toastr/src/toast", [], true, function($__require, ex
       this.message = message;
       this.title = title;
       this.autoDismiss = true;
+      this.enableHTML = false;
     }
     return Toast;
   }());
@@ -214,6 +215,12 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
     ToastsManager.prototype.setupToast = function(toast, options) {
       toast.id = ++this.index;
       this.container.instance.addToast(toast);
+      if (options && typeof(options.messageClass) === 'string') {
+        toast.messageClass = options.messageClass;
+      }
+      if (options && typeof(options.titleClass) === 'string') {
+        toast.titleClass = options.titleClass;
+      }
       if (options && typeof(options.autoDismiss) === 'boolean') {
         toast.autoDismiss = options.autoDismiss;
       } else {
@@ -263,6 +270,10 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
     };
     ToastsManager.prototype.warning = function(message, title, options) {
       var toast = new toast_1.Toast('warning', message, title);
+      this.show(toast, options);
+    };
+    ToastsManager.prototype.custom = function(message, title, options) {
+      var toast = new toast_1.Toast('custom', message, title);
       this.show(toast, options);
     };
     ToastsManager = __decorate([core_1.Injectable(), __param(2, core_1.Optional()), __param(2, core_1.Inject(toast_options_1.ToastOptions)), __metadata('design:paramtypes', [core_1.ComponentFactoryResolver, core_1.ApplicationRef, Object])], ToastsManager);

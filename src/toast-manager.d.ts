@@ -17,4 +17,5 @@ export declare class ToastsManager {
     info(message: string, title?: string, options?: any): void;
     success(message: string, title?: string, options?: any): void;
     warning(message: string, title?: string, options?: any): void;
+    custom(message: string, title?: string, options?: any): void;
 }

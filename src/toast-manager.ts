@@ -56,6 +56,14 @@ export class ToastsManager {
     toast.id = ++this.index;
     this.container.instance.addToast(toast);
 
+    if (options && typeof(options.messageClass) === 'string') {
+      toast.messageClass = options.messageClass;
+    }
+
+    if (options && typeof(options.titleClass) === 'string') {
+      toast.titleClass = options.titleClass;
+    }
+
     if (options && typeof(options.autoDismiss) === 'boolean') {
       toast.autoDismiss = options.autoDismiss;
     } else {
@@ -113,6 +121,11 @@ export class ToastsManager {
 
   warning(message: string, title?: string, options?: any) {
     let toast = new Toast('warning', message, title);
+    this.show(toast, options);
+  }
+
+  custom(message: string, title?: string, options?: any) {
+    let toast = new Toast('custom', message, title);
     this.show(toast, options);
   }
 }
