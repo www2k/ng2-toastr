@@ -63,7 +63,6 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
       this.toasts = [];
     };
     ToastContainer.prototype.dismiss = function(toast) {
-      console.log(toast);
       if (!toast.autoDismiss) {
         this.removeToast(toast.id);
       }

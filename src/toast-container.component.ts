@@ -63,7 +63,6 @@ export class ToastContainer {
   }
 
   dismiss(toast) {
-    console.log(toast);
     if (!toast.autoDismiss) {
       this.removeToast(toast.id);
     }

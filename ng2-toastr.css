@@ -103,6 +103,12 @@ button.toast-close-button {
     color: #FFFFFF;
     opacity: 0.8;
 }
+
+#toast-container > div.toast-custom {
+    padding: 15px;
+    color: #030303;
+}
+
 #toast-container > :hover {
     -moz-box-shadow: 0 0 12px #000000;
     -webkit-box-shadow: 0 0 12px #000000;
@@ -146,10 +152,6 @@ button.toast-close-button {
 }
 .toast-warning {
     background-color: #F89406;
-}
-
-.toast-custom {
-    color: #030303;
 }
 
 .toast-progress {

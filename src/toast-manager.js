@@ -120,6 +120,7 @@ var ToastsManager = (function () {
         var toast = new toast_1.Toast('warning', message, title);
         this.show(toast, options);
     };
+    // allow user define custom background color and image
     ToastsManager.prototype.custom = function (message, title, options) {
         var toast = new toast_1.Toast('custom', message, title);
         this.show(toast, options);

@@ -129,6 +129,7 @@ export class ToastsManager {
     this.show(toast, options);
   }
 
+  // allow user define custom background color and image
   custom(message: string, title?: string, options?: any) {
     let toast = new Toast('custom', message, title);
     this.show(toast, options);

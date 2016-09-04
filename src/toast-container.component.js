@@ -50,7 +50,6 @@ var ToastContainer = (function () {
         this.toasts = [];
     };
     ToastContainer.prototype.dismiss = function (toast) {
-        console.log(toast);
         if (!toast.autoDismiss) {
             this.removeToast(toast.id);
         }
