@@ -16,9 +16,7 @@ var toast_container_component_1 = require('./toast-container.component');
 var toast_options_1 = require('./toast-options');
 var toast_1 = require('./toast');
 var ToastsManager = (function () {
-    function ToastsManager(componentFactoryResolver, appRef, 
-        // private injector: Injector,
-        options) {
+    function ToastsManager(componentFactoryResolver, appRef, options) {
         this.componentFactoryResolver = componentFactoryResolver;
         this.appRef = appRef;
         this.options = {

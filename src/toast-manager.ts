@@ -16,7 +16,6 @@ export class ToastsManager {
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
               private appRef: ApplicationRef,
-              // private injector: Injector,
               @Optional() @Inject(ToastOptions) options) {
     if (options) {
       Object.assign(this.options, options);

@@ -111,7 +111,7 @@ CSS class for message within toast.
 #####titleClass: (string)
 CSS class for title within toast.
 
-##### enableHTML: (string)
+##### enableHTML: (boolean)
 Allow input of message to be HTML. Default to false.
 
 Use dependency inject for custom configurations. You can either inject into `app.module.ts` or any component class:
