@@ -35,7 +35,6 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
       this.positionClass = 'toast-top-right';
       this.toasts = [];
       this.maxShown = 5;
-      this.autoDismiss = true;
       if (options) {
         Object.assign(this, options);
       }
@@ -62,7 +61,8 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
       this.toasts = [];
     };
     ToastContainer.prototype.dismiss = function(toast) {
-      if (!toast.autoDismiss && !this.autoDismiss) {
+      console.log(toast);
+      if (!toast.autoDismiss) {
         this.removeToast(toast.id);
       }
     };
@@ -216,6 +216,8 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
       this.container.instance.addToast(toast);
       if (options && typeof(options.autoDismiss) === 'boolean') {
         toast.autoDismiss = options.autoDismiss;
+      } else {
+        toast.autoDismiss = this.options.autoDismiss;
       }
       if (toast.autoDismiss) {
         if (options && typeof(options.toastLife) === 'number') {

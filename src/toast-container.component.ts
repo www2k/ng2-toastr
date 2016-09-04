@@ -53,6 +53,7 @@ export class ToastContainer {
   }
 
   dismiss(toast) {
+    console.log(toast);
     if (!toast.autoDismiss) {
       this.removeToast(toast.id);
     }
@@ -62,7 +63,7 @@ export class ToastContainer {
     return this.toasts.length > 0;
   }
 
-  findToast(toastId: number): Toast {
+  findToast(toastId: number): Toast | void {
     for (let toast of this.toasts) {
       if (toast.id === toastId) {
         return toast;

@@ -12,5 +12,5 @@ export declare class ToastContainer {
     removeAllToasts(): void;
     dismiss(toast: any): void;
     anyToast(): boolean;
-    findToast(toastId: number): Toast;
+    findToast(toastId: number): Toast | void;
 }
