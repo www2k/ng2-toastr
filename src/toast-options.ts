@@ -8,6 +8,7 @@ export class ToastOptions {
   autoDismiss: boolean;
   maxShown: number;
   toastLife: number;
+  enableHTML: boolean = false;
 
   constructor(options: Object) {
     Object.assign(this, options);

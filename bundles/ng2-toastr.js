@@ -115,6 +115,7 @@ System.registerDynamic("ng2-toastr/src/toast-options", ["@angular/core"], true, 
   var core_1 = $__require('@angular/core');
   var ToastOptions = (function() {
     function ToastOptions(options) {
+      this.enableHTML = false;
       Object.assign(this, options);
     }
     ToastOptions = __decorate([core_1.Injectable(), __metadata('design:paramtypes', [Object])], ToastOptions);
@@ -220,6 +221,9 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
       }
       if (options && typeof(options.titleClass) === 'string') {
         toast.titleClass = options.titleClass;
+      }
+      if (options && typeof(options.enableHTML) === 'boolean') {
+        toast.enableHTML = options.enableHTML;
       }
       if (options && typeof(options.autoDismiss) === 'boolean') {
         toast.autoDismiss = options.autoDismiss;

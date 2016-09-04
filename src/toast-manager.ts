@@ -64,6 +64,10 @@ export class ToastsManager {
       toast.titleClass = options.titleClass;
     }
 
+    if (options && typeof(options.enableHTML) === 'boolean') {
+      toast.enableHTML = options.enableHTML;
+    }
+
     if (options && typeof(options.autoDismiss) === 'boolean') {
       toast.autoDismiss = options.autoDismiss;
     } else {

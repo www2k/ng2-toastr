@@ -5,5 +5,6 @@ export declare class ToastOptions {
     autoDismiss: boolean;
     maxShown: number;
     toastLife: number;
+    enableHTML: boolean;
     constructor(options: Object);
 }
