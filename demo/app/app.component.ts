@@ -16,6 +16,7 @@ import {ToastsManager} from 'ng2-toastr/ng2-toastr';
       <div style="border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;">
         <button type="button" class="btn btn-info" (click)="showClickToDismiss()">Click to Dismiss</button>
         <button type="button" class="btn btn-warning" (click)="showCustomLife()">8-second Toast</button>
+        <button type="button" class="btn btn-default" (click)="showCustomHTML()">Custom HTML Toast</button>
       </div>
   `
 })
@@ -47,6 +48,11 @@ export class AppComponent {
 
   showCustomLife() {
     this.toastr.warning('The toast will auto dismiss in 8 seconds', null, {toastLife: 8000});
+  }
+
+  showCustomHTML() {
+    this.toastr.custom('<span style="color: darkred">this should be read</span>',
+      '<span style="font-weight: bold; color: blue;">Blue Title</span>', {enableHTML: true, autoDismiss: false});
   }
 
 }

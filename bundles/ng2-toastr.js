@@ -1,4 +1,4 @@
-System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/core", "./toast-options"], true, function($__require, exports, module) {
+System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/core", "./toast-options", "@angular/platform-browser"], true, function($__require, exports, module) {
   "use strict";
   ;
   var global = this,
@@ -27,8 +27,10 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
   };
   var core_1 = $__require('@angular/core');
   var toast_options_1 = $__require('./toast-options');
+  var platform_browser_1 = $__require('@angular/platform-browser');
   var ToastContainer = (function() {
-    function ToastContainer(options) {
+    function ToastContainer(sanitizer, options) {
+      this.sanitizer = sanitizer;
       this.position = 'fixed';
       this.messageClass = 'toast-message';
       this.titleClass = 'toast-title';
@@ -81,8 +83,8 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
     };
     ToastContainer = __decorate([core_1.Component({
       selector: 'toast-container',
-      template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" class=\"toast-{{toast.type}}\" (click)=\"dismiss(toast)\" [ngSwitch]=\"toast.enableHTML\">\n        <div *ngSwitchCase=\"true\">\n          <div *ngIf=\"toast.title\" [innerHTML]=\"toast.title\"></div>\n          <div [innerHTML]=\"toast.message\"></div>\n        </div> \n        <div *ngSwitchDefault>\n          <div *ngIf=\"toast.title\" class=\"{{toast.titleClass || titleClass}}\">{{toast.title}}</div>\n          <div class=\"{{toast.messageClass || messageClass}}\">{{toast.message}}</div>\n        </div>         \n      </div>\n    </div>\n    "
-    }), __param(0, core_1.Optional()), __param(0, core_1.Inject(toast_options_1.ToastOptions)), __metadata('design:paramtypes', [Object])], ToastContainer);
+      template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" class=\"toast-{{toast.type}}\" (click)=\"dismiss(toast)\" [ngSwitch]=\"toast.enableHTML\">\n        <div *ngSwitchCase=\"true\">\n          <div *ngIf=\"toast.title\" [innerHTML]=\"sanitizer.bypassSecurityHtml(toast.title)\"></div>\n          <div [innerHTML]=\"sanitizer.bypassSecurityHtml(toast.message)\"></div>\n        </div> \n        <div *ngSwitchDefault>\n          <div *ngIf=\"toast.title\" class=\"{{toast.titleClass || titleClass}}\">{{toast.title}}</div>\n          <div class=\"{{toast.messageClass || messageClass}}\">{{toast.message}}</div>\n        </div>         \n      </div>\n    </div>\n    "
+    }), __param(1, core_1.Optional()), __param(1, core_1.Inject(toast_options_1.ToastOptions)), __metadata('design:paramtypes', [platform_browser_1.DomSanitizer, Object])], ToastContainer);
     return ToastContainer;
   }());
   exports.ToastContainer = ToastContainer;

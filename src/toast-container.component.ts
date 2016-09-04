@@ -1,6 +1,7 @@
 import {Component, Optional, Inject} from '@angular/core';
 import {Toast} from './toast';
 import {ToastOptions} from './toast-options';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'toast-container',
@@ -8,8 +9,8 @@ import {ToastOptions} from './toast-options';
     <div id="toast-container" [style.position]="position" class="{{positionClass}}">
       <div *ngFor="let toast of toasts" class="toast-{{toast.type}}" (click)="dismiss(toast)" [ngSwitch]="toast.enableHTML">
         <div *ngSwitchCase="true">
-          <div *ngIf="toast.title" [innerHTML]="toast.title"></div>
-          <div [innerHTML]="toast.message"></div>
+          <div *ngIf="toast.title" [innerHTML]="sanitizer.bypassSecurityHtml(toast.title)"></div>
+          <div [innerHTML]="sanitizer.bypassSecurityHtml(toast.message)"></div>
         </div> 
         <div *ngSwitchDefault>
           <div *ngIf="toast.title" class="{{toast.titleClass || titleClass}}">{{toast.title}}</div>
@@ -27,7 +28,9 @@ export class ToastContainer {
   toasts: Toast[] = [];
   maxShown = 5;
 
-  constructor(@Optional() @Inject(ToastOptions) options) {
+  constructor(private sanitizer: DomSanitizer,
+              @Optional() @Inject(ToastOptions) options)
+  {
     if (options) {
       Object.assign(this, options);
     }

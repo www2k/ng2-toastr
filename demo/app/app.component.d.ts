@@ -8,4 +8,5 @@ export declare class AppComponent {
     showInfo(): void;
     showClickToDismiss(): void;
     showCustomLife(): void;
+    showCustomHTML(): void;
 }
