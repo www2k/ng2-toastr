@@ -136,6 +136,7 @@ System.registerDynamic("ng2-toastr/src/toast", [], true, function($__require, ex
       this.type = type;
       this.message = message;
       this.title = title;
+      this.autoDismiss = true;
     }
     return Toast;
   }());
@@ -188,7 +189,7 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
         Object.assign(this.options, options);
       }
     }
-    ToastsManager.prototype.show = function(toast) {
+    ToastsManager.prototype.show = function(toast, options) {
       if (!this.container) {
         var appContainer = this.appRef['_rootComponents'][0]['_hostElement'].vcRef;
         var providers = core_1.ReflectiveInjector.resolve([{
@@ -198,22 +199,30 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
         var toastFactory = this.componentFactoryResolver.resolveComponentFactory(toast_container_component_1.ToastContainer);
         var childInjector = core_1.ReflectiveInjector.fromResolvedProviders(providers, appContainer.parentInjector);
         this.container = appContainer.createComponent(toastFactory, appContainer.length, childInjector);
-        this.setupToast(toast);
+        this.setupToast(toast, options);
       } else {
-        this.setupToast(toast);
+        this.setupToast(toast, options);
       }
     };
-    ToastsManager.prototype.createTimeout = function(toastId) {
+    ToastsManager.prototype.createTimeout = function(toastId, timeout) {
       var _this = this;
+      var life = timeout || this.options.toastLife;
       setTimeout(function() {
         _this.clearToast(toastId);
-      }, this.options.toastLife);
+      }, life);
     };
-    ToastsManager.prototype.setupToast = function(toast) {
+    ToastsManager.prototype.setupToast = function(toast, options) {
       toast.id = ++this.index;
       this.container.instance.addToast(toast);
-      if (this.options.autoDismiss) {
-        this.createTimeout(toast.id);
+      if (options) {
+        toast.autoDismiss = options.autoDismiss || this.options.autoDismiss;
+      }
+      if (toast.autoDismiss) {
+        if (options && typeof(options.toastLife) === 'number') {
+          this.createTimeout(toast.id, options.toastLife);
+        } else {
+          this.createTimeout(toast.id);
+        }
       }
     };
     ToastsManager.prototype.clearToast = function(toastId) {
@@ -238,21 +247,21 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
       this.container.destroy();
       this.container = null;
     };
-    ToastsManager.prototype.error = function(message, title) {
+    ToastsManager.prototype.error = function(message, title, options) {
       var toast = new toast_1.Toast('error', message, title);
-      this.show(toast);
+      this.show(toast, options);
     };
-    ToastsManager.prototype.info = function(message, title) {
+    ToastsManager.prototype.info = function(message, title, options) {
       var toast = new toast_1.Toast('info', message, title);
-      this.show(toast);
+      this.show(toast, options);
     };
-    ToastsManager.prototype.success = function(message, title) {
+    ToastsManager.prototype.success = function(message, title, options) {
       var toast = new toast_1.Toast('success', message, title);
-      this.show(toast);
+      this.show(toast, options);
     };
-    ToastsManager.prototype.warning = function(message, title) {
+    ToastsManager.prototype.warning = function(message, title, options) {
       var toast = new toast_1.Toast('warning', message, title);
-      this.show(toast);
+      this.show(toast, options);
     };
     ToastsManager = __decorate([core_1.Injectable(), __param(2, core_1.Optional()), __param(2, core_1.Inject(toast_options_1.ToastOptions)), __metadata('design:paramtypes', [core_1.ComponentFactoryResolver, core_1.ApplicationRef, Object])], ToastsManager);
     return ToastsManager;
