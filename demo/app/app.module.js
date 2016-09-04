@@ -15,6 +15,10 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var app_component_1 = require('./app.component');
 var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
+var options = {
+    autoDismiss: false,
+    positionClass: 'toast-bottom-right',
+};
 var AppModule = (function () {
     function AppModule() {
     }
@@ -22,6 +26,7 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, ng2_toastr_1.ToastModule],
             declarations: [app_component_1.AppComponent],
+            providers: [{ provide: ng2_toastr_1.ToastOptions, useValue: options }],
             bootstrap: [app_component_1.AppComponent],
         }), 
         __metadata('design:paramtypes', [])

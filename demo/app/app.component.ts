@@ -27,7 +27,7 @@ export class AppComponent {
   }
 
   showSuccess() {
-    this.toastr.success('You are awesome!', 'Success!');
+    this.toastr.success('You are awesome!', 'Success!', {toastLife: 3000});
   }
 
   showError() {
