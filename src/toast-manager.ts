@@ -23,7 +23,7 @@ export class ToastsManager {
     }
   }
 
-  show(toast: Toast) {
+  show(toast: Toast, options?: any) {
     if (!this.container) {
       // get app root view component ref
       let appContainer: ViewContainerRef = this.appRef['_rootComponents'][0]['_hostElement'].vcRef;
@@ -37,24 +37,32 @@ export class ToastsManager {
       let toastFactory = this.componentFactoryResolver.resolveComponentFactory(ToastContainer);
       let childInjector = ReflectiveInjector.fromResolvedProviders(providers, appContainer.parentInjector);
       this.container = appContainer.createComponent(toastFactory, appContainer.length, childInjector);
-      this.setupToast(toast);
+      this.setupToast(toast, options);
 
     } else {
-      this.setupToast(toast);
+      this.setupToast(toast, options);
     }
   }
 
-  createTimeout(toastId: number) {
+  createTimeout(toastId: number, timeout?: number) {
+    const life = timeout || this.options.toastLife;
+
     setTimeout(() => {
       this.clearToast(toastId);
-    }, this.options.toastLife);
+    }, life);
   }
 
-  setupToast(toast: Toast) {
+  setupToast(toast: Toast, options?: any) {
     toast.id = ++this.index;
     this.container.instance.addToast(toast);
-    if (this.options.autoDismiss) {
-      this.createTimeout(toast.id);
+
+    toast.autoDismiss = options && options.autoDismiss ? options.autoDismiss : this.options.autoDismiss;
+    if (toast.autoDismiss) {
+      if (options && options.toastLife) {
+        this.createTimeout(toast.id, options.toastLife);
+      } else {
+        this.createTimeout(toast.id);
+      }
     }
   }
 

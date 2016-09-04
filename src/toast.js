@@ -4,6 +4,7 @@ var Toast = (function () {
         this.type = type;
         this.message = message;
         this.title = title;
+        this.autoDismiss = true;
     }
     return Toast;
 }());

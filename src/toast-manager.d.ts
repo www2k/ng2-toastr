@@ -7,9 +7,9 @@ export declare class ToastsManager {
     private options;
     private index;
     constructor(componentFactoryResolver: ComponentFactoryResolver, appRef: ApplicationRef, options: any);
-    show(toast: Toast): void;
-    createTimeout(toastId: number): void;
-    setupToast(toast: Toast): void;
+    show(toast: Toast, options?: any): void;
+    createTimeout(toastId: number, timeout?: number): void;
+    setupToast(toast: Toast, options?: any): void;
     clearToast(toastId: number): void;
     clearAllToasts(): void;
     dispose(): void;

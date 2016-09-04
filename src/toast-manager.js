@@ -30,7 +30,7 @@ var ToastsManager = (function () {
             Object.assign(this.options, options);
         }
     }
-    ToastsManager.prototype.show = function (toast) {
+    ToastsManager.prototype.show = function (toast, options) {
         if (!this.container) {
             // get app root view component ref
             var appContainer = this.appRef['_rootComponents'][0]['_hostElement'].vcRef;
@@ -42,23 +42,30 @@ var ToastsManager = (function () {
             var toastFactory = this.componentFactoryResolver.resolveComponentFactory(toast_container_component_1.ToastContainer);
             var childInjector = core_1.ReflectiveInjector.fromResolvedProviders(providers, appContainer.parentInjector);
             this.container = appContainer.createComponent(toastFactory, appContainer.length, childInjector);
-            this.setupToast(toast);
+            this.setupToast(toast, options);
         }
         else {
-            this.setupToast(toast);
+            this.setupToast(toast, options);
         }
     };
-    ToastsManager.prototype.createTimeout = function (toastId) {
+    ToastsManager.prototype.createTimeout = function (toastId, timeout) {
         var _this = this;
+        var life = timeout || this.options.toastLife;
         setTimeout(function () {
             _this.clearToast(toastId);
-        }, this.options.toastLife);
+        }, life);
     };
-    ToastsManager.prototype.setupToast = function (toast) {
+    ToastsManager.prototype.setupToast = function (toast, options) {
         toast.id = ++this.index;
         this.container.instance.addToast(toast);
-        if (this.options.autoDismiss) {
-            this.createTimeout(toast.id);
+        toast.autoDismiss = options && options.autoDismiss ? options.autoDismiss : this.options.autoDismiss;
+        if (toast.autoDismiss) {
+            if (options && options.toastLife) {
+                this.createTimeout(toast.id, options.toastLife);
+            }
+            else {
+                this.createTimeout(toast.id);
+            }
         }
     };
     ToastsManager.prototype.clearToast = function (toastId) {
