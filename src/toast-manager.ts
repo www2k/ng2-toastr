@@ -54,7 +54,6 @@ export class ToastsManager {
 
   setupToast(toast: Toast, options?: any) {
     toast.id = ++this.index;
-    this.container.instance.addToast(toast);
 
     if (options && typeof(options.messageClass) === 'string') {
       toast.messageClass = options.messageClass;
@@ -81,6 +80,8 @@ export class ToastsManager {
         this.createTimeout(toast.id);
       }
     }
+
+    this.container.instance.addToast(toast);
   }
 
   clearToast(toastId: number) {

@@ -57,7 +57,6 @@ var ToastsManager = (function () {
     };
     ToastsManager.prototype.setupToast = function (toast, options) {
         toast.id = ++this.index;
-        this.container.instance.addToast(toast);
         if (options && typeof (options.messageClass) === 'string') {
             toast.messageClass = options.messageClass;
         }
@@ -81,6 +80,7 @@ var ToastsManager = (function () {
                 this.createTimeout(toast.id);
             }
         }
+        this.container.instance.addToast(toast);
     };
     ToastsManager.prototype.clearToast = function (toastId) {
         if (this.container) {
