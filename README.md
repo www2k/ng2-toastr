@@ -137,7 +137,7 @@ Use dependency inject for custom configurations. You can either inject into `app
     
     }    
     
-##### <a name='override'></a>Override global option:
+### <a name='override'></a>Override global option:
  
  You can also override `autoDismiss`, `toastLife`, `enableHTML`, `titleClass`, `messageClass` options for individual toast:
     
