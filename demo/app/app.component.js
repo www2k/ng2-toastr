@@ -26,6 +26,9 @@ var AppComponent = (function () {
     AppComponent.prototype.showInfo = function () {
         this.toastr.info('Just some information for you.');
     };
+    AppComponent.prototype.showClickToDismiss = function () {
+        this.toastr.info('Please click to dismiss', 'No auto dismiss', { autoDismiss: false });
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',

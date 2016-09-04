@@ -6,4 +6,5 @@ export declare class AppComponent {
     showError(): void;
     showWarning(): void;
     showInfo(): void;
+    showClickToDismiss(): void;
 }

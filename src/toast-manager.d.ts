@@ -13,8 +13,8 @@ export declare class ToastsManager {
     clearToast(toastId: number): void;
     clearAllToasts(): void;
     dispose(): void;
-    error(message: string, title?: string): void;
-    info(message: string, title?: string): void;
-    success(message: string, title?: string): void;
-    warning(message: string, title?: string): void;
+    error(message: string, title?: string, options?: any): void;
+    info(message: string, title?: string, options?: any): void;
+    success(message: string, title?: string, options?: any): void;
+    warning(message: string, title?: string, options?: any): void;
 }

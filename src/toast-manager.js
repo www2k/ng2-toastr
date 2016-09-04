@@ -90,21 +90,21 @@ var ToastsManager = (function () {
         this.container.destroy();
         this.container = null;
     };
-    ToastsManager.prototype.error = function (message, title) {
+    ToastsManager.prototype.error = function (message, title, options) {
         var toast = new toast_1.Toast('error', message, title);
-        this.show(toast);
+        this.show(toast, options);
     };
-    ToastsManager.prototype.info = function (message, title) {
+    ToastsManager.prototype.info = function (message, title, options) {
         var toast = new toast_1.Toast('info', message, title);
-        this.show(toast);
+        this.show(toast, options);
     };
-    ToastsManager.prototype.success = function (message, title) {
+    ToastsManager.prototype.success = function (message, title, options) {
         var toast = new toast_1.Toast('success', message, title);
-        this.show(toast);
+        this.show(toast, options);
     };
-    ToastsManager.prototype.warning = function (message, title) {
+    ToastsManager.prototype.warning = function (message, title, options) {
         var toast = new toast_1.Toast('warning', message, title);
-        this.show(toast);
+        this.show(toast, options);
     };
     ToastsManager = __decorate([
         core_1.Injectable(),

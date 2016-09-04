@@ -37,4 +37,8 @@ export class AppComponent {
     this.toastr.info('Just some information for you.');
   }
 
+  showClickToDismiss() {
+    this.toastr.info('Please click to dismiss', 'No auto dismiss', {autoDismiss: false});
+  }
+
 }

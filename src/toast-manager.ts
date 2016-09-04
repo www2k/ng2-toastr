@@ -91,23 +91,23 @@ export class ToastsManager {
     this.container = null;
   }
 
-  error(message: string, title?: string) {
+  error(message: string, title?: string, options?: any) {
     let toast = new Toast('error', message, title);
-    this.show(toast);
+    this.show(toast, options);
   }
 
-  info(message: string, title?: string) {
+  info(message: string, title?: string, options?: any) {
     let toast = new Toast('info', message, title);
-    this.show(toast);
+    this.show(toast, options);
   }
 
-  success(message: string, title?: string) {
+  success(message: string, title?: string, options?: any) {
     let toast = new Toast('success', message, title);
-    this.show(toast);
+    this.show(toast, options);
   }
 
-  warning(message: string, title?: string) {
+  warning(message: string, title?: string, options?: any) {
     let toast = new Toast('warning', message, title);
-    this.show(toast);
+    this.show(toast, options);
   }
 }
