@@ -230,12 +230,11 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
       } else {
         toast.autoDismiss = this.options.autoDismiss;
       }
-      if (toast.autoDismiss) {
-        if (options && typeof(options.toastLife) === 'number') {
-          this.createTimeout(toast.id, options.toastLife);
-        } else {
-          this.createTimeout(toast.id);
-        }
+      if (options && typeof(options.toastLife) === 'number') {
+        toast.autoDismiss = true;
+        this.createTimeout(toast.id, options.toastLife);
+      } else if (toast.autoDismiss) {
+        this.createTimeout(toast.id);
       }
       this.container.instance.addToast(toast);
     };
