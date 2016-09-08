@@ -71,9 +71,8 @@ var ToastContainer = (function () {
             selector: 'toast-container',
             template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" class=\"toast-{{toast.type}}\" (click)=\"dismiss(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{toast.titleClass || titleClass}}\">{{toast.title}}</div>\n        <div [ngSwitch]=\"toast.enableHTML\">\n          <span *ngSwitchCase=\"true\" [innerHTML]=\"sanitizer.bypassSecurityTrustHtml(toast.message)\"></span>\n          <span *ngSwitchDefault class=\"{{toast.messageClass || messageClass}}\">{{toast.message}}</span>\n        </div>              \n      </div>\n    </div>\n    ",
         }),
-        __param(1, core_1.Optional()),
-        __param(1, core_1.Inject(toast_options_1.ToastOptions)), 
-        __metadata('design:paramtypes', [platform_browser_1.DomSanitizer, Object])
+        __param(1, core_1.Optional()), 
+        __metadata('design:paramtypes', [platform_browser_1.DomSanitizer, toast_options_1.ToastOptions])
     ], ToastContainer);
     return ToastContainer;
 }());

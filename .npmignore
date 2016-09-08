@@ -14,3 +14,11 @@ coverage
 demo
 demo-build
 webpack.config.js
+
+*.ts
+!*.d.ts
+*.js.map
+/src/*.ts
+/src/*.js.map
+!/src/*.d.ts
+!/bundles/*.js.map

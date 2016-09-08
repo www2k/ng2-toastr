@@ -1,4 +1,5 @@
 import { Toast } from './toast';
+import { ToastOptions } from './toast-options';
 import { DomSanitizer } from '@angular/platform-browser';
 export declare class ToastContainer {
     private sanitizer;
@@ -8,11 +9,11 @@ export declare class ToastContainer {
     positionClass: string;
     toasts: Toast[];
     maxShown: number;
-    constructor(sanitizer: DomSanitizer, options: any);
+    constructor(sanitizer: DomSanitizer, options: ToastOptions);
     addToast(toast: Toast): void;
     removeToast(toastId: number): void;
     removeAllToasts(): void;
-    dismiss(toast: any): void;
+    dismiss(toast: Toast): void;
     anyToast(): boolean;
     findToast(toastId: number): Toast | void;
 }

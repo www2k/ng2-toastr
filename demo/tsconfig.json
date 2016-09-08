@@ -10,8 +10,7 @@
     "removeComments": false,
     "noImplicitAny": false,
     "listFiles": false,
-    "noLib": false,
-    "rootDir": "demo"
+    "noLib": false
   },
   "exclude": [
     "node_modules"

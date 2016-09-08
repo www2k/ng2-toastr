@@ -124,9 +124,8 @@ var ToastsManager = (function () {
     };
     ToastsManager = __decorate([
         core_1.Injectable(),
-        __param(2, core_1.Optional()),
-        __param(2, core_1.Inject(toast_options_1.ToastOptions)), 
-        __metadata('design:paramtypes', [core_1.ComponentFactoryResolver, core_1.ApplicationRef, Object])
+        __param(2, core_1.Optional()), 
+        __metadata('design:paramtypes', [core_1.ComponentFactoryResolver, core_1.ApplicationRef, toast_options_1.ToastOptions])
     ], ToastsManager);
     return ToastsManager;
 }());

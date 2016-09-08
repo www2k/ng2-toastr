@@ -26,7 +26,7 @@ export class ToastContainer {
   maxShown = 5;
 
   constructor(private sanitizer: DomSanitizer,
-              @Optional() @Inject(ToastOptions) options)
+              @Optional() options: ToastOptions)
   {
     if (options) {
       Object.assign(this, options);
@@ -59,7 +59,7 @@ export class ToastContainer {
     this.toasts = [];
   }
 
-  dismiss(toast) {
+  dismiss(toast: Toast) {
     if (!toast.autoDismiss) {
       this.removeToast(toast.id);
     }
