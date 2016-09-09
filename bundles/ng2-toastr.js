@@ -83,7 +83,7 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
     ToastContainer = __decorate([core_1.Component({
       selector: 'toast-container',
       template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" class=\"toast-{{toast.type}}\" (click)=\"dismiss(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{toast.titleClass || titleClass}}\">{{toast.title}}</div>\n        <div [ngSwitch]=\"toast.enableHTML\">\n          <span *ngSwitchCase=\"true\" [innerHTML]=\"sanitizer.bypassSecurityTrustHtml(toast.message)\"></span>\n          <span *ngSwitchDefault class=\"{{toast.messageClass || messageClass}}\">{{toast.message}}</span>\n        </div>              \n      </div>\n    </div>\n    "
-    }), __param(1, core_1.Optional()), __param(1, core_1.Inject(toast_options_1.ToastOptions)), __metadata('design:paramtypes', [platform_browser_1.DomSanitizer, Object])], ToastContainer);
+    }), __param(1, core_1.Optional()), __metadata('design:paramtypes', [platform_browser_1.DomSanitizer, toast_options_1.ToastOptions])], ToastContainer);
     return ToastContainer;
   }());
   exports.ToastContainer = ToastContainer;
@@ -280,7 +280,7 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
       var toast = new toast_1.Toast('custom', message, title);
       this.show(toast, options);
     };
-    ToastsManager = __decorate([core_1.Injectable(), __param(2, core_1.Optional()), __param(2, core_1.Inject(toast_options_1.ToastOptions)), __metadata('design:paramtypes', [core_1.ComponentFactoryResolver, core_1.ApplicationRef, Object])], ToastsManager);
+    ToastsManager = __decorate([core_1.Injectable(), __param(2, core_1.Optional()), __metadata('design:paramtypes', [core_1.ComponentFactoryResolver, core_1.ApplicationRef, toast_options_1.ToastOptions])], ToastsManager);
     return ToastsManager;
   }());
   exports.ToastsManager = ToastsManager;
