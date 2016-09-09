@@ -4,14 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"./node_modules/.bin/tsc -w\" \"node index.js\" ",
+    "start": "lite-server",
     "tsc": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --progress --profile --bail"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.14.0",
     "@angular/common": "2.0.0-rc.6",
     "@angular/compiler": "2.0.0-rc.6",
     "@angular/compiler-cli": "0.6.0",
@@ -24,12 +23,15 @@
     "rxjs": "5.0.0-beta.11",
     "systemjs": "0.19.27",
     "zone.js": "^0.6.17",
-    "angular2-in-memory-web-api": "0.0.18",
     "bootstrap": "^3.3.6",
-    "ng2-toastr": "0.4.2"
+    "ng2-toastr": "PointInside/ng2-toastr#dev"
   },
   "devDependencies": {
     "typescript": "^2.0.2",
-    "concurrently": "^2.2.0"
+    "lite-server": "^2.2.2",
+    "webpack": "1.12.15",
+    "css-loader": "^0.23.1",
+    "style-loader": "^0.13.1",
+    "ts-loader": "^0.8.1"
   }
 }
