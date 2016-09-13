@@ -3,7 +3,7 @@ Angular 2: Toastr
 
 [![](https://img.shields.io/badge/npm-v0.4.4-brightgreen.svg)](https://www.npmjs.com/package/ng2-toastr)
 
-NOTE: ng2-toastr now supports angular 2.0.0-rc.6. Also supports html message and other custom options for individual toast (See [Override Global Option](#override)). 
+NOTE: ng2-toastr now supports angular 2.0.0-rc.7. Also supports html message and other custom options for individual toast (See [Override Global Option](#override)). 
 
 The lib is inspired by [angular-toastr] (https://github.com/Foxandxss/angular-toastr), and will show bootstrap-like toasts. 
 Please update Angular 2 to latest version to avoid any unexpected issues.
