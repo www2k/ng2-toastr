@@ -1,4 +1,4 @@
-import {Component, Optional, Inject} from '@angular/core';
+import {Component, Optional} from '@angular/core';
 import {Toast} from './toast';
 import {ToastOptions} from './toast-options';
 import {DomSanitizer} from '@angular/platform-browser';
