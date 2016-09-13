@@ -21,9 +21,11 @@
   },
   "keywords": [
     "toast",
+    "toaster",
     "toastr",
     "angular 2",
-    "bootstrap"
+    "bootstrap",
+    "notification"
   ],
   "author": "Derek Shi",
   "license": "ISC",
