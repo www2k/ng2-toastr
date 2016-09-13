@@ -14,5 +14,9 @@
   },
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "genDir": "./ngfactory",
+    "debug": true
+  }
 }
