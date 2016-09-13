@@ -1,7 +1,7 @@
 Angular 2: Toastr
 ===================
 
-[![](https://img.shields.io/badge/npm-v0.4.4-brightgreen.svg)](https://www.npmjs.com/package/ng2-toastr)
+[![](https://img.shields.io/badge/npm-v0.4.5-brightgreen.svg)](https://www.npmjs.com/package/ng2-toastr)
 
 NOTE: ng2-toastr now supports angular 2.0.0-rc.7. Also supports html message and other custom options for individual toast (See [Override Global Option](#override)). 
 
