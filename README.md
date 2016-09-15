@@ -1,9 +1,7 @@
 Angular 2: Toastr
 ===================
 
-[![](https://img.shields.io/badge/npm-v0.4.5-brightgreen.svg)](https://www.npmjs.com/package/ng2-toastr)
-
-NOTE: ng2-toastr now supports angular 2.0.0-rc.7. Also supports html message and other custom options for individual toast (See [Override Global Option](#override)). 
+[![](https://img.shields.io/badge/npm-v1.0.0-brightgreen.svg)](https://www.npmjs.com/package/ng2-toastr)
 
 The lib is inspired by [angular-toastr] (https://github.com/Foxandxss/angular-toastr), and will show bootstrap-like toasts. 
 Please update Angular 2 to latest version to avoid any unexpected issues.
@@ -148,11 +146,18 @@ Use dependency inject for custom configurations. You can either inject into `app
 
 ## Run demo app
     
-    > cd demo && npm install
+#### systemjs
+    
+    > cd demo/systemjs && npm install
     > npm start    
 
 Then navigate your browser to http://localhost:3000    
     
+#### webpack
+    
+    > cd demo/webpack && npm run build
+    > npm start
+
 
 ## TODOs
 

@@ -225,7 +225,7 @@ var _View_ToastContainer1 = (function (_super) {
             this._expr_4 = currVal_4;
         }
         this.detectContentChildrenChanges(throwOnChange);
-        var currVal_1 = import4.interpolate(1, 'toast-', this.context.$implicit.type, '');
+        var currVal_1 = import4.interpolate(1, 'toast toast-', this.context.$implicit.type, '');
         if (import4.checkBinding(throwOnChange, this._expr_1, currVal_1)) {
             this.renderer.setElementProperty(this._el_0, 'className', currVal_1);
             this._expr_1 = currVal_1;
