@@ -10,13 +10,13 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var import0 = require('@angular/core/src/linker/ng_module_factory');
-var import1 = require('../../src/toast.module');
+var import1 = require('./toast.module');
 var import2 = require('@angular/common/src/common_module');
 var import3 = require('@angular/common/src/localization');
-var import4 = require('../../src/toast-manager');
+var import4 = require('./toast-manager');
 var import6 = require('./toast-container.component.ngfactory');
 var import7 = require('@angular/core/src/application_ref');
-var import8 = require('../../src/toast-options');
+var import8 = require('./toast-options');
 var import9 = require('@angular/core/src/i18n/tokens');
 var ToastModuleInjector = (function (_super) {
     __extends(ToastModuleInjector, _super);

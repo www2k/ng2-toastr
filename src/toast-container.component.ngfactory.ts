@@ -7,13 +7,13 @@
 import * as import0 from '@angular/core/src/render/api';
 import * as import1 from '@angular/core/src/linker/view';
 import * as import2 from '@angular/core/src/linker/element';
-import * as import3 from '../../src/toast-container.component';
+import * as import3 from './toast-container.component';
 import * as import4 from '@angular/core/src/linker/view_utils';
 import * as import5 from '@angular/core/src/di/injector';
 import * as import6 from '@angular/core/src/linker/view_type';
 import * as import7 from '@angular/core/src/change_detection/change_detection';
 import * as import8 from '@angular/platform-browser/src/security/dom_sanitization_service';
-import * as import9 from '../../src/toast-options';
+import * as import9 from './toast-options';
 import * as import10 from '@angular/core/src/metadata/view';
 import * as import11 from '@angular/core/src/linker/component_factory';
 import * as import12 from '@angular/common/src/directives/ng_for';

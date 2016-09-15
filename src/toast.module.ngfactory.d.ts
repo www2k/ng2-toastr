@@ -3,5 +3,5 @@
  * Do not edit.
  */
 import * as import0 from '@angular/core/src/linker/ng_module_factory';
-import * as import1 from '../../src/toast.module';
+import * as import1 from './toast.module';
 export declare const ToastModuleNgFactory: import0.NgModuleFactory<import1.ToastModule>;

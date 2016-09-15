@@ -11,12 +11,12 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var import1 = require('@angular/core/src/linker/view');
 var import2 = require('@angular/core/src/linker/element');
-var import3 = require('../../src/toast-container.component');
+var import3 = require('./toast-container.component');
 var import4 = require('@angular/core/src/linker/view_utils');
 var import6 = require('@angular/core/src/linker/view_type');
 var import7 = require('@angular/core/src/change_detection/change_detection');
 var import8 = require('@angular/platform-browser/src/security/dom_sanitization_service');
-var import9 = require('../../src/toast-options');
+var import9 = require('./toast-options');
 var import10 = require('@angular/core/src/metadata/view');
 var import11 = require('@angular/core/src/linker/component_factory');
 var import12 = require('@angular/common/src/directives/ng_for');
