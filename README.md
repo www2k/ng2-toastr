@@ -155,7 +155,8 @@ Then navigate your browser to http://localhost:3000
     
 #### webpack
     
-    > cd demo/webpack && npm run build
+    > cd demo/webpack && npm run install
+    > npm run build
     > npm start
 
 
