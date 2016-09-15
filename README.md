@@ -1,7 +1,7 @@
 Angular 2: Toastr
 ===================
 
-[![](https://img.shields.io/badge/npm-v1.0.0-brightgreen.svg)](https://www.npmjs.com/package/ng2-toastr)
+[![](https://img.shields.io/badge/npm-v1.0.1-brightgreen.svg)](https://www.npmjs.com/package/ng2-toastr)
 
 The lib is inspired by [angular-toastr] (https://github.com/Foxandxss/angular-toastr), and will show bootstrap-like toasts. 
 Please update Angular 2 to latest version to avoid any unexpected issues.
@@ -113,22 +113,22 @@ CSS class for title within toast.
 Allow input of message to be HTML. Default to false.
 
 Use dependency inject for custom configurations. You can either inject into `app.module.ts` or any component class:
-
-    
+   
     import {NgModule} from '@angular/core';
     import {BrowserModule} from '@angular/platform-browser';
     import {AppComponent} from './app.component';
     import {ToastModule, ToastOptions} from 'ng2-toastr/ng2-toastr';
     
-    let options = <ToastOptions>{
+    let options = <ToastOptions> {
       autoDismiss: false,
       positionClass: 'toast-bottom-right',
     };
         
     @NgModule({
-      imports: [BrowserModule, ToastModule],
+      imports: [BrowserModule, 
+            ToastModule.forRoot(config),
+        ],
       declarations: [AppComponent],
-      providers: [{provide: ToastOptions, useValue: options}],
       bootstrap: [AppComponent],
     })
     export class AppModule {
