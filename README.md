@@ -126,7 +126,7 @@ Use dependency inject for custom configurations. You can either inject into `app
         
     @NgModule({
       imports: [BrowserModule, 
-            ToastModule.forRoot(config),
+            ToastModule.forRoot(options),
         ],
       declarations: [AppComponent],
       bootstrap: [AppComponent],
