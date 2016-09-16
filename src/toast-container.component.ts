@@ -7,7 +7,7 @@ import {DomSanitizer} from '@angular/platform-browser';
   selector: 'toast-container',
   template: `
     <div id="toast-container" [style.position]="position" class="{{positionClass}}">
-      <div *ngFor="let toast of toasts" [@flyInOut]="toast.state" class="toast toast-{{toast.type}}" (click)="dismiss(toast)">
+      <div *ngFor="let toast of toasts" [@flyInOut]="'in'" class="toast toast-{{toast.type}}" (click)="dismiss(toast)">
         <div *ngIf="toast.title" class="{{toast.titleClass || titleClass}}">{{toast.title}}</div>
         <div [ngSwitch]="toast.enableHTML">
           <span *ngSwitchCase="true" [innerHTML]="sanitizer.bypassSecurityTrustHtml(toast.message)"></span>
@@ -52,7 +52,6 @@ export class ToastContainer {
   }
 
   addToast(toast: Toast) {
-    toast.state = 'in';
     if (this.positionClass.indexOf('top') > 0) {
       this.toasts.push(toast);
       if (this.toasts.length > this.maxShown) {
