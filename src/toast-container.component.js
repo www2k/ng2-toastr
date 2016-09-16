@@ -18,6 +18,8 @@ var ToastContainer = (function () {
         }
     }
     ToastContainer.prototype.addToast = function (toast) {
+        toast.state = this.animate;
+        this.cdr.detectChanges();
         if (this.positionClass.indexOf('top') > 0) {
             this.toasts.push(toast);
             if (this.toasts.length > this.maxShown) {
@@ -30,8 +32,6 @@ var ToastContainer = (function () {
                 this.toasts.splice(this.maxShown, (this.toasts.length - this.maxShown));
             }
         }
-        toast.state = this.animate;
-        this.cdr.detectChanges();
     };
     ToastContainer.prototype.removeToast = function (toastId) {
         this.toasts = this.toasts.filter(function (toast) {

@@ -65,6 +65,9 @@ export class ToastContainer {
   }
 
   addToast(toast: Toast) {
+    toast.state = this.animate;
+    this.cdr.detectChanges();
+
     if (this.positionClass.indexOf('top') > 0) {
       this.toasts.push(toast);
       if (this.toasts.length > this.maxShown) {
@@ -76,8 +79,6 @@ export class ToastContainer {
         this.toasts.splice(this.maxShown, (this.toasts.length - this.maxShown));
       }
     }
-    toast.state = this.animate;
-    this.cdr.detectChanges();
   }
 
   removeToast(toastId: number) {
