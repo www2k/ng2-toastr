@@ -1,4 +1,4 @@
-import {Component, Optional} from '@angular/core';
+import {Component, Optional, transition, state, trigger, style, animate} from '@angular/core';
 import {Toast} from './toast';
 import {ToastOptions} from './toast-options';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -7,7 +7,7 @@ import {DomSanitizer} from '@angular/platform-browser';
   selector: 'toast-container',
   template: `
     <div id="toast-container" [style.position]="position" class="{{positionClass}}">
-      <div *ngFor="let toast of toasts" class="toast toast-{{toast.type}}" (click)="dismiss(toast)">
+      <div *ngFor="let toast of toasts" [@flyInOut]="toast.state" class="toast toast-{{toast.type}}" (click)="dismiss(toast)">
         <div *ngIf="toast.title" class="{{toast.titleClass || titleClass}}">{{toast.title}}</div>
         <div [ngSwitch]="toast.enableHTML">
           <span *ngSwitchCase="true" [innerHTML]="sanitizer.bypassSecurityTrustHtml(toast.message)"></span>
@@ -16,6 +16,24 @@ import {DomSanitizer} from '@angular/platform-browser';
       </div>
     </div>
     `,
+  animations: [
+    trigger('flyInOut', [
+      state('in', style({opacity: 1, transform: 'translateX(0)'})),
+      transition('void => *', [
+        style({
+          opacity: 0,
+          transform: 'translateX(-100%)'
+        }),
+        animate('0.2s ease-in')
+      ]),
+      transition('* => void', [
+        animate('0.2s 10 ease-out', style({
+          opacity: 0,
+          transform: 'translateX(100%)'
+        }))
+      ])
+    ])
+  ],
 })
 export class ToastContainer {
   position = 'fixed';
@@ -34,7 +52,7 @@ export class ToastContainer {
   }
 
   addToast(toast: Toast) {
-
+    toast.state = 'in';
     if (this.positionClass.indexOf('top') > 0) {
       this.toasts.push(toast);
       if (this.toasts.length > this.maxShown) {
