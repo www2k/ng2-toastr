@@ -40,7 +40,7 @@ var _View_ToastContainer_Host0 = (function (_super) {
         this._el_0 = this.selectOrCreateHostElement('toast-container', rootSelector, null);
         this._appEl_0 = new import2.AppElement(0, null, this, this._el_0);
         var compView_0 = viewFactory_ToastContainer0(this.viewUtils, this.injector(0), this._appEl_0);
-        this._ToastContainer_0_4 = new import3.ToastContainer(this.parentInjector.get(import8.DomSanitizer), compView_0.ref, this.parentInjector.get(import9.ToastOptions, null));
+        this._ToastContainer_0_4 = new import3.ToastContainer(this.parentInjector.get(import8.DomSanitizer), this.parentInjector.get(import9.ToastOptions, null));
         this._appEl_0.initComponent(this._ToastContainer_0_4, [], compView_0);
         compView_0.create(this._ToastContainer_0_4, this.projectableNodes, null);
         this.init([].concat([this._el_0]), [this._el_0], [], []);
@@ -63,14 +63,17 @@ function viewFactory_ToastContainer_Host0(viewUtils, parentInjector, declaration
 exports.ToastContainerNgFactory = new import11.ComponentFactory('toast-container', viewFactory_ToastContainer_Host0, import3.ToastContainer);
 var styles_ToastContainer = [];
 var ToastContainer_inOut_states = {
-    fly: {
+    flyRight: {
+        opacity: 1,
+        transform: 'translateX(0)'
+    },
+    flyLeft: {
         opacity: 1,
         transform: 'translateX(0)'
     },
     fade: { opacity: 1 },
     '*': {},
-    void: {},
-    in: {}
+    void: {}
 };
 function ToastContainer_inOut_factory(view, element, currentState, nextState) {
     view.cancelActiveAnimation(element, 'inOut', (nextState == 'void'));
@@ -87,7 +90,7 @@ function ToastContainer_inOut_factory(view, element, currentState, nextState) {
         (endStateStyles = defaultStateStyles);
     }
     import12.renderStyles(element, view.renderer, import12.clearStyles(startStateStyles));
-    if (((player == null) && ((currentState == 'void') && (nextState == 'fly')))) {
+    if (((player == null) && ((currentState == 'void') && (nextState == 'flyRight')))) {
         player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [
                 startStateStyles,
                 {
@@ -100,7 +103,7 @@ function ToastContainer_inOut_factory(view, element, currentState, nextState) {
             ]), 200, 0, 'ease-in')]);
         totalTime = 200;
     }
-    if (((player == null) && ((currentState == 'in') && (nextState == 'fly')))) {
+    if (((player == null) && ((currentState == 'flyRight') && (nextState == 'void')))) {
         player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [startStateStyles])), [
                 new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{
                         opacity: 'true',
@@ -110,6 +113,34 @@ function ToastContainer_inOut_factory(view, element, currentState, nextState) {
                 new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{
                         opacity: 0,
                         transform: 'translateX(100%)'
+                    }
+                ])))
+            ], 200, 0, null)]);
+        totalTime = 200;
+    }
+    if (((player == null) && ((currentState == 'void') && (nextState == 'flyLeft')))) {
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [
+                startStateStyles,
+                {
+                    opacity: 0,
+                    transform: 'translateX(-100%)'
+                }
+            ])), import12.balanceAnimationKeyframes(collectedStyles, endStateStyles, [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}]))),
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}])))
+            ]), 200, 0, 'ease-in')]);
+        totalTime = 200;
+    }
+    if (((player == null) && ((currentState == 'flyLeft') && (nextState == 'void')))) {
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [startStateStyles])), [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{
+                        opacity: 'true',
+                        transform: 'true'
+                    }
+                ]))),
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{
+                        opacity: 0,
+                        transform: 'translateX(-100%)'
                     }
                 ])))
             ], 200, 0, null)]);

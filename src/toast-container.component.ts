@@ -18,19 +18,32 @@ import {DomSanitizer} from '@angular/platform-browser';
     `,
   animations: [
     trigger('inOut', [
-      state('fly', style({opacity: 1, transform: 'translateX(0)'})),
+      state('flyRight, flyLeft', style({opacity: 1, transform: 'translateX(0)'})),
       state('fade', style({opacity: 1})),
-      transition('void => fly', [
+      transition('void => flyRight', [
         style({
           opacity: 0,
           transform: 'translateX(100%)'
         }),
         animate('0.2s ease-in')
       ]),
-      transition('in => fly', [
+      transition('flyRight => void', [
         animate('0.2s 10 ease-out', style({
           opacity: 0,
           transform: 'translateX(100%)'
+        }))
+      ]),
+      transition('void => flyLeft', [
+        style({
+          opacity: 0,
+          transform: 'translateX(-100%)'
+        }),
+        animate('0.2s ease-in')
+      ]),
+      transition('flyLeft => void', [
+        animate('0.2s 10 ease-out', style({
+          opacity: 0,
+          transform: 'translateX(-100%)'
         }))
       ]),
       transition('void => fade', [

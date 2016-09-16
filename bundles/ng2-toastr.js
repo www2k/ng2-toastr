@@ -8,9 +8,8 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
   var toast_options_1 = $__require('./toast-options');
   var platform_browser_1 = $__require('@angular/platform-browser');
   var ToastContainer = (function() {
-    function ToastContainer(sanitizer, cdr, options) {
+    function ToastContainer(sanitizer, options) {
       this.sanitizer = sanitizer;
-      this.cdr = cdr;
       this.position = 'fixed';
       this.messageClass = 'toast-message';
       this.titleClass = 'toast-title';
@@ -23,8 +22,6 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
       }
     }
     ToastContainer.prototype.addToast = function(toast) {
-      toast.state = this.animate;
-      this.cdr.detectChanges();
       if (this.positionClass.indexOf('top') > 0) {
         this.toasts.push(toast);
         if (this.toasts.length > this.maxShown) {
@@ -68,19 +65,25 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
       args: [{
         selector: 'toast-container',
         template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" [@inOut]=\"animate\" class=\"toast toast-{{toast.type}}\" (click)=\"dismiss(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{toast.titleClass || titleClass}}\">{{toast.title}}</div>\n        <div [ngSwitch]=\"toast.enableHTML\">\n          <span *ngSwitchCase=\"true\" [innerHTML]=\"sanitizer.bypassSecurityTrustHtml(toast.message)\"></span>\n          <span *ngSwitchDefault class=\"{{toast.messageClass || messageClass}}\">{{toast.message}}</span>\n        </div>              \n      </div>\n    </div>\n    ",
-        animations: [core_1.trigger('inOut', [core_1.state('fly', core_1.style({
+        animations: [core_1.trigger('inOut', [core_1.state('flyRight, flyLeft', core_1.style({
           opacity: 1,
           transform: 'translateX(0)'
-        })), core_1.state('fade', core_1.style({opacity: 1})), core_1.transition('void => fly', [core_1.style({
+        })), core_1.state('fade', core_1.style({opacity: 1})), core_1.transition('void => flyRight', [core_1.style({
           opacity: 0,
           transform: 'translateX(100%)'
-        }), core_1.animate('0.2s ease-in')]), core_1.transition('in => fly', [core_1.animate('0.2s 10 ease-out', core_1.style({
+        }), core_1.animate('0.2s ease-in')]), core_1.transition('flyRight => void', [core_1.animate('0.2s 10 ease-out', core_1.style({
           opacity: 0,
           transform: 'translateX(100%)'
+        }))]), core_1.transition('void => flyLeft', [core_1.style({
+          opacity: 0,
+          transform: 'translateX(-100%)'
+        }), core_1.animate('0.2s ease-in')]), core_1.transition('flyLeft => void', [core_1.animate('0.2s 10 ease-out', core_1.style({
+          opacity: 0,
+          transform: 'translateX(-100%)'
         }))]), core_1.transition('void => fade', [core_1.style({opacity: 0}), core_1.animate('0.3s ease-in')]), core_1.transition('fade => void', [core_1.animate('0.3s 10 ease-out', core_1.style({opacity: 0}))])])]
       }]
     }];
-    ToastContainer.ctorParameters = [{type: platform_browser_1.DomSanitizer}, {type: core_1.ChangeDetectorRef}, {
+    ToastContainer.ctorParameters = [{type: platform_browser_1.DomSanitizer}, {
       type: toast_options_1.ToastOptions,
       decorators: [{type: core_1.Optional}]
     }];
@@ -245,6 +248,7 @@ System.registerDynamic("ng2-toastr/src/toast-options", ["@angular/core"], true, 
   var ToastOptions = (function() {
     function ToastOptions(options) {
       this.enableHTML = false;
+      this.animate = 'fade';
       Object.assign(this, options);
     }
     ToastOptions.decorators = [{type: core_1.Injectable}];

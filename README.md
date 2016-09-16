@@ -4,6 +4,7 @@ Angular 2: Toastr
 [![](https://img.shields.io/badge/npm-v1.1.0-brightgreen.svg)](https://www.npmjs.com/package/ng2-toastr)
 
 NOTE: Since version 1.1.0, ng2-toastr has added animation for displaying/dismissing toasts. 
+For configuration, see [Choose animation option](#animate-option). 
 For some browsers, a polyfill is required. Grab [web-animations.min.js](https://github.com/web-animations/web-animations-js) 
 and add it to your page.
 
@@ -113,6 +114,13 @@ CSS class for message within toast.
 #####titleClass: (string)
 CSS class for title within toast.
 
+##### <a name="animate-option"></a>animate: (string)
+You have following choice: 'fade', 'flyLeft' or 'flyRight'. 
+* fade: makes every toast either fade in or fade out.
+* flyLeft: makes every toast fly in from left side. 
+* flyRight: makes every toast fly in from right side.
+Defaults to 'fade'. You can set `animate: null` to disable animations.
+
 ##### enableHTML: (boolean)
 Allow input of message to be HTML. Default to false.
 
@@ -124,7 +132,7 @@ Use dependency inject for custom configurations. You can either inject into `app
     import {ToastModule, ToastOptions} from 'ng2-toastr/ng2-toastr';
     
     let options = <ToastOptions> {
-      autoDismiss: false,
+      animate: 'flyRight',
       positionClass: 'toast-bottom-right',
     };
         
