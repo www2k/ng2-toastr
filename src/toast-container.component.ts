@@ -18,7 +18,7 @@ import {DomSanitizer} from '@angular/platform-browser';
     `,
   animations: [
     trigger('inOut', [
-      state('fly, fade', style({opacity: 1, transform: 'translateX(0)'})),
+      state('fly', style({opacity: 1, transform: 'translateX(0)'})),
       transition('void => fly', [
         style({
           opacity: 0,
@@ -32,6 +32,7 @@ import {DomSanitizer} from '@angular/platform-browser';
           transform: 'translateX(100%)'
         }))
       ]),
+      state('fade', style({opacity: 1})),
       transition('void => fade', [
         style({
           opacity: 0,

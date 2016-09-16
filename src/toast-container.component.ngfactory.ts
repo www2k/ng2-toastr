@@ -62,11 +62,7 @@ var ToastContainer_inOut_states:any = {
     transform: 'translateX(0)'
   }
   ,
-  fade: {
-    opacity: 1,
-    transform: 'translateX(0)'
-  }
-  ,
+  fade: {opacity: 1},
   '*': {},
   void: {}
 }

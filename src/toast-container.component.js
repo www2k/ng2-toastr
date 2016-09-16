@@ -64,7 +64,7 @@ var ToastContainer = (function () {
                     template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" [@inOut]=\"'toast.state'\" class=\"toast toast-{{toast.type}}\" (click)=\"dismiss(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{toast.titleClass || titleClass}}\">{{toast.title}}</div>\n        <div [ngSwitch]=\"toast.enableHTML\">\n          <span *ngSwitchCase=\"true\" [innerHTML]=\"sanitizer.bypassSecurityTrustHtml(toast.message)\"></span>\n          <span *ngSwitchDefault class=\"{{toast.messageClass || messageClass}}\">{{toast.message}}</span>\n        </div>              \n      </div>\n    </div>\n    ",
                     animations: [
                         core_1.trigger('inOut', [
-                            core_1.state('fly, fade', core_1.style({ opacity: 1, transform: 'translateX(0)' })),
+                            core_1.state('fly', core_1.style({ opacity: 1, transform: 'translateX(0)' })),
                             core_1.transition('void => fly', [
                                 core_1.style({
                                     opacity: 0,
@@ -78,6 +78,7 @@ var ToastContainer = (function () {
                                     transform: 'translateX(100%)'
                                 }))
                             ]),
+                            core_1.state('fade', core_1.style({ opacity: 1 })),
                             core_1.transition('void => fade', [
                                 core_1.style({
                                     opacity: 0,
