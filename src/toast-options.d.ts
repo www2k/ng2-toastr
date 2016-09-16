@@ -6,5 +6,6 @@ export declare class ToastOptions {
     maxShown: number;
     toastLife: number;
     enableHTML: boolean;
+    animate: string;
     constructor(options: Object);
 }
