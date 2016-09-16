@@ -278,11 +278,10 @@ var _View_ToastContainer1 = (function (_super) {
         this._text_10 = this.renderer.createText(this._el_0, '              \n      ', null);
         this._expr_1 = import7.UNINITIALIZED;
         this._expr_2 = import7.UNINITIALIZED;
-        this._expr_3 = import7.UNINITIALIZED;
         var disposable_0 = this.renderer.listen(this._el_0, 'click', this.eventHandler(this._handle_click_0_0.bind(this)));
+        this._expr_3 = import7.UNINITIALIZED;
         this._expr_4 = import7.UNINITIALIZED;
         this._expr_5 = import7.UNINITIALIZED;
-        this._expr_6 = import7.UNINITIALIZED;
         this.init([].concat([this._el_0]), [
             this._el_0,
             this._text_1,
@@ -333,36 +332,23 @@ var _View_ToastContainer1 = (function (_super) {
             if ((newRenderVar == import7.UNINITIALIZED)) {
                 (newRenderVar = 'void');
             }
-            this.componentType.animations['fadeInOut'](this, this._el_0, oldRenderVar, newRenderVar);
+            this.componentType.animations['flyInOut'](this, this._el_0, oldRenderVar, newRenderVar);
             this._expr_2 = currVal_2;
         }
-        var currVal_3 = this.parent.context.animate;
+        var currVal_3 = this.context.$implicit.title;
         if (import4.checkBinding(throwOnChange, this._expr_3, currVal_3)) {
-            var oldRenderVar = this._expr_3;
-            if ((oldRenderVar == import7.UNINITIALIZED)) {
-                (oldRenderVar = 'void');
-            }
-            var newRenderVar = currVal_3;
-            if ((newRenderVar == import7.UNINITIALIZED)) {
-                (newRenderVar = 'void');
-            }
-            this.componentType.animations['flyInOut'](this, this._el_0, oldRenderVar, newRenderVar);
+            this._NgIf_2_6.ngIf = currVal_3;
             this._expr_3 = currVal_3;
         }
-        var currVal_4 = this.context.$implicit.title;
+        var currVal_4 = this.context.$implicit.enableHTML;
         if (import4.checkBinding(throwOnChange, this._expr_4, currVal_4)) {
-            this._NgIf_2_6.ngIf = currVal_4;
+            this._NgSwitch_4_3.ngSwitch = currVal_4;
             this._expr_4 = currVal_4;
         }
-        var currVal_5 = this.context.$implicit.enableHTML;
+        var currVal_5 = true;
         if (import4.checkBinding(throwOnChange, this._expr_5, currVal_5)) {
-            this._NgSwitch_4_3.ngSwitch = currVal_5;
+            this._NgSwitchCase_6_6.ngSwitchCase = currVal_5;
             this._expr_5 = currVal_5;
-        }
-        var currVal_6 = true;
-        if (import4.checkBinding(throwOnChange, this._expr_6, currVal_6)) {
-            this._NgSwitchCase_6_6.ngSwitchCase = currVal_6;
-            this._expr_6 = currVal_6;
         }
         this.detectContentChildrenChanges(throwOnChange);
         var currVal_1 = import4.interpolate(1, 'toast toast-', this.context.$implicit.type, '');
@@ -373,8 +359,7 @@ var _View_ToastContainer1 = (function (_super) {
         this.detectViewChildrenChanges(throwOnChange);
     };
     _View_ToastContainer1.prototype.detachInternal = function () {
-        this.componentType.animations['fadeInOut'](this, this._el_0, this._expr_2, 'void');
-        this.componentType.animations['flyInOut'](this, this._el_0, this._expr_3, 'void');
+        this.componentType.animations['flyInOut'](this, this._el_0, this._expr_2, 'void');
     };
     _View_ToastContainer1.prototype._handle_click_0_0 = function ($event) {
         this.markPathToRootAsCheckOnce();
