@@ -8,8 +8,9 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
   var toast_options_1 = $__require('./toast-options');
   var platform_browser_1 = $__require('@angular/platform-browser');
   var ToastContainer = (function() {
-    function ToastContainer(sanitizer, options) {
+    function ToastContainer(sanitizer, cdr, options) {
       this.sanitizer = sanitizer;
+      this.cdr = cdr;
       this.position = 'fixed';
       this.messageClass = 'toast-message';
       this.titleClass = 'toast-title';
@@ -34,6 +35,7 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
         }
       }
       toast.state = this.animate;
+      this.cdr.detectChanges();
     };
     ToastContainer.prototype.removeToast = function(toastId) {
       this.toasts = this.toasts.filter(function(toast) {
@@ -78,7 +80,7 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
         }))]), core_1.transition('void => fade', [core_1.style({opacity: 0}), core_1.animate('0.3s ease-in')]), core_1.transition('fade => void', [core_1.animate('0.3s 10 ease-out', core_1.style({opacity: 0}))])])]
       }]
     }];
-    ToastContainer.ctorParameters = [{type: platform_browser_1.DomSanitizer}, {
+    ToastContainer.ctorParameters = [{type: platform_browser_1.DomSanitizer}, {type: core_1.ChangeDetectorRef}, {
       type: toast_options_1.ToastOptions,
       decorators: [{type: core_1.Optional}]
     }];

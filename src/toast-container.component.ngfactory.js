@@ -40,7 +40,7 @@ var _View_ToastContainer_Host0 = (function (_super) {
         this._el_0 = this.selectOrCreateHostElement('toast-container', rootSelector, null);
         this._appEl_0 = new import2.AppElement(0, null, this, this._el_0);
         var compView_0 = viewFactory_ToastContainer0(this.viewUtils, this.injector(0), this._appEl_0);
-        this._ToastContainer_0_4 = new import3.ToastContainer(this.parentInjector.get(import8.DomSanitizer), this.parentInjector.get(import9.ToastOptions, null));
+        this._ToastContainer_0_4 = new import3.ToastContainer(this.parentInjector.get(import8.DomSanitizer), compView_0.ref, this.parentInjector.get(import9.ToastOptions, null));
         this._appEl_0.initComponent(this._ToastContainer_0_4, [], compView_0);
         compView_0.create(this._ToastContainer_0_4, this.projectableNodes, null);
         this.init([].concat([this._el_0]), [this._el_0], [], []);
