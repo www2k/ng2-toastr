@@ -7,7 +7,7 @@ import {DomSanitizer} from '@angular/platform-browser';
   selector: 'toast-container',
   template: `
     <div id="toast-container" [style.position]="position" class="{{positionClass}}">
-      <div *ngFor="let toast of toasts" [@flyInOut]="animate" class="toast toast-{{toast.type}}" (click)="dismiss(toast)">
+      <div *ngFor="let toast of toasts" [@inOut]="'toast.state'" class="toast toast-{{toast.type}}" (click)="dismiss(toast)">
         <div *ngIf="toast.title" class="{{toast.titleClass || titleClass}}">{{toast.title}}</div>
         <div [ngSwitch]="toast.enableHTML">
           <span *ngSwitchCase="true" [innerHTML]="sanitizer.bypassSecurityTrustHtml(toast.message)"></span>
@@ -17,31 +17,28 @@ import {DomSanitizer} from '@angular/platform-browser';
     </div>
     `,
   animations: [
-    trigger('flyInOut', [
-      state('fly', style({opacity: 1, transform: 'translateX(0)'})),
-      transition('void => *', [
+    trigger('inOut', [
+      state('fly, fade', style({opacity: 1, transform: 'translateX(0)'})),
+      transition('void => fly', [
         style({
           opacity: 0,
           transform: 'translateX(100%)'
         }),
         animate('0.2s ease-in')
       ]),
-      transition('* => void', [
+      transition('fly => void', [
         animate('0.2s 10 ease-out', style({
           opacity: 0,
           transform: 'translateX(100%)'
         }))
-      ])
-    ]),
-    trigger('fadeInOut', [
-      state('fade', style({opacity: 1})),
-      transition('void => *', [
+      ]),
+      transition('void => fade', [
         style({
           opacity: 0,
         }),
         animate('0.3s ease-in')
       ]),
-      transition('* => void', [
+      transition('fade => void', [
         animate('0.3s 10 ease-out', style({
           opacity: 0,
         }))
@@ -56,7 +53,7 @@ export class ToastContainer {
   positionClass = 'toast-top-right';
   toasts: Toast[] = [];
   maxShown = 5;
-  animate: string = 'null';
+  animate: string = 'fade';
 
   constructor(private sanitizer: DomSanitizer,
               @Optional() options: ToastOptions)
@@ -78,7 +75,7 @@ export class ToastContainer {
         this.toasts.splice(this.maxShown, (this.toasts.length - this.maxShown));
       }
     }
-
+    toast.state = this.animate;
   }
 
   removeToast(toastId: number) {

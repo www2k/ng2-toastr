@@ -7,5 +7,6 @@ export declare class Toast {
     enableHTML: boolean;
     titleClass: string;
     messageClass: string;
+    state: string;
     constructor(type: string, message: string, title?: string);
 }

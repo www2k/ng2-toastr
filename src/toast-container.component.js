@@ -11,7 +11,7 @@ var ToastContainer = (function () {
         this.positionClass = 'toast-top-right';
         this.toasts = [];
         this.maxShown = 5;
-        this.animate = 'null';
+        this.animate = 'fade';
         if (options) {
             Object.assign(this, options);
         }
@@ -29,6 +29,7 @@ var ToastContainer = (function () {
                 this.toasts.splice(this.maxShown, (this.toasts.length - this.maxShown));
             }
         }
+        toast.state = this.animate;
     };
     ToastContainer.prototype.removeToast = function (toastId) {
         this.toasts = this.toasts.filter(function (toast) {
@@ -58,33 +59,30 @@ var ToastContainer = (function () {
     ToastContainer.decorators = [
         { type: core_1.Component, args: [{
                     selector: 'toast-container',
-                    template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" [@flyInOut]=\"animate\" class=\"toast toast-{{toast.type}}\" (click)=\"dismiss(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{toast.titleClass || titleClass}}\">{{toast.title}}</div>\n        <div [ngSwitch]=\"toast.enableHTML\">\n          <span *ngSwitchCase=\"true\" [innerHTML]=\"sanitizer.bypassSecurityTrustHtml(toast.message)\"></span>\n          <span *ngSwitchDefault class=\"{{toast.messageClass || messageClass}}\">{{toast.message}}</span>\n        </div>              \n      </div>\n    </div>\n    ",
+                    template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" [@inOut]=\"'toast.state'\" class=\"toast toast-{{toast.type}}\" (click)=\"dismiss(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{toast.titleClass || titleClass}}\">{{toast.title}}</div>\n        <div [ngSwitch]=\"toast.enableHTML\">\n          <span *ngSwitchCase=\"true\" [innerHTML]=\"sanitizer.bypassSecurityTrustHtml(toast.message)\"></span>\n          <span *ngSwitchDefault class=\"{{toast.messageClass || messageClass}}\">{{toast.message}}</span>\n        </div>              \n      </div>\n    </div>\n    ",
                     animations: [
-                        core_1.trigger('flyInOut', [
-                            core_1.state('fly', core_1.style({ opacity: 1, transform: 'translateX(0)' })),
-                            core_1.transition('void => *', [
+                        core_1.trigger('inOut', [
+                            core_1.state('fly, fade', core_1.style({ opacity: 1, transform: 'translateX(0)' })),
+                            core_1.transition('void => fly', [
                                 core_1.style({
                                     opacity: 0,
                                     transform: 'translateX(100%)'
                                 }),
                                 core_1.animate('0.2s ease-in')
                             ]),
-                            core_1.transition('* => void', [
+                            core_1.transition('fly => void', [
                                 core_1.animate('0.2s 10 ease-out', core_1.style({
                                     opacity: 0,
                                     transform: 'translateX(100%)'
                                 }))
-                            ])
-                        ]),
-                        core_1.trigger('fadeInOut', [
-                            core_1.state('fade', core_1.style({ opacity: 1 })),
-                            core_1.transition('void => *', [
+                            ]),
+                            core_1.transition('void => fade', [
                                 core_1.style({
                                     opacity: 0,
                                 }),
                                 core_1.animate('0.3s ease-in')
                             ]),
-                            core_1.transition('* => void', [
+                            core_1.transition('fade => void', [
                                 core_1.animate('0.3s 10 ease-out', core_1.style({
                                     opacity: 0,
                                 }))

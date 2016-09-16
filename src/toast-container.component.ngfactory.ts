@@ -56,8 +56,13 @@ function viewFactory_ToastContainer_Host0(viewUtils:import4.ViewUtils,parentInje
 }
 export const ToastContainerNgFactory:import11.ComponentFactory<import3.ToastContainer> = new import11.ComponentFactory<import3.ToastContainer>('toast-container',viewFactory_ToastContainer_Host0,import3.ToastContainer);
 const styles_ToastContainer:any[] = [];
-var ToastContainer_flyInOut_states:any = {
+var ToastContainer_inOut_states:any = {
   fly: {
+    opacity: 1,
+    transform: 'translateX(0)'
+  }
+  ,
+  fade: {
     opacity: 1,
     transform: 'translateX(0)'
   }
@@ -66,18 +71,18 @@ var ToastContainer_flyInOut_states:any = {
   void: {}
 }
 ;
-function ToastContainer_flyInOut_factory(view:import1.AppView<any>,element:any,currentState:any,nextState:any):void {
-  view.cancelActiveAnimation(element,'flyInOut',(nextState == 'void'));
+function ToastContainer_inOut_factory(view:import1.AppView<any>,element:any,currentState:any,nextState:any):void {
+  view.cancelActiveAnimation(element,'inOut',(nextState == 'void'));
   var collectedStyles:any = {};
   var player:any = (null as any);
   var totalTime:any = 0;
-  var defaultStateStyles:any = ToastContainer_flyInOut_states['*'];
-  var startStateStyles:any = ToastContainer_flyInOut_states[currentState];
+  var defaultStateStyles:any = ToastContainer_inOut_states['*'];
+  var startStateStyles:any = ToastContainer_inOut_states[currentState];
   if ((startStateStyles == (null as any))) { (startStateStyles = defaultStateStyles); }
-  var endStateStyles:any = ToastContainer_flyInOut_states[nextState];
+  var endStateStyles:any = ToastContainer_inOut_states[nextState];
   if ((endStateStyles == (null as any))) { (endStateStyles = defaultStateStyles); }
   import12.renderStyles(element,view.renderer,import12.clearStyles(startStateStyles));
-  if (((player == (null as any)) && ((currentState == 'void') && true))) {
+  if (((player == (null as any)) && ((currentState == 'void') && (nextState == 'fly')))) {
       player = new import13.AnimationSequencePlayer([view.renderer.animate(element,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[
         startStateStyles,
         {
@@ -93,7 +98,7 @@ function ToastContainer_flyInOut_factory(view:import1.AppView<any>,element:any,c
     ),200,0,'ease-in')]);
     totalTime = 200;
   }
-  if (((player == (null as any)) && (true && (nextState == 'void')))) {
+  if (((player == (null as any)) && ((currentState == 'fly') && (nextState == 'void')))) {
       player = new import13.AnimationSequencePlayer([view.renderer.animate(element,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[startStateStyles])),[
           new import15.AnimationKeyframe(0,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[{
             opacity: 'true',
@@ -109,30 +114,7 @@ function ToastContainer_flyInOut_factory(view:import1.AppView<any>,element:any,c
     ,200,0,(null as any))]);
     totalTime = 200;
   }
-  if ((player == (null as any))) { (player = new import16.NoOpAnimationPlayer()); }
-  player.onDone(():void => {
-    import12.renderStyles(element,view.renderer,import12.prepareFinalAnimationStyles(startStateStyles,endStateStyles));
-  });
-  view.queueAnimation(element,'flyInOut',player,totalTime,currentState,nextState);
-}
-var ToastContainer_fadeInOut_states:any = {
-  fade: {opacity: 1},
-  '*': {},
-  void: {}
-}
-;
-function ToastContainer_fadeInOut_factory(view:import1.AppView<any>,element:any,currentState:any,nextState:any):void {
-  view.cancelActiveAnimation(element,'fadeInOut',(nextState == 'void'));
-  var collectedStyles:any = {};
-  var player:any = (null as any);
-  var totalTime:any = 0;
-  var defaultStateStyles:any = ToastContainer_fadeInOut_states['*'];
-  var startStateStyles:any = ToastContainer_fadeInOut_states[currentState];
-  if ((startStateStyles == (null as any))) { (startStateStyles = defaultStateStyles); }
-  var endStateStyles:any = ToastContainer_fadeInOut_states[nextState];
-  if ((endStateStyles == (null as any))) { (endStateStyles = defaultStateStyles); }
-  import12.renderStyles(element,view.renderer,import12.clearStyles(startStateStyles));
-  if (((player == (null as any)) && ((currentState == 'void') && true))) {
+  if (((player == (null as any)) && ((currentState == 'void') && (nextState == 'fade')))) {
       player = new import13.AnimationSequencePlayer([view.renderer.animate(element,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[
         startStateStyles,
         {opacity: 0}
@@ -144,7 +126,7 @@ function ToastContainer_fadeInOut_factory(view:import1.AppView<any>,element:any,
     ),300,0,'ease-in')]);
     totalTime = 300;
   }
-  if (((player == (null as any)) && (true && (nextState == 'void')))) {
+  if (((player == (null as any)) && ((currentState == 'fade') && (nextState == 'void')))) {
       player = new import13.AnimationSequencePlayer([view.renderer.animate(element,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[startStateStyles])),[
         new import15.AnimationKeyframe(0,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[{opacity: 'true'}]))),
         new import15.AnimationKeyframe(1,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[{opacity: 0}])))
@@ -156,7 +138,7 @@ function ToastContainer_fadeInOut_factory(view:import1.AppView<any>,element:any,
   player.onDone(():void => {
     import12.renderStyles(element,view.renderer,import12.prepareFinalAnimationStyles(startStateStyles,endStateStyles));
   });
-  view.queueAnimation(element,'fadeInOut',player,totalTime,currentState,nextState);
+  view.queueAnimation(element,'inOut',player,totalTime,currentState,nextState);
 }
 var renderType_ToastContainer:import0.RenderComponentType = (null as any);
 class _View_ToastContainer0 extends import1.AppView<import3.ToastContainer> {
@@ -233,11 +215,7 @@ class _View_ToastContainer0 extends import1.AppView<import3.ToastContainer> {
   }
 }
 export function viewFactory_ToastContainer0(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<import3.ToastContainer> {
-  if ((renderType_ToastContainer === (null as any))) { (renderType_ToastContainer = viewUtils.createRenderComponentType('/Users/dereks/Documents/PointInside/ng2-toastr/src/toast-container.component.ts class ToastContainer - inline template',0,import10.ViewEncapsulation.None,styles_ToastContainer,{
-    flyInOut: ToastContainer_flyInOut_factory,
-    fadeInOut: ToastContainer_fadeInOut_factory
-  }
-  )); }
+  if ((renderType_ToastContainer === (null as any))) { (renderType_ToastContainer = viewUtils.createRenderComponentType('/Users/dereks/Documents/PointInside/ng2-toastr/src/toast-container.component.ts class ToastContainer - inline template',0,import10.ViewEncapsulation.None,styles_ToastContainer,{inOut: ToastContainer_inOut_factory})); }
   return new _View_ToastContainer0(viewUtils,parentInjector,declarationEl);
 }
 class _View_ToastContainer1 extends import1.AppView<any> {
@@ -325,13 +303,13 @@ class _View_ToastContainer1 extends import1.AppView<any> {
     return notFoundResult;
   }
   detectChangesInternal(throwOnChange:boolean):void {
-    const currVal_2:any = this.parent.context.animate;
+    const currVal_2:any = 'toast.state';
     if (import4.checkBinding(throwOnChange,this._expr_2,currVal_2)) {
       var oldRenderVar:any = this._expr_2;
       if ((oldRenderVar == import7.UNINITIALIZED)) { (oldRenderVar = 'void'); }
       var newRenderVar:any = currVal_2;
       if ((newRenderVar == import7.UNINITIALIZED)) { (newRenderVar = 'void'); }
-      this.componentType.animations['flyInOut'](this,this._el_0,oldRenderVar,newRenderVar);
+      this.componentType.animations['inOut'](this,this._el_0,oldRenderVar,newRenderVar);
       this._expr_2 = currVal_2;
     }
     const currVal_3:any = this.context.$implicit.title;
@@ -358,7 +336,7 @@ class _View_ToastContainer1 extends import1.AppView<any> {
     this.detectViewChildrenChanges(throwOnChange);
   }
   detachInternal():void {
-    this.componentType.animations['flyInOut'](this,this._el_0,this._expr_2,'void');
+    this.componentType.animations['inOut'](this,this._el_0,this._expr_2,'void');
   }
   private _handle_click_0_0($event:any):boolean {
     this.markPathToRootAsCheckOnce();
