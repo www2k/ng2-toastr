@@ -57,7 +57,7 @@ function viewFactory_ToastContainer_Host0(viewUtils:import4.ViewUtils,parentInje
 export const ToastContainerNgFactory:import11.ComponentFactory<import3.ToastContainer> = new import11.ComponentFactory<import3.ToastContainer>('toast-container',viewFactory_ToastContainer_Host0,import3.ToastContainer);
 const styles_ToastContainer:any[] = [];
 var ToastContainer_flyInOut_states:any = {
-  in: {
+  fly: {
     opacity: 1,
     transform: 'translateX(0)'
   }
@@ -116,7 +116,7 @@ function ToastContainer_flyInOut_factory(view:import1.AppView<any>,element:any,c
   view.queueAnimation(element,'flyInOut',player,totalTime,currentState,nextState);
 }
 var ToastContainer_fadeInOut_states:any = {
-  in: {opacity: 1},
+  fade: {opacity: 1},
   '*': {},
   void: {}
 }
@@ -141,16 +141,16 @@ function ToastContainer_fadeInOut_factory(view:import1.AppView<any>,element:any,
         new import15.AnimationKeyframe(0,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[{}]))),
         new import15.AnimationKeyframe(1,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[{}])))
       ]
-    ),200,0,'ease-in')]);
-    totalTime = 200;
+    ),300,0,'ease-in')]);
+    totalTime = 300;
   }
   if (((player == (null as any)) && (true && (nextState == 'void')))) {
       player = new import13.AnimationSequencePlayer([view.renderer.animate(element,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[startStateStyles])),[
         new import15.AnimationKeyframe(0,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[{opacity: 'true'}]))),
         new import15.AnimationKeyframe(1,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[{opacity: 0}])))
       ]
-    ,200,0,(null as any))]);
-    totalTime = 200;
+    ,300,0,(null as any))]);
+    totalTime = 300;
   }
   if ((player == (null as any))) { (player = new import16.NoOpAnimationPlayer()); }
   player.onDone(():void => {
@@ -267,6 +267,7 @@ class _View_ToastContainer1 extends import1.AppView<any> {
   /*private*/ _expr_3:any;
   /*private*/ _expr_4:any;
   /*private*/ _expr_5:any;
+  /*private*/ _expr_6:any;
   constructor(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement) {
     super(_View_ToastContainer1,renderType_ToastContainer,import6.ViewType.EMBEDDED,viewUtils,parentInjector,declarationEl,import7.ChangeDetectorStatus.CheckAlways);
   }
@@ -294,10 +295,11 @@ class _View_ToastContainer1 extends import1.AppView<any> {
     this._text_10 = this.renderer.createText(this._el_0,'              \n      ',(null as any));
     this._expr_1 = import7.UNINITIALIZED;
     this._expr_2 = import7.UNINITIALIZED;
-    var disposable_0:Function = this.renderer.listen(this._el_0,'click',this.eventHandler(this._handle_click_0_0.bind(this)));
     this._expr_3 = import7.UNINITIALIZED;
+    var disposable_0:Function = this.renderer.listen(this._el_0,'click',this.eventHandler(this._handle_click_0_0.bind(this)));
     this._expr_4 = import7.UNINITIALIZED;
     this._expr_5 = import7.UNINITIALIZED;
+    this._expr_6 = import7.UNINITIALIZED;
     this.init([].concat([this._el_0]),[
       this._el_0,
       this._text_1,
@@ -325,7 +327,7 @@ class _View_ToastContainer1 extends import1.AppView<any> {
     return notFoundResult;
   }
   detectChangesInternal(throwOnChange:boolean):void {
-    const currVal_2:any = 'in';
+    const currVal_2:any = this.parent.context.animate;
     if (import4.checkBinding(throwOnChange,this._expr_2,currVal_2)) {
       var oldRenderVar:any = this._expr_2;
       if ((oldRenderVar == import7.UNINITIALIZED)) { (oldRenderVar = 'void'); }
@@ -334,20 +336,29 @@ class _View_ToastContainer1 extends import1.AppView<any> {
       this.componentType.animations['fadeInOut'](this,this._el_0,oldRenderVar,newRenderVar);
       this._expr_2 = currVal_2;
     }
-    const currVal_3:any = this.context.$implicit.title;
+    const currVal_3:any = this.parent.context.animate;
     if (import4.checkBinding(throwOnChange,this._expr_3,currVal_3)) {
-      this._NgIf_2_6.ngIf = currVal_3;
+      var oldRenderVar:any = this._expr_3;
+      if ((oldRenderVar == import7.UNINITIALIZED)) { (oldRenderVar = 'void'); }
+      var newRenderVar:any = currVal_3;
+      if ((newRenderVar == import7.UNINITIALIZED)) { (newRenderVar = 'void'); }
+      this.componentType.animations['flyInOut'](this,this._el_0,oldRenderVar,newRenderVar);
       this._expr_3 = currVal_3;
     }
-    const currVal_4:any = this.context.$implicit.enableHTML;
+    const currVal_4:any = this.context.$implicit.title;
     if (import4.checkBinding(throwOnChange,this._expr_4,currVal_4)) {
-      this._NgSwitch_4_3.ngSwitch = currVal_4;
+      this._NgIf_2_6.ngIf = currVal_4;
       this._expr_4 = currVal_4;
     }
-    const currVal_5:any = true;
+    const currVal_5:any = this.context.$implicit.enableHTML;
     if (import4.checkBinding(throwOnChange,this._expr_5,currVal_5)) {
-      this._NgSwitchCase_6_6.ngSwitchCase = currVal_5;
+      this._NgSwitch_4_3.ngSwitch = currVal_5;
       this._expr_5 = currVal_5;
+    }
+    const currVal_6:any = true;
+    if (import4.checkBinding(throwOnChange,this._expr_6,currVal_6)) {
+      this._NgSwitchCase_6_6.ngSwitchCase = currVal_6;
+      this._expr_6 = currVal_6;
     }
     this.detectContentChildrenChanges(throwOnChange);
     const currVal_1:any = import4.interpolate(1,'toast toast-',this.context.$implicit.type,'');
@@ -359,6 +370,7 @@ class _View_ToastContainer1 extends import1.AppView<any> {
   }
   detachInternal():void {
     this.componentType.animations['fadeInOut'](this,this._el_0,this._expr_2,'void');
+    this.componentType.animations['flyInOut'](this,this._el_0,this._expr_3,'void');
   }
   private _handle_click_0_0($event:any):boolean {
     this.markPathToRootAsCheckOnce();

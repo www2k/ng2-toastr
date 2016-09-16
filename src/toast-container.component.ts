@@ -7,7 +7,7 @@ import {DomSanitizer} from '@angular/platform-browser';
   selector: 'toast-container',
   template: `
     <div id="toast-container" [style.position]="position" class="{{positionClass}}">
-      <div *ngFor="let toast of toasts" [@fadeInOut]="'in'" class="toast toast-{{toast.type}}" (click)="dismiss(toast)">
+      <div *ngFor="let toast of toasts" [@fadeInOut]="animate" [@flyInOut]="animate" class="toast toast-{{toast.type}}" (click)="dismiss(toast)">
         <div *ngIf="toast.title" class="{{toast.titleClass || titleClass}}">{{toast.title}}</div>
         <div [ngSwitch]="toast.enableHTML">
           <span *ngSwitchCase="true" [innerHTML]="sanitizer.bypassSecurityTrustHtml(toast.message)"></span>
@@ -18,7 +18,7 @@ import {DomSanitizer} from '@angular/platform-browser';
     `,
   animations: [
     trigger('flyInOut', [
-      state('in', style({opacity: 1, transform: 'translateX(0)'})),
+      state('fly', style({opacity: 1, transform: 'translateX(0)'})),
       transition('void => *', [
         style({
           opacity: 0,
@@ -34,15 +34,15 @@ import {DomSanitizer} from '@angular/platform-browser';
       ])
     ]),
     trigger('fadeInOut', [
-      state('in', style({opacity: 1})),
+      state('fade', style({opacity: 1})),
       transition('void => *', [
         style({
           opacity: 0,
         }),
-        animate('0.2s ease-in')
+        animate('0.3s ease-in')
       ]),
       transition('* => void', [
-        animate('0.2s 10 ease-out', style({
+        animate('0.3s 10 ease-out', style({
           opacity: 0,
         }))
       ])
@@ -56,6 +56,7 @@ export class ToastContainer {
   positionClass = 'toast-top-right';
   toasts: Toast[] = [];
   maxShown = 5;
+  animate: string = 'fly';
 
   constructor(private sanitizer: DomSanitizer,
               @Optional() options: ToastOptions)

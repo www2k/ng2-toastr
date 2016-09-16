@@ -1,9 +1,11 @@
 Angular 2: Toastr
 ===================
 
-[![](https://img.shields.io/badge/npm-v1.0.1-brightgreen.svg)](https://www.npmjs.com/package/ng2-toastr)
+[![](https://img.shields.io/badge/npm-v1.1.0-brightgreen.svg)](https://www.npmjs.com/package/ng2-toastr)
 
-NOTE: Added animation for displaying/dismissing toasts.
+NOTE: Since version 1.1.0, ng2-toastr has added animation for displaying/dismissing toasts. 
+For some browsers, a polyfill is required. Grab [web-animations.min.js](https://github.com/web-animations/web-animations-js) 
+and add it to your page.
 
 The lib is inspired by [angular-toastr] (https://github.com/Foxandxss/angular-toastr), and will show bootstrap-like toasts. 
 Please update Angular 2 to latest version to avoid any unexpected issues.
