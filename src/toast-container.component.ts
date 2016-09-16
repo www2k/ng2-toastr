@@ -56,7 +56,7 @@ export class ToastContainer {
   positionClass = 'toast-top-right';
   toasts: Toast[] = [];
   maxShown = 5;
-  animate: string = 'fly';
+  animate: string = 'null';
 
   constructor(private sanitizer: DomSanitizer,
               @Optional() options: ToastOptions)

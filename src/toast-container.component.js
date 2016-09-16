@@ -11,7 +11,7 @@ var ToastContainer = (function () {
         this.positionClass = 'toast-top-right';
         this.toasts = [];
         this.maxShown = 5;
-        this.animate = 'fly';
+        this.animate = 'null';
         if (options) {
             Object.assign(this, options);
         }
