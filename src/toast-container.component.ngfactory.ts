@@ -57,13 +57,15 @@ function viewFactory_ToastContainer_Host0(viewUtils:import4.ViewUtils,parentInje
 export const ToastContainerNgFactory:import11.ComponentFactory<import3.ToastContainer> = new import11.ComponentFactory<import3.ToastContainer>('toast-container',viewFactory_ToastContainer_Host0,import3.ToastContainer);
 const styles_ToastContainer:any[] = [];
 var ToastContainer_inOut_states:any = {
-  in: {
+  fly: {
     opacity: 1,
     transform: 'translateX(0)'
   }
   ,
+  fade: {opacity: 1},
   '*': {},
-  void: {}
+  void: {},
+  in: {}
 }
 ;
 function ToastContainer_inOut_factory(view:import1.AppView<any>,element:any,currentState:any,nextState:any):void {
@@ -77,7 +79,7 @@ function ToastContainer_inOut_factory(view:import1.AppView<any>,element:any,curr
   var endStateStyles:any = ToastContainer_inOut_states[nextState];
   if ((endStateStyles == (null as any))) { (endStateStyles = defaultStateStyles); }
   import12.renderStyles(element,view.renderer,import12.clearStyles(startStateStyles));
-  if (((player == (null as any)) && ((currentState == 'void') && (nextState == 'in')))) {
+  if (((player == (null as any)) && ((currentState == 'void') && (nextState == 'fly')))) {
       player = new import13.AnimationSequencePlayer([view.renderer.animate(element,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[
         startStateStyles,
         {
@@ -93,7 +95,7 @@ function ToastContainer_inOut_factory(view:import1.AppView<any>,element:any,curr
     ),200,0,'ease-in')]);
     totalTime = 200;
   }
-  if (((player == (null as any)) && ((currentState == 'in') && (nextState == 'void')))) {
+  if (((player == (null as any)) && ((currentState == 'in') && (nextState == 'fly')))) {
       player = new import13.AnimationSequencePlayer([view.renderer.animate(element,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[startStateStyles])),[
           new import15.AnimationKeyframe(0,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[{
             opacity: 'true',
@@ -108,6 +110,26 @@ function ToastContainer_inOut_factory(view:import1.AppView<any>,element:any,curr
       ]
     ,200,0,(null as any))]);
     totalTime = 200;
+  }
+  if (((player == (null as any)) && ((currentState == 'void') && (nextState == 'fade')))) {
+      player = new import13.AnimationSequencePlayer([view.renderer.animate(element,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[
+        startStateStyles,
+        {opacity: 0}
+      ]
+      )),import12.balanceAnimationKeyframes(collectedStyles,endStateStyles,[
+        new import15.AnimationKeyframe(0,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[{}]))),
+        new import15.AnimationKeyframe(1,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[{}])))
+      ]
+    ),300,0,'ease-in')]);
+    totalTime = 300;
+  }
+  if (((player == (null as any)) && ((currentState == 'fade') && (nextState == 'void')))) {
+      player = new import13.AnimationSequencePlayer([view.renderer.animate(element,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[startStateStyles])),[
+        new import15.AnimationKeyframe(0,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[{opacity: 'true'}]))),
+        new import15.AnimationKeyframe(1,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[{opacity: 0}])))
+      ]
+    ,300,0,(null as any))]);
+    totalTime = 300;
   }
   if ((player == (null as any))) { (player = new import16.NoOpAnimationPlayer()); }
   player.onDone(():void => {
