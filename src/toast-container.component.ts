@@ -1,4 +1,4 @@
-import {Component, Optional} from '@angular/core';
+import {Component, Optional, transition, state, trigger, style, animate, ChangeDetectorRef} from '@angular/core';
 import {Toast} from './toast';
 import {ToastOptions} from './toast-options';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -7,7 +7,7 @@ import {DomSanitizer} from '@angular/platform-browser';
   selector: 'toast-container',
   template: `
     <div id="toast-container" [style.position]="position" class="{{positionClass}}">
-      <div *ngFor="let toast of toasts" class="toast toast-{{toast.type}}" (click)="dismiss(toast)">
+      <div *ngFor="let toast of toasts" [@inOut]="animate" class="toast toast-{{toast.type}}" (click)="dismiss(toast)">
         <div *ngIf="toast.title" class="{{toast.titleClass || titleClass}}">{{toast.title}}</div>
         <div [ngSwitch]="toast.enableHTML">
           <span *ngSwitchCase="true" [innerHTML]="sanitizer.bypassSecurityTrustHtml(toast.message)"></span>
@@ -16,6 +16,49 @@ import {DomSanitizer} from '@angular/platform-browser';
       </div>
     </div>
     `,
+  animations: [
+    trigger('inOut', [
+      state('flyRight, flyLeft', style({opacity: 1, transform: 'translateX(0)'})),
+      state('fade', style({opacity: 1})),
+      transition('void => flyRight', [
+        style({
+          opacity: 0,
+          transform: 'translateX(100%)'
+        }),
+        animate('0.2s ease-in')
+      ]),
+      transition('flyRight => void', [
+        animate('0.2s 10 ease-out', style({
+          opacity: 0,
+          transform: 'translateX(100%)'
+        }))
+      ]),
+      transition('void => flyLeft', [
+        style({
+          opacity: 0,
+          transform: 'translateX(-100%)'
+        }),
+        animate('0.2s ease-in')
+      ]),
+      transition('flyLeft => void', [
+        animate('0.2s 10 ease-out', style({
+          opacity: 0,
+          transform: 'translateX(-100%)'
+        }))
+      ]),
+      transition('void => fade', [
+        style({
+          opacity: 0,
+        }),
+        animate('0.3s ease-in')
+      ]),
+      transition('fade => void', [
+        animate('0.3s 10 ease-out', style({
+          opacity: 0,
+        }))
+      ]),
+    ]),
+  ],
 })
 export class ToastContainer {
   position = 'fixed';
@@ -24,6 +67,7 @@ export class ToastContainer {
   positionClass = 'toast-top-right';
   toasts: Toast[] = [];
   maxShown = 5;
+  animate: string = 'fade';
 
   constructor(private sanitizer: DomSanitizer,
               @Optional() options: ToastOptions)
@@ -34,7 +78,6 @@ export class ToastContainer {
   }
 
   addToast(toast: Toast) {
-
     if (this.positionClass.indexOf('top') > 0) {
       this.toasts.push(toast);
       if (this.toasts.length > this.maxShown) {
@@ -46,7 +89,6 @@ export class ToastContainer {
         this.toasts.splice(this.maxShown, (this.toasts.length - this.maxShown));
       }
     }
-
   }
 
   removeToast(toastId: number) {

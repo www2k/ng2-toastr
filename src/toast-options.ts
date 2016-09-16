@@ -9,6 +9,7 @@ export class ToastOptions {
   maxShown: number;
   toastLife: number;
   enableHTML: boolean = false;
+  animate: string = 'fade';
 
   constructor(options: Object) {
     Object.assign(this, options);

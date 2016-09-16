@@ -16,7 +16,8 @@ var platform_browser_1 = require('@angular/platform-browser');
 var app_component_1 = require('./app.component');
 var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
 var config = {
-    autoDismiss: false,
+    animate: 'flyRight',
+    positionClass: 'toast-bottom-right',
 };
 var AppModule = (function () {
     function AppModule() {

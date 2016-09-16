@@ -19,12 +19,17 @@ var import8 = require('@angular/platform-browser/src/security/dom_sanitization_s
 var import9 = require('./toast-options');
 var import10 = require('@angular/core/src/metadata/view');
 var import11 = require('@angular/core/src/linker/component_factory');
-var import12 = require('@angular/common/src/directives/ng_for');
-var import13 = require('@angular/core/src/linker/template_ref');
-var import14 = require('@angular/core/src/change_detection/differs/iterable_differs');
-var import15 = require('@angular/core/src/security');
-var import16 = require('@angular/common/src/directives/ng_if');
-var import17 = require('@angular/common/src/directives/ng_switch');
+var import12 = require('@angular/core/src/animation/animation_style_util');
+var import13 = require('@angular/core/src/animation/animation_sequence_player');
+var import14 = require('@angular/core/src/animation/animation_styles');
+var import15 = require('@angular/core/src/animation/animation_keyframe');
+var import16 = require('@angular/core/src/animation/animation_player');
+var import17 = require('@angular/common/src/directives/ng_for');
+var import18 = require('@angular/core/src/linker/template_ref');
+var import19 = require('@angular/core/src/change_detection/differs/iterable_differs');
+var import20 = require('@angular/core/src/security');
+var import21 = require('@angular/common/src/directives/ng_if');
+var import22 = require('@angular/common/src/directives/ng_switch');
 var renderType_ToastContainer_Host = null;
 var _View_ToastContainer_Host0 = (function (_super) {
     __extends(_View_ToastContainer_Host0, _super);
@@ -57,6 +62,115 @@ function viewFactory_ToastContainer_Host0(viewUtils, parentInjector, declaration
 }
 exports.ToastContainerNgFactory = new import11.ComponentFactory('toast-container', viewFactory_ToastContainer_Host0, import3.ToastContainer);
 var styles_ToastContainer = [];
+var ToastContainer_inOut_states = {
+    flyRight: {
+        opacity: 1,
+        transform: 'translateX(0)'
+    },
+    flyLeft: {
+        opacity: 1,
+        transform: 'translateX(0)'
+    },
+    fade: { opacity: 1 },
+    '*': {},
+    void: {}
+};
+function ToastContainer_inOut_factory(view, element, currentState, nextState) {
+    view.cancelActiveAnimation(element, 'inOut', (nextState == 'void'));
+    var collectedStyles = {};
+    var player = null;
+    var totalTime = 0;
+    var defaultStateStyles = ToastContainer_inOut_states['*'];
+    var startStateStyles = ToastContainer_inOut_states[currentState];
+    if ((startStateStyles == null)) {
+        (startStateStyles = defaultStateStyles);
+    }
+    var endStateStyles = ToastContainer_inOut_states[nextState];
+    if ((endStateStyles == null)) {
+        (endStateStyles = defaultStateStyles);
+    }
+    import12.renderStyles(element, view.renderer, import12.clearStyles(startStateStyles));
+    if (((player == null) && ((currentState == 'void') && (nextState == 'flyRight')))) {
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [
+                startStateStyles,
+                {
+                    opacity: 0,
+                    transform: 'translateX(100%)'
+                }
+            ])), import12.balanceAnimationKeyframes(collectedStyles, endStateStyles, [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}]))),
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}])))
+            ]), 200, 0, 'ease-in')]);
+        totalTime = 200;
+    }
+    if (((player == null) && ((currentState == 'flyRight') && (nextState == 'void')))) {
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [startStateStyles])), [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{
+                        opacity: 'true',
+                        transform: 'true'
+                    }
+                ]))),
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{
+                        opacity: 0,
+                        transform: 'translateX(100%)'
+                    }
+                ])))
+            ], 200, 0, null)]);
+        totalTime = 200;
+    }
+    if (((player == null) && ((currentState == 'void') && (nextState == 'flyLeft')))) {
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [
+                startStateStyles,
+                {
+                    opacity: 0,
+                    transform: 'translateX(-100%)'
+                }
+            ])), import12.balanceAnimationKeyframes(collectedStyles, endStateStyles, [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}]))),
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}])))
+            ]), 200, 0, 'ease-in')]);
+        totalTime = 200;
+    }
+    if (((player == null) && ((currentState == 'flyLeft') && (nextState == 'void')))) {
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [startStateStyles])), [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{
+                        opacity: 'true',
+                        transform: 'true'
+                    }
+                ]))),
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{
+                        opacity: 0,
+                        transform: 'translateX(-100%)'
+                    }
+                ])))
+            ], 200, 0, null)]);
+        totalTime = 200;
+    }
+    if (((player == null) && ((currentState == 'void') && (nextState == 'fade')))) {
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [
+                startStateStyles,
+                { opacity: 0 }
+            ])), import12.balanceAnimationKeyframes(collectedStyles, endStateStyles, [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}]))),
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}])))
+            ]), 300, 0, 'ease-in')]);
+        totalTime = 300;
+    }
+    if (((player == null) && ((currentState == 'fade') && (nextState == 'void')))) {
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [startStateStyles])), [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{ opacity: 'true' }]))),
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{ opacity: 0 }])))
+            ], 300, 0, null)]);
+        totalTime = 300;
+    }
+    if ((player == null)) {
+        (player = new import16.NoOpAnimationPlayer());
+    }
+    player.onDone(function () {
+        import12.renderStyles(element, view.renderer, import12.prepareFinalAnimationStyles(startStateStyles, endStateStyles));
+    });
+    view.queueAnimation(element, 'inOut', player, totalTime, currentState, nextState);
+}
 var renderType_ToastContainer = null;
 var _View_ToastContainer0 = (function (_super) {
     __extends(_View_ToastContainer0, _super);
@@ -71,8 +185,8 @@ var _View_ToastContainer0 = (function (_super) {
         this._text_2 = this.renderer.createText(this._el_1, '\n      ', null);
         this._anchor_3 = this.renderer.createTemplateAnchor(this._el_1, null);
         this._appEl_3 = new import2.AppElement(3, 1, this, this._anchor_3);
-        this._TemplateRef_3_5 = new import13.TemplateRef_(this._appEl_3, viewFactory_ToastContainer1);
-        this._NgFor_3_6 = new import12.NgFor(this._appEl_3.vcRef, this._TemplateRef_3_5, this.parentInjector.get(import14.IterableDiffers), this.ref);
+        this._TemplateRef_3_5 = new import18.TemplateRef_(this._appEl_3, viewFactory_ToastContainer1);
+        this._NgFor_3_6 = new import17.NgFor(this._appEl_3.vcRef, this._TemplateRef_3_5, this.parentInjector.get(import19.IterableDiffers), this.ref);
         this._text_4 = this.renderer.createText(this._el_1, '\n    ', null);
         this._text_5 = this.renderer.createText(parentRenderNode, '\n    ', null);
         this._expr_0 = import7.UNINITIALIZED;
@@ -89,10 +203,10 @@ var _View_ToastContainer0 = (function (_super) {
         return null;
     };
     _View_ToastContainer0.prototype.injectorGetInternal = function (token, requestNodeIndex, notFoundResult) {
-        if (((token === import13.TemplateRef) && (3 === requestNodeIndex))) {
+        if (((token === import18.TemplateRef) && (3 === requestNodeIndex))) {
             return this._TemplateRef_3_5;
         }
-        if (((token === import12.NgFor) && (3 === requestNodeIndex))) {
+        if (((token === import17.NgFor) && (3 === requestNodeIndex))) {
             return this._NgFor_3_6;
         }
         return notFoundResult;
@@ -118,7 +232,7 @@ var _View_ToastContainer0 = (function (_super) {
         this.detectContentChildrenChanges(throwOnChange);
         var currVal_0 = this.context.position;
         if (import4.checkBinding(throwOnChange, this._expr_0, currVal_0)) {
-            this.renderer.setElementStyle(this._el_1, 'position', ((this.viewUtils.sanitizer.sanitize(import15.SecurityContext.STYLE, currVal_0) == null) ? null : this.viewUtils.sanitizer.sanitize(import15.SecurityContext.STYLE, currVal_0).toString()));
+            this.renderer.setElementStyle(this._el_1, 'position', ((this.viewUtils.sanitizer.sanitize(import20.SecurityContext.STYLE, currVal_0) == null) ? null : this.viewUtils.sanitizer.sanitize(import20.SecurityContext.STYLE, currVal_0).toString()));
             this._expr_0 = currVal_0;
         }
         var currVal_1 = import4.interpolate(1, '', this.context.positionClass, '');
@@ -132,7 +246,7 @@ var _View_ToastContainer0 = (function (_super) {
 }(import1.AppView));
 function viewFactory_ToastContainer0(viewUtils, parentInjector, declarationEl) {
     if ((renderType_ToastContainer === null)) {
-        (renderType_ToastContainer = viewUtils.createRenderComponentType('/Users/dereks/Documents/PointInside/ng2-toastr/src/toast-container.component.ts class ToastContainer - inline template', 0, import10.ViewEncapsulation.None, styles_ToastContainer, {}));
+        (renderType_ToastContainer = viewUtils.createRenderComponentType('/Users/dereks/Documents/PointInside/ng2-toastr/src/toast-container.component.ts class ToastContainer - inline template', 0, import10.ViewEncapsulation.None, styles_ToastContainer, { inOut: ToastContainer_inOut_factory }));
     }
     return new _View_ToastContainer0(viewUtils, parentInjector, declarationEl);
 }
@@ -147,28 +261,29 @@ var _View_ToastContainer1 = (function (_super) {
         this._text_1 = this.renderer.createText(this._el_0, '\n        ', null);
         this._anchor_2 = this.renderer.createTemplateAnchor(this._el_0, null);
         this._appEl_2 = new import2.AppElement(2, 0, this, this._anchor_2);
-        this._TemplateRef_2_5 = new import13.TemplateRef_(this._appEl_2, viewFactory_ToastContainer2);
-        this._NgIf_2_6 = new import16.NgIf(this._appEl_2.vcRef, this._TemplateRef_2_5);
+        this._TemplateRef_2_5 = new import18.TemplateRef_(this._appEl_2, viewFactory_ToastContainer2);
+        this._NgIf_2_6 = new import21.NgIf(this._appEl_2.vcRef, this._TemplateRef_2_5);
         this._text_3 = this.renderer.createText(this._el_0, '\n        ', null);
         this._el_4 = this.renderer.createElement(this._el_0, 'div', null);
-        this._NgSwitch_4_3 = new import17.NgSwitch();
+        this._NgSwitch_4_3 = new import22.NgSwitch();
         this._text_5 = this.renderer.createText(this._el_4, '\n          ', null);
         this._anchor_6 = this.renderer.createTemplateAnchor(this._el_4, null);
         this._appEl_6 = new import2.AppElement(6, 4, this, this._anchor_6);
-        this._TemplateRef_6_5 = new import13.TemplateRef_(this._appEl_6, viewFactory_ToastContainer3);
-        this._NgSwitchCase_6_6 = new import17.NgSwitchCase(this._appEl_6.vcRef, this._TemplateRef_6_5, this._NgSwitch_4_3);
+        this._TemplateRef_6_5 = new import18.TemplateRef_(this._appEl_6, viewFactory_ToastContainer3);
+        this._NgSwitchCase_6_6 = new import22.NgSwitchCase(this._appEl_6.vcRef, this._TemplateRef_6_5, this._NgSwitch_4_3);
         this._text_7 = this.renderer.createText(this._el_4, '\n          ', null);
         this._anchor_8 = this.renderer.createTemplateAnchor(this._el_4, null);
         this._appEl_8 = new import2.AppElement(8, 4, this, this._anchor_8);
-        this._TemplateRef_8_5 = new import13.TemplateRef_(this._appEl_8, viewFactory_ToastContainer4);
-        this._NgSwitchDefault_8_6 = new import17.NgSwitchDefault(this._appEl_8.vcRef, this._TemplateRef_8_5, this._NgSwitch_4_3);
+        this._TemplateRef_8_5 = new import18.TemplateRef_(this._appEl_8, viewFactory_ToastContainer4);
+        this._NgSwitchDefault_8_6 = new import22.NgSwitchDefault(this._appEl_8.vcRef, this._TemplateRef_8_5, this._NgSwitch_4_3);
         this._text_9 = this.renderer.createText(this._el_4, '\n        ', null);
         this._text_10 = this.renderer.createText(this._el_0, '              \n      ', null);
         this._expr_1 = import7.UNINITIALIZED;
-        var disposable_0 = this.renderer.listen(this._el_0, 'click', this.eventHandler(this._handle_click_0_0.bind(this)));
         this._expr_2 = import7.UNINITIALIZED;
+        var disposable_0 = this.renderer.listen(this._el_0, 'click', this.eventHandler(this._handle_click_0_0.bind(this)));
         this._expr_3 = import7.UNINITIALIZED;
         this._expr_4 = import7.UNINITIALIZED;
+        this._expr_5 = import7.UNINITIALIZED;
         this.init([].concat([this._el_0]), [
             this._el_0,
             this._text_1,
@@ -185,44 +300,57 @@ var _View_ToastContainer1 = (function (_super) {
         return null;
     };
     _View_ToastContainer1.prototype.injectorGetInternal = function (token, requestNodeIndex, notFoundResult) {
-        if (((token === import13.TemplateRef) && (2 === requestNodeIndex))) {
+        if (((token === import18.TemplateRef) && (2 === requestNodeIndex))) {
             return this._TemplateRef_2_5;
         }
-        if (((token === import16.NgIf) && (2 === requestNodeIndex))) {
+        if (((token === import21.NgIf) && (2 === requestNodeIndex))) {
             return this._NgIf_2_6;
         }
-        if (((token === import13.TemplateRef) && (6 === requestNodeIndex))) {
+        if (((token === import18.TemplateRef) && (6 === requestNodeIndex))) {
             return this._TemplateRef_6_5;
         }
-        if (((token === import17.NgSwitchCase) && (6 === requestNodeIndex))) {
+        if (((token === import22.NgSwitchCase) && (6 === requestNodeIndex))) {
             return this._NgSwitchCase_6_6;
         }
-        if (((token === import13.TemplateRef) && (8 === requestNodeIndex))) {
+        if (((token === import18.TemplateRef) && (8 === requestNodeIndex))) {
             return this._TemplateRef_8_5;
         }
-        if (((token === import17.NgSwitchDefault) && (8 === requestNodeIndex))) {
+        if (((token === import22.NgSwitchDefault) && (8 === requestNodeIndex))) {
             return this._NgSwitchDefault_8_6;
         }
-        if (((token === import17.NgSwitch) && ((4 <= requestNodeIndex) && (requestNodeIndex <= 9)))) {
+        if (((token === import22.NgSwitch) && ((4 <= requestNodeIndex) && (requestNodeIndex <= 9)))) {
             return this._NgSwitch_4_3;
         }
         return notFoundResult;
     };
     _View_ToastContainer1.prototype.detectChangesInternal = function (throwOnChange) {
-        var currVal_2 = this.context.$implicit.title;
+        var currVal_2 = this.parent.context.animate;
         if (import4.checkBinding(throwOnChange, this._expr_2, currVal_2)) {
-            this._NgIf_2_6.ngIf = currVal_2;
+            var oldRenderVar = this._expr_2;
+            if ((oldRenderVar == import7.UNINITIALIZED)) {
+                (oldRenderVar = 'void');
+            }
+            var newRenderVar = currVal_2;
+            if ((newRenderVar == import7.UNINITIALIZED)) {
+                (newRenderVar = 'void');
+            }
+            this.componentType.animations['inOut'](this, this._el_0, oldRenderVar, newRenderVar);
             this._expr_2 = currVal_2;
         }
-        var currVal_3 = this.context.$implicit.enableHTML;
+        var currVal_3 = this.context.$implicit.title;
         if (import4.checkBinding(throwOnChange, this._expr_3, currVal_3)) {
-            this._NgSwitch_4_3.ngSwitch = currVal_3;
+            this._NgIf_2_6.ngIf = currVal_3;
             this._expr_3 = currVal_3;
         }
-        var currVal_4 = true;
+        var currVal_4 = this.context.$implicit.enableHTML;
         if (import4.checkBinding(throwOnChange, this._expr_4, currVal_4)) {
-            this._NgSwitchCase_6_6.ngSwitchCase = currVal_4;
+            this._NgSwitch_4_3.ngSwitch = currVal_4;
             this._expr_4 = currVal_4;
+        }
+        var currVal_5 = true;
+        if (import4.checkBinding(throwOnChange, this._expr_5, currVal_5)) {
+            this._NgSwitchCase_6_6.ngSwitchCase = currVal_5;
+            this._expr_5 = currVal_5;
         }
         this.detectContentChildrenChanges(throwOnChange);
         var currVal_1 = import4.interpolate(1, 'toast toast-', this.context.$implicit.type, '');
@@ -231,6 +359,9 @@ var _View_ToastContainer1 = (function (_super) {
             this._expr_1 = currVal_1;
         }
         this.detectViewChildrenChanges(throwOnChange);
+    };
+    _View_ToastContainer1.prototype.detachInternal = function () {
+        this.componentType.animations['inOut'](this, this._el_0, this._expr_2, 'void');
     };
     _View_ToastContainer1.prototype._handle_click_0_0 = function ($event) {
         this.markPathToRootAsCheckOnce();
@@ -292,7 +423,7 @@ var _View_ToastContainer3 = (function (_super) {
         this.detectContentChildrenChanges(throwOnChange);
         var currVal_0 = this.parent.parent.context.sanitizer.bypassSecurityTrustHtml(this.parent.context.$implicit.message);
         if (import4.checkBinding(throwOnChange, this._expr_0, currVal_0)) {
-            this.renderer.setElementProperty(this._el_0, 'innerHTML', this.viewUtils.sanitizer.sanitize(import15.SecurityContext.HTML, currVal_0));
+            this.renderer.setElementProperty(this._el_0, 'innerHTML', this.viewUtils.sanitizer.sanitize(import20.SecurityContext.HTML, currVal_0));
             this._expr_0 = currVal_0;
         }
         this.detectViewChildrenChanges(throwOnChange);

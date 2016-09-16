@@ -9,6 +9,7 @@ export declare class ToastContainer {
     positionClass: string;
     toasts: Toast[];
     maxShown: number;
+    animate: string;
     constructor(sanitizer: DomSanitizer, options: ToastOptions);
     addToast(toast: Toast): void;
     removeToast(toastId: number): void;
