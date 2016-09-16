@@ -1,5 +1,5 @@
 import {Injectable, ComponentRef, ApplicationRef,
-  Inject, Optional, ReflectiveInjector, ViewContainerRef, ComponentFactoryResolver, Injector
+  Optional, ReflectiveInjector, ViewContainerRef, ComponentFactoryResolver
 } from '@angular/core';
 import {ToastContainer} from './toast-container.component';
 import {ToastOptions} from './toast-options';
