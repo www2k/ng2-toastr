@@ -7,7 +7,7 @@ import {DomSanitizer} from '@angular/platform-browser';
   selector: 'toast-container',
   template: `
     <div id="toast-container" [style.position]="position" class="{{positionClass}}">
-      <div *ngFor="let toast of toasts" [@flyInOut]="'in'" class="toast toast-{{toast.type}}" (click)="dismiss(toast)">
+      <div *ngFor="let toast of toasts" [@fadeInOut]="'in'" class="toast toast-{{toast.type}}" (click)="dismiss(toast)">
         <div *ngIf="toast.title" class="{{toast.titleClass || titleClass}}">{{toast.title}}</div>
         <div [ngSwitch]="toast.enableHTML">
           <span *ngSwitchCase="true" [innerHTML]="sanitizer.bypassSecurityTrustHtml(toast.message)"></span>
@@ -32,7 +32,21 @@ import {DomSanitizer} from '@angular/platform-browser';
           transform: 'translateX(100%)'
         }))
       ])
-    ])
+    ]),
+    trigger('fadeInOut', [
+      state('in', style({opacity: 1})),
+      transition('void => *', [
+        style({
+          opacity: 0,
+        }),
+        animate('0.2s ease-in')
+      ]),
+      transition('* => void', [
+        animate('0.2s 10 ease-out', style({
+          opacity: 0,
+        }))
+      ])
+    ]),
   ],
 })
 export class ToastContainer {

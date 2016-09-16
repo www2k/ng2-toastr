@@ -115,6 +115,49 @@ function ToastContainer_flyInOut_factory(view:import1.AppView<any>,element:any,c
   });
   view.queueAnimation(element,'flyInOut',player,totalTime,currentState,nextState);
 }
+var ToastContainer_fadeInOut_states:any = {
+  in: {opacity: 1},
+  '*': {},
+  void: {}
+}
+;
+function ToastContainer_fadeInOut_factory(view:import1.AppView<any>,element:any,currentState:any,nextState:any):void {
+  view.cancelActiveAnimation(element,'fadeInOut',(nextState == 'void'));
+  var collectedStyles:any = {};
+  var player:any = (null as any);
+  var totalTime:any = 0;
+  var defaultStateStyles:any = ToastContainer_fadeInOut_states['*'];
+  var startStateStyles:any = ToastContainer_fadeInOut_states[currentState];
+  if ((startStateStyles == (null as any))) { (startStateStyles = defaultStateStyles); }
+  var endStateStyles:any = ToastContainer_fadeInOut_states[nextState];
+  if ((endStateStyles == (null as any))) { (endStateStyles = defaultStateStyles); }
+  import12.renderStyles(element,view.renderer,import12.clearStyles(startStateStyles));
+  if (((player == (null as any)) && ((currentState == 'void') && true))) {
+      player = new import13.AnimationSequencePlayer([view.renderer.animate(element,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[
+        startStateStyles,
+        {opacity: 0}
+      ]
+      )),import12.balanceAnimationKeyframes(collectedStyles,endStateStyles,[
+        new import15.AnimationKeyframe(0,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[{}]))),
+        new import15.AnimationKeyframe(1,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[{}])))
+      ]
+    ),200,0,'ease-in')]);
+    totalTime = 200;
+  }
+  if (((player == (null as any)) && (true && (nextState == 'void')))) {
+      player = new import13.AnimationSequencePlayer([view.renderer.animate(element,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[startStateStyles])),[
+        new import15.AnimationKeyframe(0,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[{opacity: 'true'}]))),
+        new import15.AnimationKeyframe(1,new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles,[{opacity: 0}])))
+      ]
+    ,200,0,(null as any))]);
+    totalTime = 200;
+  }
+  if ((player == (null as any))) { (player = new import16.NoOpAnimationPlayer()); }
+  player.onDone(():void => {
+    import12.renderStyles(element,view.renderer,import12.prepareFinalAnimationStyles(startStateStyles,endStateStyles));
+  });
+  view.queueAnimation(element,'fadeInOut',player,totalTime,currentState,nextState);
+}
 var renderType_ToastContainer:import0.RenderComponentType = (null as any);
 class _View_ToastContainer0 extends import1.AppView<import3.ToastContainer> {
   _text_0:any;
@@ -190,7 +233,11 @@ class _View_ToastContainer0 extends import1.AppView<import3.ToastContainer> {
   }
 }
 export function viewFactory_ToastContainer0(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<import3.ToastContainer> {
-  if ((renderType_ToastContainer === (null as any))) { (renderType_ToastContainer = viewUtils.createRenderComponentType('/Users/dereks/Documents/PointInside/ng2-toastr/src/toast-container.component.ts class ToastContainer - inline template',0,import10.ViewEncapsulation.None,styles_ToastContainer,{flyInOut: ToastContainer_flyInOut_factory})); }
+  if ((renderType_ToastContainer === (null as any))) { (renderType_ToastContainer = viewUtils.createRenderComponentType('/Users/dereks/Documents/PointInside/ng2-toastr/src/toast-container.component.ts class ToastContainer - inline template',0,import10.ViewEncapsulation.None,styles_ToastContainer,{
+    flyInOut: ToastContainer_flyInOut_factory,
+    fadeInOut: ToastContainer_fadeInOut_factory
+  }
+  )); }
   return new _View_ToastContainer0(viewUtils,parentInjector,declarationEl);
 }
 class _View_ToastContainer1 extends import1.AppView<any> {
@@ -284,7 +331,7 @@ class _View_ToastContainer1 extends import1.AppView<any> {
       if ((oldRenderVar == import7.UNINITIALIZED)) { (oldRenderVar = 'void'); }
       var newRenderVar:any = currVal_2;
       if ((newRenderVar == import7.UNINITIALIZED)) { (newRenderVar = 'void'); }
-      this.componentType.animations['flyInOut'](this,this._el_0,oldRenderVar,newRenderVar);
+      this.componentType.animations['fadeInOut'](this,this._el_0,oldRenderVar,newRenderVar);
       this._expr_2 = currVal_2;
     }
     const currVal_3:any = this.context.$implicit.title;
@@ -311,7 +358,7 @@ class _View_ToastContainer1 extends import1.AppView<any> {
     this.detectViewChildrenChanges(throwOnChange);
   }
   detachInternal():void {
-    this.componentType.animations['flyInOut'](this,this._el_0,this._expr_2,'void');
+    this.componentType.animations['fadeInOut'](this,this._el_0,this._expr_2,'void');
   }
   private _handle_click_0_0($event:any):boolean {
     this.markPathToRootAsCheckOnce();

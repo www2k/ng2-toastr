@@ -3,6 +3,8 @@ Angular 2: Toastr
 
 [![](https://img.shields.io/badge/npm-v1.0.1-brightgreen.svg)](https://www.npmjs.com/package/ng2-toastr)
 
+NOTE: Added animation for displaying/dismissing toasts.
+
 The lib is inspired by [angular-toastr] (https://github.com/Foxandxss/angular-toastr), and will show bootstrap-like toasts. 
 Please update Angular 2 to latest version to avoid any unexpected issues.
 
@@ -160,8 +162,4 @@ Then navigate your browser to http://localhost:3000
     > npm start
 
 
-## TODOs
-
-### Animation
-No animation so far for toasts showing and disappearing. Wait until Angular 2 Animation Api is finalized.
 

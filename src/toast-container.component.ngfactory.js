@@ -121,6 +121,51 @@ function ToastContainer_flyInOut_factory(view, element, currentState, nextState)
     });
     view.queueAnimation(element, 'flyInOut', player, totalTime, currentState, nextState);
 }
+var ToastContainer_fadeInOut_states = {
+    in: { opacity: 1 },
+    '*': {},
+    void: {}
+};
+function ToastContainer_fadeInOut_factory(view, element, currentState, nextState) {
+    view.cancelActiveAnimation(element, 'fadeInOut', (nextState == 'void'));
+    var collectedStyles = {};
+    var player = null;
+    var totalTime = 0;
+    var defaultStateStyles = ToastContainer_fadeInOut_states['*'];
+    var startStateStyles = ToastContainer_fadeInOut_states[currentState];
+    if ((startStateStyles == null)) {
+        (startStateStyles = defaultStateStyles);
+    }
+    var endStateStyles = ToastContainer_fadeInOut_states[nextState];
+    if ((endStateStyles == null)) {
+        (endStateStyles = defaultStateStyles);
+    }
+    import12.renderStyles(element, view.renderer, import12.clearStyles(startStateStyles));
+    if (((player == null) && ((currentState == 'void') && true))) {
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [
+                startStateStyles,
+                { opacity: 0 }
+            ])), import12.balanceAnimationKeyframes(collectedStyles, endStateStyles, [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}]))),
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}])))
+            ]), 200, 0, 'ease-in')]);
+        totalTime = 200;
+    }
+    if (((player == null) && (true && (nextState == 'void')))) {
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [startStateStyles])), [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{ opacity: 'true' }]))),
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{ opacity: 0 }])))
+            ], 200, 0, null)]);
+        totalTime = 200;
+    }
+    if ((player == null)) {
+        (player = new import16.NoOpAnimationPlayer());
+    }
+    player.onDone(function () {
+        import12.renderStyles(element, view.renderer, import12.prepareFinalAnimationStyles(startStateStyles, endStateStyles));
+    });
+    view.queueAnimation(element, 'fadeInOut', player, totalTime, currentState, nextState);
+}
 var renderType_ToastContainer = null;
 var _View_ToastContainer0 = (function (_super) {
     __extends(_View_ToastContainer0, _super);
@@ -196,7 +241,10 @@ var _View_ToastContainer0 = (function (_super) {
 }(import1.AppView));
 function viewFactory_ToastContainer0(viewUtils, parentInjector, declarationEl) {
     if ((renderType_ToastContainer === null)) {
-        (renderType_ToastContainer = viewUtils.createRenderComponentType('/Users/dereks/Documents/PointInside/ng2-toastr/src/toast-container.component.ts class ToastContainer - inline template', 0, import10.ViewEncapsulation.None, styles_ToastContainer, { flyInOut: ToastContainer_flyInOut_factory }));
+        (renderType_ToastContainer = viewUtils.createRenderComponentType('/Users/dereks/Documents/PointInside/ng2-toastr/src/toast-container.component.ts class ToastContainer - inline template', 0, import10.ViewEncapsulation.None, styles_ToastContainer, {
+            flyInOut: ToastContainer_flyInOut_factory,
+            fadeInOut: ToastContainer_fadeInOut_factory
+        }));
     }
     return new _View_ToastContainer0(viewUtils, parentInjector, declarationEl);
 }
@@ -284,7 +332,7 @@ var _View_ToastContainer1 = (function (_super) {
             if ((newRenderVar == import7.UNINITIALIZED)) {
                 (newRenderVar = 'void');
             }
-            this.componentType.animations['flyInOut'](this, this._el_0, oldRenderVar, newRenderVar);
+            this.componentType.animations['fadeInOut'](this, this._el_0, oldRenderVar, newRenderVar);
             this._expr_2 = currVal_2;
         }
         var currVal_3 = this.context.$implicit.title;
@@ -311,7 +359,7 @@ var _View_ToastContainer1 = (function (_super) {
         this.detectViewChildrenChanges(throwOnChange);
     };
     _View_ToastContainer1.prototype.detachInternal = function () {
-        this.componentType.animations['flyInOut'](this, this._el_0, this._expr_2, 'void');
+        this.componentType.animations['fadeInOut'](this, this._el_0, this._expr_2, 'void');
     };
     _View_ToastContainer1.prototype._handle_click_0_0 = function ($event) {
         this.markPathToRootAsCheckOnce();
