@@ -82,7 +82,7 @@ function ToastContainer_flyInOut_factory(view:import1.AppView<any>,element:any,c
         startStateStyles,
         {
           opacity: 0,
-          transform: 'translateX(-100%)'
+          transform: 'translateX(100%)'
         }
 
       ]
@@ -278,7 +278,7 @@ class _View_ToastContainer1 extends import1.AppView<any> {
     return notFoundResult;
   }
   detectChangesInternal(throwOnChange:boolean):void {
-    const currVal_2:any = this.context.$implicit.state;
+    const currVal_2:any = 'in';
     if (import4.checkBinding(throwOnChange,this._expr_2,currVal_2)) {
       var oldRenderVar:any = this._expr_2;
       if ((oldRenderVar == import7.UNINITIALIZED)) { (oldRenderVar = 'void'); }

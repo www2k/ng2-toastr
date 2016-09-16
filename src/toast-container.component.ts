@@ -22,7 +22,7 @@ import {DomSanitizer} from '@angular/platform-browser';
       transition('void => *', [
         style({
           opacity: 0,
-          transform: 'translateX(-100%)'
+          transform: 'translateX(100%)'
         }),
         animate('0.2s ease-in')
       ]),

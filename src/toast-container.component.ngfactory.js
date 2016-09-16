@@ -90,7 +90,7 @@ function ToastContainer_flyInOut_factory(view, element, currentState, nextState)
                 startStateStyles,
                 {
                     opacity: 0,
-                    transform: 'translateX(-100%)'
+                    transform: 'translateX(100%)'
                 }
             ])), import12.balanceAnimationKeyframes(collectedStyles, endStateStyles, [
                 new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}]))),
@@ -274,7 +274,7 @@ var _View_ToastContainer1 = (function (_super) {
         return notFoundResult;
     };
     _View_ToastContainer1.prototype.detectChangesInternal = function (throwOnChange) {
-        var currVal_2 = this.context.$implicit.state;
+        var currVal_2 = 'in';
         if (import4.checkBinding(throwOnChange, this._expr_2, currVal_2)) {
             var oldRenderVar = this._expr_2;
             if ((oldRenderVar == import7.UNINITIALIZED)) {
