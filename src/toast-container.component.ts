@@ -20,6 +20,7 @@ import {DomSanitizer} from '@angular/platform-browser';
     trigger('inOut', [
       state('flyRight, flyLeft', style({opacity: 1, transform: 'translateX(0)'})),
       state('fade', style({opacity: 1})),
+      state('slideDown, slideUp', style({opacity: 1, transform: 'translateY(0)'})),
       transition('void => flyRight', [
         style({
           opacity: 0,
@@ -55,6 +56,32 @@ import {DomSanitizer} from '@angular/platform-browser';
       transition('fade => void', [
         animate('0.3s 10 ease-out', style({
           opacity: 0,
+        }))
+      ]),
+      transition('void => slideDown', [
+        style({
+          opacity: 0,
+          transform: 'translateY(-200%)'
+        }),
+        animate('0.3s ease-in')
+      ]),
+      transition('slideDown => void', [
+        animate('0.3s 10 ease-out', style({
+          opacity: 0,
+          transform: 'translateY(-200%)'
+        }))
+      ]),
+      transition('void => slideUp', [
+        style({
+          opacity: 0,
+          transform: 'translateY(200%)'
+        }),
+        animate('0.3s ease-in')
+      ]),
+      transition('slideUp => void', [
+        animate('0.3s 10 ease-out', style({
+          opacity: 0,
+          transform: 'translateY(200%)'
         }))
       ]),
     ]),

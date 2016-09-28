@@ -72,6 +72,14 @@ var ToastContainer_inOut_states = {
         transform: 'translateX(0)'
     },
     fade: { opacity: 1 },
+    slideDown: {
+        opacity: 1,
+        transform: 'translateY(0)'
+    },
+    slideUp: {
+        opacity: 1,
+        transform: 'translateY(0)'
+    },
     '*': {},
     void: {}
 };
@@ -160,6 +168,62 @@ function ToastContainer_inOut_factory(view, element, currentState, nextState) {
         player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [startStateStyles])), [
                 new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{ opacity: 'true' }]))),
                 new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{ opacity: 0 }])))
+            ], 300, 0, null)]);
+        totalTime = 300;
+    }
+    if (((player == null) && ((currentState == 'void') && (nextState == 'slideDown')))) {
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [
+                startStateStyles,
+                {
+                    opacity: 0,
+                    transform: 'translateY(-200%)'
+                }
+            ])), import12.balanceAnimationKeyframes(collectedStyles, endStateStyles, [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}]))),
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}])))
+            ]), 300, 0, 'ease-in')]);
+        totalTime = 300;
+    }
+    if (((player == null) && ((currentState == 'slideDown') && (nextState == 'void')))) {
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [startStateStyles])), [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{
+                        opacity: 'true',
+                        transform: 'true'
+                    }
+                ]))),
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{
+                        opacity: 0,
+                        transform: 'translateY(-200%)'
+                    }
+                ])))
+            ], 300, 0, null)]);
+        totalTime = 300;
+    }
+    if (((player == null) && ((currentState == 'void') && (nextState == 'slideUp')))) {
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [
+                startStateStyles,
+                {
+                    opacity: 0,
+                    transform: 'translateY(200%)'
+                }
+            ])), import12.balanceAnimationKeyframes(collectedStyles, endStateStyles, [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}]))),
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}])))
+            ]), 300, 0, 'ease-in')]);
+        totalTime = 300;
+    }
+    if (((player == null) && ((currentState == 'slideUp') && (nextState == 'void')))) {
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [startStateStyles])), [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{
+                        opacity: 'true',
+                        transform: 'true'
+                    }
+                ]))),
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{
+                        opacity: 0,
+                        transform: 'translateY(200%)'
+                    }
+                ])))
             ], 300, 0, null)]);
         totalTime = 300;
     }

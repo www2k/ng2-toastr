@@ -68,7 +68,10 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
         animations: [core_1.trigger('inOut', [core_1.state('flyRight, flyLeft', core_1.style({
           opacity: 1,
           transform: 'translateX(0)'
-        })), core_1.state('fade', core_1.style({opacity: 1})), core_1.transition('void => flyRight', [core_1.style({
+        })), core_1.state('fade', core_1.style({opacity: 1})), core_1.state('slideDown, slideUp', core_1.style({
+          opacity: 1,
+          transform: 'translateY(0)'
+        })), core_1.transition('void => flyRight', [core_1.style({
           opacity: 0,
           transform: 'translateX(100%)'
         }), core_1.animate('0.2s ease-in')]), core_1.transition('flyRight => void', [core_1.animate('0.2s 10 ease-out', core_1.style({
@@ -80,7 +83,19 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
         }), core_1.animate('0.2s ease-in')]), core_1.transition('flyLeft => void', [core_1.animate('0.2s 10 ease-out', core_1.style({
           opacity: 0,
           transform: 'translateX(-100%)'
-        }))]), core_1.transition('void => fade', [core_1.style({opacity: 0}), core_1.animate('0.3s ease-in')]), core_1.transition('fade => void', [core_1.animate('0.3s 10 ease-out', core_1.style({opacity: 0}))])])]
+        }))]), core_1.transition('void => fade', [core_1.style({opacity: 0}), core_1.animate('0.3s ease-in')]), core_1.transition('fade => void', [core_1.animate('0.3s 10 ease-out', core_1.style({opacity: 0}))]), core_1.transition('void => slideDown', [core_1.style({
+          opacity: 0,
+          transform: 'translateY(-200%)'
+        }), core_1.animate('0.3s ease-in')]), core_1.transition('slideDown => void', [core_1.animate('0.3s 10 ease-out', core_1.style({
+          opacity: 0,
+          transform: 'translateY(-200%)'
+        }))]), core_1.transition('void => slideUp', [core_1.style({
+          opacity: 0,
+          transform: 'translateY(200%)'
+        }), core_1.animate('0.3s ease-in')]), core_1.transition('slideUp => void', [core_1.animate('0.3s 10 ease-out', core_1.style({
+          opacity: 0,
+          transform: 'translateY(200%)'
+        }))])])]
       }]
     }];
     ToastContainer.ctorParameters = [{type: platform_browser_1.DomSanitizer}, {
