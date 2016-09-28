@@ -119,6 +119,9 @@ You have following choice: 'fade', 'flyLeft' or 'flyRight'.
 * fade: makes every toast either fade in or fade out.
 * flyLeft: makes every toast fly in from left side. 
 * flyRight: makes every toast fly in from right side.
+* slideDown: makes every toast appears sliding down from page top.
+* slideUp: makes every toast appears sliding up from page bottom.
+
 Defaults to 'fade'. You can set `animate: null` to disable animations.
 
 ##### enableHTML: (boolean)
