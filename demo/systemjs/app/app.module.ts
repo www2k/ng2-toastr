@@ -8,8 +8,8 @@ import {AppComponent} from './app.component';
 import {ToastModule, ToastOptions} from 'ng2-toastr/ng2-toastr';
 
 let config = <ToastOptions> {
-  animate: 'flyRight',
-  positionClass: 'toast-bottom-right',
+  animate: 'slideUp',
+  positionClass: 'toast-bottom-center',
 };
 
 @NgModule({

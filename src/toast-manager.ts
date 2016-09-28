@@ -24,6 +24,11 @@ export class ToastsManager {
 
   show(toast: Toast, options?: any) {
     if (!this.container) {
+      if (!this.appRef['_rootComponents'].length) {
+        console.error('Application root component cannot be found.');
+        return;
+      }
+
       // get app root view component ref
       let appContainer: ViewContainerRef = this.appRef['_rootComponents'][0]['_hostElement'].vcRef;
 
