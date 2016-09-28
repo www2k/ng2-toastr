@@ -15,8 +15,7 @@ var AppComponent = (function () {
         this.toastr = toastr;
     }
     AppComponent.prototype.ngAfterViewInit = function () {
-        var _this = this;
-        setTimeout(function () { _this.toastr.success('You are awesome!', 'Success!', { toastLife: 3000 }); }, 300);
+        this.toastr.success('You are awesome!', 'Success!', { toastLife: 3000 });
     };
     AppComponent.prototype.showSuccess = function () {
         this.toastr.success('You are awesome!', 'Success!', { toastLife: 3000 });

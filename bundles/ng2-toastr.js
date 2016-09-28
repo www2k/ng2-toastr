@@ -156,7 +156,7 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
     ToastsManager.prototype.show = function(toast, options) {
       if (!this.container) {
         if (!this.appRef['_rootComponents'].length) {
-          console.error('Application root component cannot be found.');
+          console.error('Application root component cannot be found. Try accessing application reference in the later life cycle of angular app.');
           return;
         }
         var appContainer = this.appRef['_rootComponents'][0]['_hostElement'].vcRef;

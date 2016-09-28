@@ -27,7 +27,7 @@ export class AppComponent implements AfterViewInit {
   }
 
   ngAfterViewInit () {
-    setTimeout(() => {this.toastr.success('You are awesome!', 'Success!', {toastLife: 3000});}, 300);
+    this.toastr.success('You are awesome!', 'Success!', {toastLife: 3000});
   }
 
   showSuccess() {
