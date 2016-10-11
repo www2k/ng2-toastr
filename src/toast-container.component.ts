@@ -1,4 +1,4 @@
-import {Component, Optional, transition, state, trigger, style, animate, Output, EventEmitter} from '@angular/core';
+import {Component, Optional, transition, state, trigger, style, animate} from '@angular/core';
 import {Toast} from './toast';
 import {ToastOptions} from './toast-options';
 import {DomSanitizer} from '@angular/platform-browser';

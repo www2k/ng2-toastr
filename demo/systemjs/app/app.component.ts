@@ -1,5 +1,5 @@
 import {
-  Component, AfterViewInit
+  Component
 } from '@angular/core';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 
@@ -20,14 +20,10 @@ import {ToastsManager} from 'ng2-toastr/ng2-toastr';
       </div>
   `
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent {
 
   constructor(private toastr: ToastsManager) {
 
-  }
-
-  ngAfterViewInit () {
-    this.toastr.success('You are awesome!', 'Success!', {toastLife: 3000});
   }
 
   showSuccess() {

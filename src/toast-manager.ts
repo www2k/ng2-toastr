@@ -43,7 +43,9 @@ export class ToastsManager {
         let toastFactory = this.componentFactoryResolver.resolveComponentFactory(ToastContainer);
         let childInjector = ReflectiveInjector.fromResolvedProviders(providers, appContainer.parentInjector);
         this.container = appContainer.createComponent(toastFactory, appContainer.length, childInjector);
-        this.container.instance.onToastClicked = this.onToastClicked;
+        this.container.instance.onToastClicked = (toast: Toast) => {
+          this.onToastClicked(toast);
+        }
       }
 
       resolve(this.setupToast(toast, options));
