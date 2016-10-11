@@ -43,6 +43,7 @@ export class ToastsManager {
         let toastFactory = this.componentFactoryResolver.resolveComponentFactory(ToastContainer);
         let childInjector = ReflectiveInjector.fromResolvedProviders(providers, appContainer.parentInjector);
         this.container = appContainer.createComponent(toastFactory, appContainer.length, childInjector);
+        this.container.instance.onToastClicked = this.onToastClicked;
       }
 
       resolve(this.setupToast(toast, options));
@@ -90,6 +91,12 @@ export class ToastsManager {
       return toast;
   }
 
+  onToastClicked(toast: Toast) {
+    if (!toast.autoDismiss) {
+      this.clearToast(toast.id);
+    }
+  }
+
   dismissToast(toast: Toast) {
     this.clearToast(toast.id);
   }
@@ -108,15 +115,18 @@ export class ToastsManager {
     if (this.container) {
       let instance = this.container.instance;
       instance.removeAllToasts();
-      if (!instance.anyToast()) {
-        this.dispose();
-      }
+      this.dispose();
     }
   }
 
   dispose() {
-    this.container.destroy();
-    this.container = null;
+    // using timeout to allow animation to finish
+    setTimeout(() => {
+      if (this.container && !this.container.instance.anyToast()) {
+        this.container.destroy();
+        this.container = null;
+      }
+    }, 2000);
   }
 
   error(message: string, title?: string, options?: any) {

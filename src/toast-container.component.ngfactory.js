@@ -429,7 +429,7 @@ var _View_ToastContainer1 = (function (_super) {
     };
     _View_ToastContainer1.prototype._handle_click_0_0 = function ($event) {
         this.markPathToRootAsCheckOnce();
-        var pd_0 = (this.parent.context.dismiss(this.context.$implicit) !== false);
+        var pd_0 = (this.parent.context.clicked(this.context.$implicit) !== false);
         return (true && pd_0);
     };
     return _View_ToastContainer1;

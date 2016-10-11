@@ -10,6 +10,7 @@ export class ToastOptions {
   toastLife: number;
   enableHTML: boolean = false;
   animate: string = 'fade';
+  dismiss: 'auto' | 'click' | 'controlled';
 
   constructor(options: Object) {
     Object.assign(this, options);

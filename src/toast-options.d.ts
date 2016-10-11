@@ -7,5 +7,6 @@ export declare class ToastOptions {
     toastLife: number;
     enableHTML: boolean;
     animate: string;
+    dismiss: 'auto' | 'click' | 'controlled';
     constructor(options: Object);
 }
