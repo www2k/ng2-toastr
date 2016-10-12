@@ -3,7 +3,7 @@ export declare class Toast {
     message: string;
     title: string;
     id: number;
-    autoDismiss: boolean;
+    dismiss: 'auto' | 'click' | 'controlled';
     enableHTML: boolean;
     titleClass: string;
     messageClass: string;

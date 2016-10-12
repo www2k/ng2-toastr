@@ -447,7 +447,7 @@ class _View_ToastContainer1 extends import1.AppView<any> {
   }
   private _handle_click_0_0($event:any):boolean {
     this.markPathToRootAsCheckOnce();
-    const pd_0:any = ((<any>this.parent.context.dismiss(this.context.$implicit)) !== false);
+    const pd_0:any = ((<any>this.parent.context.clicked(this.context.$implicit)) !== false);
     return (true && pd_0);
   }
 }

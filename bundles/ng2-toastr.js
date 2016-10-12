@@ -42,9 +42,9 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
     ToastContainer.prototype.removeAllToasts = function() {
       this.toasts = [];
     };
-    ToastContainer.prototype.dismiss = function(toast) {
-      if (!toast.autoDismiss) {
-        this.removeToast(toast.id);
+    ToastContainer.prototype.clicked = function(toast) {
+      if (this.onToastClicked) {
+        this.onToastClicked(toast);
       }
     };
     ToastContainer.prototype.anyToast = function() {
@@ -64,7 +64,7 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
       type: core_1.Component,
       args: [{
         selector: 'toast-container',
-        template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" [@inOut]=\"animate\" class=\"toast toast-{{toast.type}}\" (click)=\"dismiss(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{toast.titleClass || titleClass}}\">{{toast.title}}</div>\n        <div [ngSwitch]=\"toast.enableHTML\">\n          <span *ngSwitchCase=\"true\" [innerHTML]=\"sanitizer.bypassSecurityTrustHtml(toast.message)\"></span>\n          <span *ngSwitchDefault class=\"{{toast.messageClass || messageClass}}\">{{toast.message}}</span>\n        </div>              \n      </div>\n    </div>\n    ",
+        template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" [@inOut]=\"animate\" class=\"toast toast-{{toast.type}}\" (click)=\"clicked(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{toast.titleClass || titleClass}}\">{{toast.title}}</div>\n        <div [ngSwitch]=\"toast.enableHTML\">\n          <span *ngSwitchCase=\"true\" [innerHTML]=\"sanitizer.bypassSecurityTrustHtml(toast.message)\"></span>\n          <span *ngSwitchDefault class=\"{{toast.messageClass || messageClass}}\">{{toast.message}}</span>\n        </div>              \n      </div>\n    </div>\n    ",
         animations: [core_1.trigger('inOut', [core_1.state('flyRight, flyLeft', core_1.style({
           opacity: 1,
           transform: 'translateX(0)'
@@ -120,7 +120,6 @@ System.registerDynamic("ng2-toastr/src/toast", [], true, function($__require, ex
       this.type = type;
       this.message = message;
       this.title = title;
-      this.autoDismiss = true;
       this.enableHTML = false;
     }
     return Toast;
@@ -145,7 +144,7 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
       this.componentFactoryResolver = componentFactoryResolver;
       this.appRef = appRef;
       this.options = {
-        autoDismiss: true,
+        dismiss: 'auto',
         toastLife: 3000
       };
       this.index = 0;
@@ -154,23 +153,28 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
       }
     }
     ToastsManager.prototype.show = function(toast, options) {
-      if (!this.container) {
-        if (!this.appRef['_rootComponents'].length) {
-          console.error('Application root component cannot be found. Try accessing application reference in the later life cycle of angular app.');
-          return;
+      var _this = this;
+      return new Promise(function(resolve, reject) {
+        if (!_this.container) {
+          if (!_this.appRef['_rootComponents'].length) {
+            var err = new Error('Application root component cannot be found. Try accessing application reference in the later life cycle of angular app.');
+            console.error(err);
+            reject(err);
+          }
+          var appContainer = _this.appRef['_rootComponents'][0]['_hostElement'].vcRef;
+          var providers = core_1.ReflectiveInjector.resolve([{
+            provide: toast_options_1.ToastOptions,
+            useValue: _this.options
+          }]);
+          var toastFactory = _this.componentFactoryResolver.resolveComponentFactory(toast_container_component_1.ToastContainer);
+          var childInjector = core_1.ReflectiveInjector.fromResolvedProviders(providers, appContainer.parentInjector);
+          _this.container = appContainer.createComponent(toastFactory, appContainer.length, childInjector);
+          _this.container.instance.onToastClicked = function(toast) {
+            _this.onToastClicked(toast);
+          };
         }
-        var appContainer = this.appRef['_rootComponents'][0]['_hostElement'].vcRef;
-        var providers = core_1.ReflectiveInjector.resolve([{
-          provide: toast_options_1.ToastOptions,
-          useValue: this.options
-        }]);
-        var toastFactory = this.componentFactoryResolver.resolveComponentFactory(toast_container_component_1.ToastContainer);
-        var childInjector = core_1.ReflectiveInjector.fromResolvedProviders(providers, appContainer.parentInjector);
-        this.container = appContainer.createComponent(toastFactory, appContainer.length, childInjector);
-        this.setupToast(toast, options);
-      } else {
-        this.setupToast(toast, options);
-      }
+        resolve(_this.setupToast(toast, options));
+      });
     };
     ToastsManager.prototype.createTimeout = function(toastId, timeout) {
       var _this = this;
@@ -190,18 +194,29 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
       if (options && typeof(options.enableHTML) === 'boolean') {
         toast.enableHTML = options.enableHTML;
       }
-      if (options && typeof(options.autoDismiss) === 'boolean') {
-        toast.autoDismiss = options.autoDismiss;
+      if (options && typeof(options.dismiss) === 'string') {
+        toast.dismiss = options.dismiss;
+      } else if (options && typeof(options.autoDismiss) === 'boolean') {
+        toast.dismiss = options.autoDismiss ? 'auto' : 'click';
       } else {
-        toast.autoDismiss = this.options.autoDismiss;
+        toast.dismiss = this.options.dismiss;
       }
       if (options && typeof(options.toastLife) === 'number') {
-        toast.autoDismiss = true;
+        toast.dismiss = 'auto';
         this.createTimeout(toast.id, options.toastLife);
-      } else if (toast.autoDismiss) {
+      } else if (toast.dismiss === 'auto') {
         this.createTimeout(toast.id);
       }
       this.container.instance.addToast(toast);
+      return toast;
+    };
+    ToastsManager.prototype.onToastClicked = function(toast) {
+      if (toast.dismiss === 'click') {
+        this.clearToast(toast.id);
+      }
+    };
+    ToastsManager.prototype.dismissToast = function(toast) {
+      this.clearToast(toast.id);
     };
     ToastsManager.prototype.clearToast = function(toastId) {
       if (this.container) {
@@ -216,34 +231,37 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
       if (this.container) {
         var instance = this.container.instance;
         instance.removeAllToasts();
-        if (!instance.anyToast()) {
-          this.dispose();
-        }
+        this.dispose();
       }
     };
     ToastsManager.prototype.dispose = function() {
-      this.container.destroy();
-      this.container = null;
+      var _this = this;
+      setTimeout(function() {
+        if (_this.container && !_this.container.instance.anyToast()) {
+          _this.container.destroy();
+          _this.container = null;
+        }
+      }, 2000);
     };
     ToastsManager.prototype.error = function(message, title, options) {
       var toast = new toast_1.Toast('error', message, title);
-      this.show(toast, options);
+      return this.show(toast, options);
     };
     ToastsManager.prototype.info = function(message, title, options) {
       var toast = new toast_1.Toast('info', message, title);
-      this.show(toast, options);
+      return this.show(toast, options);
     };
     ToastsManager.prototype.success = function(message, title, options) {
       var toast = new toast_1.Toast('success', message, title);
-      this.show(toast, options);
+      return this.show(toast, options);
     };
     ToastsManager.prototype.warning = function(message, title, options) {
       var toast = new toast_1.Toast('warning', message, title);
-      this.show(toast, options);
+      return this.show(toast, options);
     };
     ToastsManager.prototype.custom = function(message, title, options) {
       var toast = new toast_1.Toast('custom', message, title);
-      this.show(toast, options);
+      return this.show(toast, options);
     };
     ToastsManager.decorators = [{type: core_1.Injectable}];
     ToastsManager.ctorParameters = [{type: core_1.ComponentFactoryResolver}, {type: core_1.ApplicationRef}, {

@@ -7,7 +7,7 @@ import {DomSanitizer} from '@angular/platform-browser';
   selector: 'toast-container',
   template: `
     <div id="toast-container" [style.position]="position" class="{{positionClass}}">
-      <div *ngFor="let toast of toasts" [@inOut]="animate" class="toast toast-{{toast.type}}" (click)="dismiss(toast)">
+      <div *ngFor="let toast of toasts" [@inOut]="animate" class="toast toast-{{toast.type}}" (click)="clicked(toast)">
         <div *ngIf="toast.title" class="{{toast.titleClass || titleClass}}">{{toast.title}}</div>
         <div [ngSwitch]="toast.enableHTML">
           <span *ngSwitchCase="true" [innerHTML]="sanitizer.bypassSecurityTrustHtml(toast.message)"></span>
@@ -96,6 +96,8 @@ export class ToastContainer {
   maxShown = 5;
   animate: string = 'fade';
 
+  public onToastClicked: (toast: Toast) => void;
+
   constructor(private sanitizer: DomSanitizer,
               @Optional() options: ToastOptions)
   {
@@ -128,9 +130,9 @@ export class ToastContainer {
     this.toasts = [];
   }
 
-  dismiss(toast: Toast) {
-    if (!toast.autoDismiss) {
-      this.removeToast(toast.id);
+  clicked(toast: Toast) {
+    if (this.onToastClicked) {
+      this.onToastClicked(toast);
     }
   }
 

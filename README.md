@@ -1,7 +1,7 @@
 Angular 2: Toastr
 ===================
 
-[![](https://img.shields.io/badge/npm-v1.1.2-brightgreen.svg)](https://www.npmjs.com/package/ng2-toastr)
+[![](https://img.shields.io/badge/npm-v1.2.0-brightgreen.svg)](https://www.npmjs.com/package/ng2-toastr)
 
 NOTE: Since version 1.1.0, ng2-toastr has added animation for displaying/dismissing toasts. 
 For configuration, see [Choose animation option](#animate-option). 
@@ -82,22 +82,40 @@ Please update Angular 2 to latest version to avoid any unexpected issues.
         }
     ```
 
+NOTE: Since version 1.2.0, all 'show' methods return `Promise<Toast>`. 
+Should you need specific logic to determine when a toaster will be dismissed you can store the displayed `Toast`. 
+Be cautious when the toaster can be dismissed in other ways such as `dismiss: 'auto'` or `dismiss: 'click'`.
+
+    
+        this.toastr.success('You are awesome!', 'Success!', {dismiss: 'controlled'})
+            .then((toast: Toast) => {
+                setTimeout(() => {
+                    this.toastr.dismissToast(toast);
+                }, 10000);
+            });
+    
 
 ### ToastOptions Configurations
 
 By default, the toastr will show up at top right corner of the page view, and will automatically dismiss in 3 seconds. 
 You can configure the toasts using ToastOptions class. Currently we support following options:
 
-#####toastLife: (number)
+##### toastLife: (number)
 Determines how long an auto-dismissed toast will be shown. Defaults to 3000 miliseconds.
+
+##### dismiss: (string)
+Determine how a displayed toaster can be dismissed. Allowed values are: 'auto', 'click', 'controlled' (value should all be lowercase).
+* auto: Toaster will auto dismiss in miliseconds (value specified by `toastLife`). This is default value.
+* click: Toaster will be dismissed when user click on it.
+* controlled: Toaster will be dismissed based on specific logic.
  
-#####autoDismiss: (boolean)
+##### autoDismiss: (boolean) DEPRECATED! Use 'dismiss' instead.
 Determines whether toast should dismiss itself. If false, the toast will be dismissed when user tap on toast. Defaults to true.
 
-#####maxShown: (number)
+##### maxShown: (number)
 Determines maximum number of toasts can be shown on the page in the same time. Defaults to 5.
 
-#####positionClass: (string)
+##### positionClass: (string)
 Determines where on the page the toasts should be shown. Here are list of values: 
 * toast-top-right (Default)
 * toast-top-center
@@ -108,10 +126,10 @@ Determines where on the page the toasts should be shown. Here are list of values
 * toast-bottom-left
 * toast-bottom-full-width
 
-#####messageClass: (string)
+##### messageClass: (string)
 CSS class for message within toast.
 
-#####titleClass: (string)
+##### titleClass: (string)
 CSS class for title within toast.
 
 ##### <a name="animate-option"></a>animate: (string)
@@ -119,9 +137,6 @@ You have following choice: 'fade', 'flyLeft' or 'flyRight'.
 * fade: makes every toast either fade in or fade out.
 * flyLeft: makes every toast fly in from left side. 
 * flyRight: makes every toast fly in from right side.
-* slideDown: makes every toast appears sliding down from page top.
-* slideUp: makes every toast appears sliding up from page bottom.
-
 Defaults to 'fade'. You can set `animate: null` to disable animations.
 
 ##### enableHTML: (boolean)
@@ -152,12 +167,12 @@ Use dependency inject for custom configurations. You can either inject into `app
     
 ### <a name='override'></a>Override global option:
  
- You can also override `autoDismiss`, `toastLife`, `enableHTML`, `titleClass`, `messageClass` options for individual toast:
+ You can also override `dismiss`, `toastLife`, `enableHTML`, `titleClass`, `messageClass` options for individual toast:
     
     this.toastr.sucess('This toast will dismiss in 10 seconds.', null, {toastLife: 10000});
     this.toastr.info('<span style="color: red">Message in red.</span>', null, {enableHTML: true});
  
- NOTE: specify a value for `toastLife` overrides `autoDismiss` and always set `autoDismiss = true`.
+ NOTE: specify a value for `toastLife` overrides `dismiss` and always set `dismiss = 'auto'`.
 
 ## Run demo app
     

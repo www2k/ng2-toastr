@@ -10,11 +10,12 @@ export declare class ToastContainer {
     toasts: Toast[];
     maxShown: number;
     animate: string;
+    onToastClicked: (toast: Toast) => void;
     constructor(sanitizer: DomSanitizer, options: ToastOptions);
     addToast(toast: Toast): void;
     removeToast(toastId: number): void;
     removeAllToasts(): void;
-    dismiss(toast: Toast): void;
+    clicked(toast: Toast): void;
     anyToast(): boolean;
     findToast(toastId: number): Toast | void;
 }

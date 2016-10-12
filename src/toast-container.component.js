@@ -38,9 +38,9 @@ var ToastContainer = (function () {
     ToastContainer.prototype.removeAllToasts = function () {
         this.toasts = [];
     };
-    ToastContainer.prototype.dismiss = function (toast) {
-        if (!toast.autoDismiss) {
-            this.removeToast(toast.id);
+    ToastContainer.prototype.clicked = function (toast) {
+        if (this.onToastClicked) {
+            this.onToastClicked(toast);
         }
     };
     ToastContainer.prototype.anyToast = function () {
@@ -58,7 +58,7 @@ var ToastContainer = (function () {
     ToastContainer.decorators = [
         { type: core_1.Component, args: [{
                     selector: 'toast-container',
-                    template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" [@inOut]=\"animate\" class=\"toast toast-{{toast.type}}\" (click)=\"dismiss(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{toast.titleClass || titleClass}}\">{{toast.title}}</div>\n        <div [ngSwitch]=\"toast.enableHTML\">\n          <span *ngSwitchCase=\"true\" [innerHTML]=\"sanitizer.bypassSecurityTrustHtml(toast.message)\"></span>\n          <span *ngSwitchDefault class=\"{{toast.messageClass || messageClass}}\">{{toast.message}}</span>\n        </div>              \n      </div>\n    </div>\n    ",
+                    template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" [@inOut]=\"animate\" class=\"toast toast-{{toast.type}}\" (click)=\"clicked(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{toast.titleClass || titleClass}}\">{{toast.title}}</div>\n        <div [ngSwitch]=\"toast.enableHTML\">\n          <span *ngSwitchCase=\"true\" [innerHTML]=\"sanitizer.bypassSecurityTrustHtml(toast.message)\"></span>\n          <span *ngSwitchDefault class=\"{{toast.messageClass || messageClass}}\">{{toast.message}}</span>\n        </div>              \n      </div>\n    </div>\n    ",
                     animations: [
                         core_1.trigger('inOut', [
                             core_1.state('flyRight, flyLeft', core_1.style({ opacity: 1, transform: 'translateX(0)' })),

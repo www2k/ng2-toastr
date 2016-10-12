@@ -1,6 +1,6 @@
 export class Toast {
   id: number;
-  autoDismiss: boolean = true;
+  dismiss: 'auto' | 'click' | 'controlled';
   enableHTML: boolean = false;
   titleClass: string;
   messageClass: string;
