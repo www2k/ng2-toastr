@@ -16,9 +16,9 @@ export declare class ToastsManager {
     clearToast(toastId: number): void;
     clearAllToasts(): void;
     dispose(): void;
-    error(message: string, title?: string, options?: any): void;
-    info(message: string, title?: string, options?: any): void;
-    success(message: string, title?: string, options?: any): void;
-    warning(message: string, title?: string, options?: any): void;
-    custom(message: string, title?: string, options?: any): void;
+    error(message: string, title?: string, options?: any): Promise<Toast>;
+    info(message: string, title?: string, options?: any): Promise<Toast>;
+    success(message: string, title?: string, options?: any): Promise<Toast>;
+    warning(message: string, title?: string, options?: any): Promise<Toast>;
+    custom(message: string, title?: string, options?: any): Promise<Toast>;
 }

@@ -8,8 +8,8 @@ import {Toast} from './toast';
 @Injectable()
 export class ToastsManager {
   container: ComponentRef<any>;
-  private options = {
-    autoDismiss: true,
+  private options: any = {
+    dismiss: 'auto',
     toastLife: 3000,
   };
   private index = 0;
@@ -75,16 +75,19 @@ export class ToastsManager {
         toast.enableHTML = options.enableHTML;
       }
 
-      if (options && typeof(options.autoDismiss) === 'boolean') {
-        toast.autoDismiss = options.autoDismiss;
+      if (options && typeof(options.dismiss) === 'string') {
+        toast.dismiss = options.dismiss;
+      } else if (options && typeof(options.autoDismiss) === 'boolean') {
+        // backward compatibility
+        toast.dismiss = options.autoDismiss ? 'auto' : 'click';
       } else {
-        toast.autoDismiss = this.options.autoDismiss;
+        toast.dismiss = this.options.dismiss;
       }
 
       if (options && typeof(options.toastLife) === 'number') {
-        toast.autoDismiss = true;
+        toast.dismiss = 'auto';
         this.createTimeout(toast.id, options.toastLife);
-      } else if (toast.autoDismiss) {
+      } else if (toast.dismiss === 'auto') {
         this.createTimeout(toast.id);
       }
 
@@ -94,7 +97,7 @@ export class ToastsManager {
   }
 
   onToastClicked(toast: Toast) {
-    if (!toast.autoDismiss) {
+    if (toast.dismiss === 'click') {
       this.clearToast(toast.id);
     }
   }
@@ -131,29 +134,29 @@ export class ToastsManager {
     }, 2000);
   }
 
-  error(message: string, title?: string, options?: any) {
+  error(message: string, title?: string, options?: any): Promise<Toast> {
     let toast = new Toast('error', message, title);
-    this.show(toast, options);
+    return this.show(toast, options);
   }
 
-  info(message: string, title?: string, options?: any) {
+  info(message: string, title?: string, options?: any): Promise<Toast> {
     let toast = new Toast('info', message, title);
-    this.show(toast, options);
+    return this.show(toast, options);
   }
 
-  success(message: string, title?: string, options?: any) {
+  success(message: string, title?: string, options?: any): Promise<Toast> {
     let toast = new Toast('success', message, title);
-    this.show(toast, options);
+    return this.show(toast, options);
   }
 
-  warning(message: string, title?: string, options?: any) {
+  warning(message: string, title?: string, options?: any): Promise<Toast> {
     let toast = new Toast('warning', message, title);
-    this.show(toast, options);
+    return this.show(toast, options);
   }
 
   // allow user define custom background color and image
-  custom(message: string, title?: string, options?: any) {
+  custom(message: string, title?: string, options?: any): Promise<Toast> {
     let toast = new Toast('custom', message, title);
-    this.show(toast, options);
+    return this.show(toast, options);
   }
 }
