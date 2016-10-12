@@ -82,9 +82,9 @@ Please update Angular 2 to latest version to avoid any unexpected issues.
         }
     ```
 
-NOTE: Since version 1.2.0, all 'show' methods returns `Promise<Toast>`. 
-You can store the displayed `Toast` should you need specific logic. 
-Be cautious when the toaster can be dismissed in other ways when `dismiss: 'auto'` or `dismiss: 'click'`.
+NOTE: Since version 1.2.0, all 'show' methods return `Promise<Toast>`. 
+Should you need specific logic to determine when a toaster will be dismissed you can store the displayed `Toast`. 
+Be cautious when the toaster can be dismissed in other ways such as `dismiss: 'auto'` or `dismiss: 'click'`.
 
     
         this.toastr.success('You are awesome!', 'Success!', {dismiss: 'controlled'})
