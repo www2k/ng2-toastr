@@ -1,7 +1,7 @@
 import {
   Component
 } from '@angular/core';
-import {ToastsManager} from 'ng2-toastr/ng2-toastr';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'my-app',
@@ -16,6 +16,7 @@ import {ToastsManager} from 'ng2-toastr/ng2-toastr';
       <div style="border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;">
         <button type="button" class="btn btn-info" (click)="showClickToDismiss()">Click to Dismiss</button>
         <button type="button" class="btn btn-warning" (click)="showCustomLife()">8-second Toast</button>
+        <button type="button" class="btn btn-info" (click)="showControlled()">Developer Controlled Toast</button>
         <button type="button" class="btn btn-default" (click)="showCustomHTML()">Custom HTML Toast</button>
       </div>
   `
@@ -43,16 +44,25 @@ export class AppComponent {
   }
 
   showClickToDismiss() {
-    this.toastr.info('Please click to dismiss', 'No auto dismiss', {autoDismiss: false});
+    this.toastr.info('Please click to dismiss', 'No auto dismiss', {dismiss: 'click'});
   }
 
   showCustomLife() {
     this.toastr.warning('The toast will auto dismiss in 8 seconds', null, {toastLife: 8000});
   }
 
+  showControlled() {
+    this.toastr.info('This is toaster that is controlled by developer! Will be dismissed in 5 seconds.', 'Controlled!', {dismiss: 'controlled'})
+      .then((toast: Toast) => {
+        setTimeout(() => {
+          this.toastr.dismissToast(toast);
+        }, 5000);
+      });
+  }
+
   showCustomHTML() {
     this.toastr.custom('<span style="color: #bd362f">This message should be in red with blank background. Click to dismiss.</span>',
-      'Custom Message', {enableHTML: true, autoDismiss: false});
+      'Custom Message', {enableHTML: true, dismiss: 'click'});
     this.toastr.info('<span style="color: #bd362f">This should be red, </span><br/><span>and multi-line message.</span>',
       'Custom Information Message', {enableHTML: true, toastLife: 5000});
   }

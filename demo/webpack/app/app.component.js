@@ -27,13 +27,13 @@ var AppComponent = (function () {
         this.toastr.info('Just some information for you.');
     };
     AppComponent.prototype.showClickToDismiss = function () {
-        this.toastr.info('Please click to dismiss', 'No auto dismiss', { autoDismiss: false });
+        this.toastr.info('Please click to dismiss', 'No auto dismiss', { dismiss: 'click' });
     };
     AppComponent.prototype.showCustomLife = function () {
         this.toastr.warning('The toast will auto dismiss in 8 seconds', null, { toastLife: 8000 });
     };
     AppComponent.prototype.showCustomHTML = function () {
-        this.toastr.custom('<span style="color: #bd362f">This message should be in red with blank background. Click to dismiss.</span>', 'Custom Message', { enableHTML: true, autoDismiss: false });
+        this.toastr.custom('<span style="color: #bd362f">This message should be in red with blank background. Click to dismiss.</span>', 'Custom Message', { enableHTML: true, dismiss: 'click' });
         this.toastr.info('<span style="color: #bd362f">This should be red, </span><br/><span style="color: #bd362f">and multi-line message.</span>', 'Custom Information Message', { enableHTML: true, toastLife: 5000 });
     };
     AppComponent = __decorate([
