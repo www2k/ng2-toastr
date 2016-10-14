@@ -264,7 +264,15 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
       return this.show(toast, options);
     };
     ToastsManager.decorators = [{type: core_1.Injectable}];
-    ToastsManager.ctorParameters = [{type: core_1.ComponentFactoryResolver}, {type: core_1.ApplicationRef}, {
+    ToastsManager.ctorParameters = [{type: core_1.ComponentFactoryResolver}, {
+      type: undefined,
+      decorators: [{
+        type: core_1.Inject,
+        args: [core_1.forwardRef(function() {
+          return core_1.ApplicationRef;
+        })]
+      }]
+    }, {
       type: toast_options_1.ToastOptions,
       decorators: [{type: core_1.Optional}]
     }];
