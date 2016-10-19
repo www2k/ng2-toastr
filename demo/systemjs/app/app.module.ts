@@ -9,7 +9,6 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
 let config: any = {
   animate: 'flyRight',
-  enableHTML: true,
 };
 
 @NgModule({
