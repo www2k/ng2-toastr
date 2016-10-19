@@ -1,7 +1,8 @@
 import {
-  Component
+  Component, ErrorHandler
 } from '@angular/core';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
+import {AppErrorHandler} from './app-error-handler';
 
 @Component({
   selector: 'my-app',
@@ -19,7 +20,13 @@ import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
         <button type="button" class="btn btn-info" (click)="showControlled()">Developer Controlled Toast</button>
         <button type="button" class="btn btn-default" (click)="showCustomHTML()">Custom HTML Toast</button>
       </div>
-  `
+  `,
+  providers: [
+    {
+      provide: ErrorHandler,
+      useClass: AppErrorHandler,
+    },
+  ],
 })
 export class AppComponent {
 
@@ -62,7 +69,7 @@ export class AppComponent {
 
   showCustomHTML() {
     this.toastr.custom('<span style="color: #bd362f">This message should be in red with blank background. Click to dismiss.</span>',
-      'Custom Message', {enableHTML: true, dismiss: 'click'});
+      'Custom Message', {dismiss: 'click'});
     this.toastr.info('<span style="color: #bd362f">This should be red, </span><br/><span>and multi-line message.</span>',
       'Custom Information Message', {enableHTML: true, toastLife: 5000});
   }

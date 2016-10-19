@@ -1,7 +1,7 @@
 Angular 2: Toastr
 ===================
 
-[![](https://img.shields.io/badge/npm-v1.2.0-brightgreen.svg)](https://www.npmjs.com/package/ng2-toastr)
+[![](https://img.shields.io/badge/npm-v1.2.1-brightgreen.svg)](https://www.npmjs.com/package/ng2-toastr)
 
 NOTE: Since version 1.1.0, ng2-toastr has added animation for displaying/dismissing toasts. 
 For configuration, see [Choose animation option](#animate-option). 
