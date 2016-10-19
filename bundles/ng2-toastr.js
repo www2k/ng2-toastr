@@ -187,12 +187,18 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
       toast.id = ++this.index;
       if (options && typeof(options.messageClass) === 'string') {
         toast.messageClass = options.messageClass;
+      } else if (typeof(this.options.messageClass) === 'string') {
+        toast.messageClass = this.options.messageClass;
       }
       if (options && typeof(options.titleClass) === 'string') {
         toast.titleClass = options.titleClass;
+      } else if (typeof(this.options.titleClass) === 'string') {
+        toast.titleClass = this.options.titleClass;
       }
       if (options && typeof(options.enableHTML) === 'boolean') {
         toast.enableHTML = options.enableHTML;
+      } else if (typeof(this.options.enableHTML) === 'boolean') {
+        toast.enableHTML = this.options.enableHTML;
       }
       if (options && typeof(options.dismiss) === 'string') {
         toast.dismiss = options.dismiss;
@@ -264,15 +270,7 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
       return this.show(toast, options);
     };
     ToastsManager.decorators = [{type: core_1.Injectable}];
-    ToastsManager.ctorParameters = [{type: core_1.ComponentFactoryResolver}, {
-      type: undefined,
-      decorators: [{
-        type: core_1.Inject,
-        args: [core_1.forwardRef(function() {
-          return core_1.ApplicationRef;
-        })]
-      }]
-    }, {
+    ToastsManager.ctorParameters = [{type: core_1.ComponentFactoryResolver}, {type: core_1.ApplicationRef}, {
       type: toast_options_1.ToastOptions,
       decorators: [{type: core_1.Optional}]
     }];

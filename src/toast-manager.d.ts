@@ -1,4 +1,4 @@
-import { ComponentRef, ComponentFactoryResolver } from '@angular/core';
+import { ComponentRef, ApplicationRef, ComponentFactoryResolver } from '@angular/core';
 import { ToastOptions } from './toast-options';
 import { Toast } from './toast';
 export declare class ToastsManager {
@@ -7,7 +7,7 @@ export declare class ToastsManager {
     container: ComponentRef<any>;
     private options;
     private index;
-    constructor(componentFactoryResolver: ComponentFactoryResolver, appRef: any, options: ToastOptions);
+    constructor(componentFactoryResolver: ComponentFactoryResolver, appRef: ApplicationRef, options: ToastOptions);
     show(toast: Toast, options?: any): Promise<Toast>;
     createTimeout(toastId: number, timeout?: number): void;
     setupToast(toast: Toast, options?: any): Toast;
