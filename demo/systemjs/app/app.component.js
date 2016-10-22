@@ -43,7 +43,7 @@ var AppComponent = (function () {
         });
     };
     AppComponent.prototype.showCustomHTML = function () {
-        this.toastr.custom('<span style="color: #bd362f">This message should be in red with blank background. Click to dismiss.</span>', 'Custom Message', { dismiss: 'click' });
+        this.toastr.custom('<span style="color: #bd362f">This message should be in red with blank background. Click to dismiss.</span>', 'Custom Message', { enableHTML: true, dismiss: 'click' });
         this.toastr.info('<span style="color: #bd362f">This should be red, </span><br/><span>and multi-line message.</span>', 'Custom Information Message', { enableHTML: true, toastLife: 5000 });
     };
     AppComponent = __decorate([
