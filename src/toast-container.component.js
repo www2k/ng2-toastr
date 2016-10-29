@@ -23,6 +23,7 @@ var ToastContainer = (function () {
         this.positionClass = 'toast-top-right';
         this.toasts = [];
         this.maxShown = 5;
+        this.newestOnTop = false;
         this.animate = 'fade';
         if (options) {
             Object.assign(this, options);
@@ -30,21 +31,32 @@ var ToastContainer = (function () {
     }
     ToastContainer.prototype.addToast = function (toast) {
         if (this.positionClass.indexOf('top') > 0) {
-            this.toasts.push(toast);
+            if (this.newestOnTop) {
+                this.toasts.unshift(toast);
+            }
+            else {
+                this.toasts.push(toast);
+            }
             if (this.toasts.length > this.maxShown) {
-                this.toasts.splice(0, (this.toasts.length - this.maxShown));
+                var diff = this.toasts.length - this.maxShown;
+                if (this.newestOnTop) {
+                    this.toasts.splice(this.maxShown);
+                }
+                else {
+                    this.toasts.splice(0, diff);
+                }
             }
         }
         else {
             this.toasts.unshift(toast);
             if (this.toasts.length > this.maxShown) {
-                this.toasts.splice(this.maxShown, (this.toasts.length - this.maxShown));
+                this.toasts.splice(this.maxShown);
             }
         }
     };
-    ToastContainer.prototype.removeToast = function (toastId) {
-        this.toasts = this.toasts.filter(function (toast) {
-            return toast.id !== toastId;
+    ToastContainer.prototype.removeToast = function (toast) {
+        this.toasts = this.toasts.filter(function (t) {
+            return t.id !== toast.id;
         });
     };
     ToastContainer.prototype.removeAllToasts = function () {
@@ -70,7 +82,7 @@ var ToastContainer = (function () {
     ToastContainer = __decorate([
         core_1.Component({
             selector: 'toast-container',
-            template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" [@inOut]=\"animate\" class=\"toast toast-{{toast.type}}\" (click)=\"clicked(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{toast.titleClass || titleClass}}\">{{toast.title}}</div>\n        <div [ngSwitch]=\"toast.enableHTML\">\n          <span *ngSwitchCase=\"true\" [innerHTML]=\"sanitizer.bypassSecurityTrustHtml(toast.message)\"></span>\n          <span *ngSwitchDefault class=\"{{toast.messageClass || messageClass}}\">{{toast.message}}</span>\n        </div>              \n      </div>\n    </div>\n    ",
+            template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" [@inOut]=\"animate\" class=\"toast toast-{{toast.type}}\" (click)=\"clicked(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{toast.config.titleClass || titleClass}}\">{{toast.title}}</div>\n        <div [ngSwitch]=\"toast.config.enableHTML\">\n          <span *ngSwitchCase=\"true\" [innerHTML]=\"sanitizer.bypassSecurityTrustHtml(toast.message)\"></span>\n          <span *ngSwitchDefault class=\"{{toast.config.messageClass || messageClass}}\">{{toast.message}}</span>\n        </div>              \n      </div>\n    </div>\n    ",
             animations: [
                 core_1.trigger('inOut', [
                     core_1.state('flyRight, flyLeft', core_1.style({ opacity: 1, transform: 'translateX(0)' })),

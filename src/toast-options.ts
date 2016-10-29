@@ -2,19 +2,18 @@ import {Injectable} from '@angular/core';
 
 @Injectable()
 export class ToastOptions {
-  messageClass: string;
-  titleClass: string;
   positionClass: string;
   maxShown: number;
+  newestOnTop: boolean = false;
+  animate: string = 'fade';
+
+  // override-able properties
   toastLife: number;
   enableHTML: boolean = false;
-  animate: string = 'fade';
   dismiss: 'auto' | 'click' | 'controlled';
-
-  /**
-   * @deprecated Since version 1.2. Use dismiss instead.
-   */
-  autoDismiss: boolean;
+  messageClass: string;
+  titleClass: string;
+  data: any;
 
   constructor(options: Object) {
     Object.assign(this, options);

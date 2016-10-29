@@ -1,15 +1,13 @@
 export declare class ToastOptions {
-    messageClass: string;
-    titleClass: string;
     positionClass: string;
     maxShown: number;
+    newestOnTop: boolean;
+    animate: string;
     toastLife: number;
     enableHTML: boolean;
-    animate: string;
     dismiss: 'auto' | 'click' | 'controlled';
-    /**
-     * @deprecated Since version 1.2. Use dismiss instead.
-     */
-    autoDismiss: boolean;
+    messageClass: string;
+    titleClass: string;
+    data: any;
     constructor(options: Object);
 }
