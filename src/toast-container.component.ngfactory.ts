@@ -267,9 +267,9 @@ class _View_ToastContainer0 extends import1.AppView<import3.ToastContainer> {
   _NgFor_3_6:import19.NgFor;
   _text_4:any;
   _text_5:any;
-  /*private*/ _expr_0:any;
   /*private*/ _expr_1:any;
   /*private*/ _expr_2:any;
+  /*private*/ _expr_3:any;
   constructor(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement) {
     super(_View_ToastContainer0,renderType_ToastContainer,import6.ViewType.COMPONENT,viewUtils,parentInjector,declarationEl,import7.ChangeDetectorStatus.CheckAlways);
   }
@@ -286,9 +286,10 @@ class _View_ToastContainer0 extends import1.AppView<import3.ToastContainer> {
     this._NgFor_3_6 = new import19.NgFor(this._appEl_3.vcRef,this._TemplateRef_3_5,this.parentInjector.get(import21.IterableDiffers),this.ref);
     this._text_4 = this.renderer.createText(this._el_1,'\n    ',(null as any));
     this._text_5 = this.renderer.createText(parentRenderNode,'\n    ',(null as any));
-    this._expr_0 = import7.UNINITIALIZED;
     this._expr_1 = import7.UNINITIALIZED;
     this._expr_2 = import7.UNINITIALIZED;
+    var disposable_0:Function = this.renderer.listen(this._el_1,'swipe',this.eventHandler(this._handle_swipe_1_0.bind(this)));
+    this._expr_3 = import7.UNINITIALIZED;
     this._viewQuery_toastContainer_0.reset([new import22.ElementRef(this._el_1)]);
     this.context.container = this._viewQuery_toastContainer_0.first;
     this.init([],[
@@ -299,7 +300,7 @@ class _View_ToastContainer0 extends import1.AppView<import3.ToastContainer> {
       this._text_4,
       this._text_5
     ]
-    ,[],[]);
+    ,[disposable_0],[]);
     return (null as any);
   }
   injectorGetInternal(token:any,requestNodeIndex:number,notFoundResult:any):any {
@@ -310,27 +311,32 @@ class _View_ToastContainer0 extends import1.AppView<import3.ToastContainer> {
   detectChangesInternal(throwOnChange:boolean):void {
     var changes:{[key: string]:import7.SimpleChange} = (null as any);
     changes = (null as any);
-    const currVal_2:any = this.context.toasts;
-    if (import4.checkBinding(throwOnChange,this._expr_2,currVal_2)) {
-      this._NgFor_3_6.ngForOf = currVal_2;
+    const currVal_3:any = this.context.toasts;
+    if (import4.checkBinding(throwOnChange,this._expr_3,currVal_3)) {
+      this._NgFor_3_6.ngForOf = currVal_3;
       if ((changes === (null as any))) { (changes = {}); }
-      changes['ngForOf'] = new import7.SimpleChange(this._expr_2,currVal_2);
-      this._expr_2 = currVal_2;
+      changes['ngForOf'] = new import7.SimpleChange(this._expr_3,currVal_3);
+      this._expr_3 = currVal_3;
     }
     if ((changes !== (null as any))) { this._NgFor_3_6.ngOnChanges(changes); }
     if (!throwOnChange) { this._NgFor_3_6.ngDoCheck(); }
     this.detectContentChildrenChanges(throwOnChange);
-    const currVal_0:any = this.context.position;
-    if (import4.checkBinding(throwOnChange,this._expr_0,currVal_0)) {
-      this.renderer.setElementStyle(this._el_1,'position',((this.viewUtils.sanitizer.sanitize(import23.SecurityContext.STYLE,currVal_0) == (null as any))? (null as any): this.viewUtils.sanitizer.sanitize(import23.SecurityContext.STYLE,currVal_0).toString()));
-      this._expr_0 = currVal_0;
-    }
-    const currVal_1:any = import4.interpolate(1,'',this.context.positionClass,'');
+    const currVal_1:any = this.context.position;
     if (import4.checkBinding(throwOnChange,this._expr_1,currVal_1)) {
-      this.renderer.setElementProperty(this._el_1,'className',currVal_1);
+      this.renderer.setElementStyle(this._el_1,'position',((this.viewUtils.sanitizer.sanitize(import23.SecurityContext.STYLE,currVal_1) == (null as any))? (null as any): this.viewUtils.sanitizer.sanitize(import23.SecurityContext.STYLE,currVal_1).toString()));
       this._expr_1 = currVal_1;
     }
+    const currVal_2:any = import4.interpolate(1,'',this.context.positionClass,'');
+    if (import4.checkBinding(throwOnChange,this._expr_2,currVal_2)) {
+      this.renderer.setElementProperty(this._el_1,'className',currVal_2);
+      this._expr_2 = currVal_2;
+    }
     this.detectViewChildrenChanges(throwOnChange);
+  }
+  private _handle_swipe_1_0($event:any):boolean {
+    this.markPathToRootAsCheckOnce();
+    const pd_0:any = ((<any>this.context.swiped($event)) !== false);
+    return (true && pd_0);
   }
 }
 export function viewFactory_ToastContainer0(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<import3.ToastContainer> {
@@ -359,11 +365,11 @@ class _View_ToastContainer1 extends import1.AppView<any> {
   _NgSwitchDefault_8_6:import25.NgSwitchDefault;
   _text_9:any;
   _text_10:any;
+  /*private*/ _expr_1:any;
   /*private*/ _expr_2:any;
   /*private*/ _expr_3:any;
   /*private*/ _expr_4:any;
   /*private*/ _expr_5:any;
-  /*private*/ _expr_6:any;
   constructor(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement) {
     super(_View_ToastContainer1,renderType_ToastContainer,import6.ViewType.EMBEDDED,viewUtils,parentInjector,declarationEl,import7.ChangeDetectorStatus.CheckAlways);
   }
@@ -389,13 +395,12 @@ class _View_ToastContainer1 extends import1.AppView<any> {
     this._NgSwitchDefault_8_6 = new import25.NgSwitchDefault(this._appEl_8.vcRef,this._TemplateRef_8_5,this._NgSwitch_4_3);
     this._text_9 = this.renderer.createText(this._el_4,'\n        ',(null as any));
     this._text_10 = this.renderer.createText(this._el_0,'              \n      ',(null as any));
+    this._expr_1 = import7.UNINITIALIZED;
     this._expr_2 = import7.UNINITIALIZED;
-    this._expr_3 = import7.UNINITIALIZED;
     var disposable_0:Function = this.renderer.listen(this._el_0,'click',this.eventHandler(this._handle_click_0_0.bind(this)));
-    var disposable_1:Function = this.renderer.listen(this._el_0,'swiperight',this.eventHandler(this._handle_swiperight_0_1.bind(this)));
+    this._expr_3 = import7.UNINITIALIZED;
     this._expr_4 = import7.UNINITIALIZED;
     this._expr_5 = import7.UNINITIALIZED;
-    this._expr_6 = import7.UNINITIALIZED;
     this.init([].concat([this._el_0]),[
       this._el_0,
       this._text_1,
@@ -409,11 +414,7 @@ class _View_ToastContainer1 extends import1.AppView<any> {
       this._text_9,
       this._text_10
     ]
-    ,[
-      disposable_0,
-      disposable_1
-    ]
-    ,[]);
+    ,[disposable_0],[]);
     return (null as any);
   }
   injectorGetInternal(token:any,requestNodeIndex:number,notFoundResult:any):any {
@@ -427,49 +428,44 @@ class _View_ToastContainer1 extends import1.AppView<any> {
     return notFoundResult;
   }
   detectChangesInternal(throwOnChange:boolean):void {
-    const currVal_3:any = this.parent.context.animate;
-    if (import4.checkBinding(throwOnChange,this._expr_3,currVal_3)) {
-      var oldRenderVar:any = this._expr_3;
+    const currVal_2:any = this.parent.context.animate;
+    if (import4.checkBinding(throwOnChange,this._expr_2,currVal_2)) {
+      var oldRenderVar:any = this._expr_2;
       if ((oldRenderVar == import7.UNINITIALIZED)) { (oldRenderVar = 'void'); }
-      var newRenderVar:any = currVal_3;
+      var newRenderVar:any = currVal_2;
       if ((newRenderVar == import7.UNINITIALIZED)) { (newRenderVar = 'void'); }
       this.componentType.animations['inOut'](this,this._el_0,oldRenderVar,newRenderVar);
+      this._expr_2 = currVal_2;
+    }
+    const currVal_3:any = this.context.$implicit.title;
+    if (import4.checkBinding(throwOnChange,this._expr_3,currVal_3)) {
+      this._NgIf_2_6.ngIf = currVal_3;
       this._expr_3 = currVal_3;
     }
-    const currVal_4:any = this.context.$implicit.title;
+    const currVal_4:any = this.context.$implicit.config.enableHTML;
     if (import4.checkBinding(throwOnChange,this._expr_4,currVal_4)) {
-      this._NgIf_2_6.ngIf = currVal_4;
+      this._NgSwitch_4_3.ngSwitch = currVal_4;
       this._expr_4 = currVal_4;
     }
-    const currVal_5:any = this.context.$implicit.config.enableHTML;
+    const currVal_5:any = true;
     if (import4.checkBinding(throwOnChange,this._expr_5,currVal_5)) {
-      this._NgSwitch_4_3.ngSwitch = currVal_5;
+      this._NgSwitchCase_6_6.ngSwitchCase = currVal_5;
       this._expr_5 = currVal_5;
     }
-    const currVal_6:any = true;
-    if (import4.checkBinding(throwOnChange,this._expr_6,currVal_6)) {
-      this._NgSwitchCase_6_6.ngSwitchCase = currVal_6;
-      this._expr_6 = currVal_6;
-    }
     this.detectContentChildrenChanges(throwOnChange);
-    const currVal_2:any = import4.interpolate(1,'toast toast-',this.context.$implicit.type,'');
-    if (import4.checkBinding(throwOnChange,this._expr_2,currVal_2)) {
-      this.renderer.setElementProperty(this._el_0,'className',currVal_2);
-      this._expr_2 = currVal_2;
+    const currVal_1:any = import4.interpolate(1,'toast toast-',this.context.$implicit.type,'');
+    if (import4.checkBinding(throwOnChange,this._expr_1,currVal_1)) {
+      this.renderer.setElementProperty(this._el_0,'className',currVal_1);
+      this._expr_1 = currVal_1;
     }
     this.detectViewChildrenChanges(throwOnChange);
   }
   detachInternal():void {
-    this.componentType.animations['inOut'](this,this._el_0,this._expr_3,'void');
+    this.componentType.animations['inOut'](this,this._el_0,this._expr_2,'void');
   }
   private _handle_click_0_0($event:any):boolean {
     this.markPathToRootAsCheckOnce();
     const pd_0:any = ((<any>this.parent.context.clicked(this.context.$implicit)) !== false);
-    return (true && pd_0);
-  }
-  private _handle_swiperight_0_1($event:any):boolean {
-    this.markPathToRootAsCheckOnce();
-    const pd_0:any = ((<any>this.parent.context.swiped($event)) !== false);
     return (true && pd_0);
   }
 }

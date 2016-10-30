@@ -12,7 +12,7 @@ export declare class ToastsManager {
     constructor(componentFactoryResolver: ComponentFactoryResolver, appRef: ApplicationRef, options: ToastOptions);
     onClickToast(): Observable<Toast>;
     show(toast: Toast, options?: Object): Promise<Toast>;
-    createTimeout(toast: Toast, timeout?: number): void;
+    createTimeout(toast: Toast): any;
     setupToast(toast: Toast, options?: Object): Toast;
     private _onToastClicked(toast);
     dismissToast(toast: Toast): void;

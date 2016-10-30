@@ -60,10 +60,9 @@ var AppComponent = (function () {
                 },
             ],
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof ng2_toastr_1.ToastsManager !== 'undefined' && ng2_toastr_1.ToastsManager) === 'function' && _a) || Object])
+        __metadata('design:paramtypes', [ng2_toastr_1.ToastsManager])
     ], AppComponent);
     return AppComponent;
-    var _a;
 }());
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

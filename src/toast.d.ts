@@ -5,5 +5,6 @@ export declare class Toast {
     data: Object;
     id: number;
     config: any;
+    timeoutId: any;
     constructor(type: string, message: string, title?: string, data?: Object);
 }

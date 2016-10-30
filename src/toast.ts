@@ -7,6 +7,7 @@ export class Toast {
     messageClass: '',
     toastLife: 3000,
   };
+  timeoutId: any;
 
   constructor(public type: string,
               public message: string,

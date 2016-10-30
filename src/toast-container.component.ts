@@ -6,9 +6,9 @@ import {DomSanitizer, EventManager} from '@angular/platform-browser';
 @Component({
   selector: 'toast-container',
   template: `
-    <div #toastContainer id="toast-container" [style.position]="position" class="{{positionClass}}">
+    <div #toastContainer id="toast-container" [style.position]="position" class="{{positionClass}}" (swipe)="swiped($event)">
       <div *ngFor="let toast of toasts" [@inOut]="animate" class="toast toast-{{toast.type}}" 
-      (click)="clicked(toast)" (swiperight)="swiped($event)">
+      (click)="clicked(toast)">
         <div *ngIf="toast.title" class="{{toast.config.titleClass || titleClass}}">{{toast.title}}</div>
         <div [ngSwitch]="toast.config.enableHTML">
           <span *ngSwitchCase="true" [innerHTML]="sanitizer.bypassSecurityTrustHtml(toast.message)"></span>

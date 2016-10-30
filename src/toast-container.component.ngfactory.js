@@ -266,9 +266,10 @@ var _View_ToastContainer0 = (function (_super) {
         this._NgFor_3_6 = new import19.NgFor(this._appEl_3.vcRef, this._TemplateRef_3_5, this.parentInjector.get(import21.IterableDiffers), this.ref);
         this._text_4 = this.renderer.createText(this._el_1, '\n    ', null);
         this._text_5 = this.renderer.createText(parentRenderNode, '\n    ', null);
-        this._expr_0 = import7.UNINITIALIZED;
         this._expr_1 = import7.UNINITIALIZED;
         this._expr_2 = import7.UNINITIALIZED;
+        var disposable_0 = this.renderer.listen(this._el_1, 'swipe', this.eventHandler(this._handle_swipe_1_0.bind(this)));
+        this._expr_3 = import7.UNINITIALIZED;
         this._viewQuery_toastContainer_0.reset([new import22.ElementRef(this._el_1)]);
         this.context.container = this._viewQuery_toastContainer_0.first;
         this.init([], [
@@ -278,7 +279,7 @@ var _View_ToastContainer0 = (function (_super) {
             this._anchor_3,
             this._text_4,
             this._text_5
-        ], [], []);
+        ], [disposable_0], []);
         return null;
     };
     _View_ToastContainer0.prototype.injectorGetInternal = function (token, requestNodeIndex, notFoundResult) {
@@ -293,14 +294,14 @@ var _View_ToastContainer0 = (function (_super) {
     _View_ToastContainer0.prototype.detectChangesInternal = function (throwOnChange) {
         var changes = null;
         changes = null;
-        var currVal_2 = this.context.toasts;
-        if (import4.checkBinding(throwOnChange, this._expr_2, currVal_2)) {
-            this._NgFor_3_6.ngForOf = currVal_2;
+        var currVal_3 = this.context.toasts;
+        if (import4.checkBinding(throwOnChange, this._expr_3, currVal_3)) {
+            this._NgFor_3_6.ngForOf = currVal_3;
             if ((changes === null)) {
                 (changes = {});
             }
-            changes['ngForOf'] = new import7.SimpleChange(this._expr_2, currVal_2);
-            this._expr_2 = currVal_2;
+            changes['ngForOf'] = new import7.SimpleChange(this._expr_3, currVal_3);
+            this._expr_3 = currVal_3;
         }
         if ((changes !== null)) {
             this._NgFor_3_6.ngOnChanges(changes);
@@ -309,17 +310,22 @@ var _View_ToastContainer0 = (function (_super) {
             this._NgFor_3_6.ngDoCheck();
         }
         this.detectContentChildrenChanges(throwOnChange);
-        var currVal_0 = this.context.position;
-        if (import4.checkBinding(throwOnChange, this._expr_0, currVal_0)) {
-            this.renderer.setElementStyle(this._el_1, 'position', ((this.viewUtils.sanitizer.sanitize(import23.SecurityContext.STYLE, currVal_0) == null) ? null : this.viewUtils.sanitizer.sanitize(import23.SecurityContext.STYLE, currVal_0).toString()));
-            this._expr_0 = currVal_0;
-        }
-        var currVal_1 = import4.interpolate(1, '', this.context.positionClass, '');
+        var currVal_1 = this.context.position;
         if (import4.checkBinding(throwOnChange, this._expr_1, currVal_1)) {
-            this.renderer.setElementProperty(this._el_1, 'className', currVal_1);
+            this.renderer.setElementStyle(this._el_1, 'position', ((this.viewUtils.sanitizer.sanitize(import23.SecurityContext.STYLE, currVal_1) == null) ? null : this.viewUtils.sanitizer.sanitize(import23.SecurityContext.STYLE, currVal_1).toString()));
             this._expr_1 = currVal_1;
         }
+        var currVal_2 = import4.interpolate(1, '', this.context.positionClass, '');
+        if (import4.checkBinding(throwOnChange, this._expr_2, currVal_2)) {
+            this.renderer.setElementProperty(this._el_1, 'className', currVal_2);
+            this._expr_2 = currVal_2;
+        }
         this.detectViewChildrenChanges(throwOnChange);
+    };
+    _View_ToastContainer0.prototype._handle_swipe_1_0 = function ($event) {
+        this.markPathToRootAsCheckOnce();
+        var pd_0 = (this.context.swiped($event) !== false);
+        return (true && pd_0);
     };
     return _View_ToastContainer0;
 }(import1.AppView));
@@ -357,13 +363,12 @@ var _View_ToastContainer1 = (function (_super) {
         this._NgSwitchDefault_8_6 = new import25.NgSwitchDefault(this._appEl_8.vcRef, this._TemplateRef_8_5, this._NgSwitch_4_3);
         this._text_9 = this.renderer.createText(this._el_4, '\n        ', null);
         this._text_10 = this.renderer.createText(this._el_0, '              \n      ', null);
+        this._expr_1 = import7.UNINITIALIZED;
         this._expr_2 = import7.UNINITIALIZED;
-        this._expr_3 = import7.UNINITIALIZED;
         var disposable_0 = this.renderer.listen(this._el_0, 'click', this.eventHandler(this._handle_click_0_0.bind(this)));
-        var disposable_1 = this.renderer.listen(this._el_0, 'swiperight', this.eventHandler(this._handle_swiperight_0_1.bind(this)));
+        this._expr_3 = import7.UNINITIALIZED;
         this._expr_4 = import7.UNINITIALIZED;
         this._expr_5 = import7.UNINITIALIZED;
-        this._expr_6 = import7.UNINITIALIZED;
         this.init([].concat([this._el_0]), [
             this._el_0,
             this._text_1,
@@ -376,10 +381,7 @@ var _View_ToastContainer1 = (function (_super) {
             this._anchor_8,
             this._text_9,
             this._text_10
-        ], [
-            disposable_0,
-            disposable_1
-        ], []);
+        ], [disposable_0], []);
         return null;
     };
     _View_ToastContainer1.prototype.injectorGetInternal = function (token, requestNodeIndex, notFoundResult) {
@@ -407,53 +409,48 @@ var _View_ToastContainer1 = (function (_super) {
         return notFoundResult;
     };
     _View_ToastContainer1.prototype.detectChangesInternal = function (throwOnChange) {
-        var currVal_3 = this.parent.context.animate;
-        if (import4.checkBinding(throwOnChange, this._expr_3, currVal_3)) {
-            var oldRenderVar = this._expr_3;
+        var currVal_2 = this.parent.context.animate;
+        if (import4.checkBinding(throwOnChange, this._expr_2, currVal_2)) {
+            var oldRenderVar = this._expr_2;
             if ((oldRenderVar == import7.UNINITIALIZED)) {
                 (oldRenderVar = 'void');
             }
-            var newRenderVar = currVal_3;
+            var newRenderVar = currVal_2;
             if ((newRenderVar == import7.UNINITIALIZED)) {
                 (newRenderVar = 'void');
             }
             this.componentType.animations['inOut'](this, this._el_0, oldRenderVar, newRenderVar);
+            this._expr_2 = currVal_2;
+        }
+        var currVal_3 = this.context.$implicit.title;
+        if (import4.checkBinding(throwOnChange, this._expr_3, currVal_3)) {
+            this._NgIf_2_6.ngIf = currVal_3;
             this._expr_3 = currVal_3;
         }
-        var currVal_4 = this.context.$implicit.title;
+        var currVal_4 = this.context.$implicit.config.enableHTML;
         if (import4.checkBinding(throwOnChange, this._expr_4, currVal_4)) {
-            this._NgIf_2_6.ngIf = currVal_4;
+            this._NgSwitch_4_3.ngSwitch = currVal_4;
             this._expr_4 = currVal_4;
         }
-        var currVal_5 = this.context.$implicit.config.enableHTML;
+        var currVal_5 = true;
         if (import4.checkBinding(throwOnChange, this._expr_5, currVal_5)) {
-            this._NgSwitch_4_3.ngSwitch = currVal_5;
+            this._NgSwitchCase_6_6.ngSwitchCase = currVal_5;
             this._expr_5 = currVal_5;
         }
-        var currVal_6 = true;
-        if (import4.checkBinding(throwOnChange, this._expr_6, currVal_6)) {
-            this._NgSwitchCase_6_6.ngSwitchCase = currVal_6;
-            this._expr_6 = currVal_6;
-        }
         this.detectContentChildrenChanges(throwOnChange);
-        var currVal_2 = import4.interpolate(1, 'toast toast-', this.context.$implicit.type, '');
-        if (import4.checkBinding(throwOnChange, this._expr_2, currVal_2)) {
-            this.renderer.setElementProperty(this._el_0, 'className', currVal_2);
-            this._expr_2 = currVal_2;
+        var currVal_1 = import4.interpolate(1, 'toast toast-', this.context.$implicit.type, '');
+        if (import4.checkBinding(throwOnChange, this._expr_1, currVal_1)) {
+            this.renderer.setElementProperty(this._el_0, 'className', currVal_1);
+            this._expr_1 = currVal_1;
         }
         this.detectViewChildrenChanges(throwOnChange);
     };
     _View_ToastContainer1.prototype.detachInternal = function () {
-        this.componentType.animations['inOut'](this, this._el_0, this._expr_3, 'void');
+        this.componentType.animations['inOut'](this, this._el_0, this._expr_2, 'void');
     };
     _View_ToastContainer1.prototype._handle_click_0_0 = function ($event) {
         this.markPathToRootAsCheckOnce();
         var pd_0 = (this.parent.context.clicked(this.context.$implicit) !== false);
-        return (true && pd_0);
-    };
-    _View_ToastContainer1.prototype._handle_swiperight_0_1 = function ($event) {
-        this.markPathToRootAsCheckOnce();
-        var pd_0 = (this.parent.context.swiped($event) !== false);
         return (true && pd_0);
     };
     return _View_ToastContainer1;
