@@ -15,19 +15,21 @@ var core_1 = require('@angular/core');
 var toast_container_component_1 = require('./toast-container.component');
 var toast_options_1 = require('./toast-options');
 var toast_1 = require('./toast');
+var Rx_1 = require('rxjs/Rx');
 var ToastsManager = (function () {
     function ToastsManager(componentFactoryResolver, appRef, options) {
         this.componentFactoryResolver = componentFactoryResolver;
         this.appRef = appRef;
-        this.options = {
-            dismiss: 'auto',
-            toastLife: 3000,
-        };
+        this.options = {};
         this.index = 0;
+        this.toastClicked = new Rx_1.Subject();
         if (options) {
             Object.assign(this.options, options);
         }
     }
+    ToastsManager.prototype.onClickToast = function () {
+        return this.toastClicked.asObservable();
+    };
     ToastsManager.prototype.show = function (toast, options) {
         var _this = this;
         return new Promise(function (resolve, reject) {
@@ -48,71 +50,49 @@ var ToastsManager = (function () {
                 var childInjector = core_1.ReflectiveInjector.fromResolvedProviders(providers, appContainer.parentInjector);
                 _this.container = appContainer.createComponent(toastFactory, appContainer.length, childInjector);
                 _this.container.instance.onToastClicked = function (toast) {
-                    _this.onToastClicked(toast);
+                    _this._onToastClicked(toast);
                 };
             }
             resolve(_this.setupToast(toast, options));
         });
     };
-    ToastsManager.prototype.createTimeout = function (toastId, timeout) {
+    ToastsManager.prototype.createTimeout = function (toast) {
         var _this = this;
-        var life = timeout || this.options.toastLife;
-        setTimeout(function () {
-            _this.clearToast(toastId);
-        }, life);
+        var task = setTimeout(function () {
+            _this.clearToast(toast);
+        }, toast.config.toastLife);
+        return task.toString();
     };
     ToastsManager.prototype.setupToast = function (toast, options) {
+        var _this = this;
         toast.id = ++this.index;
-        if (options && typeof (options.messageClass) === 'string') {
-            toast.messageClass = options.messageClass;
-        }
-        else if (typeof (this.options.messageClass) === 'string') {
-            toast.messageClass = this.options.messageClass;
-        }
-        if (options && typeof (options.titleClass) === 'string') {
-            toast.titleClass = options.titleClass;
-        }
-        else if (typeof (this.options.titleClass) === 'string') {
-            toast.titleClass = this.options.titleClass;
-        }
-        if (options && typeof (options.enableHTML) === 'boolean') {
-            toast.enableHTML = options.enableHTML;
-        }
-        else if (typeof (this.options.enableHTML) === 'boolean') {
-            toast.enableHTML = this.options.enableHTML;
-        }
-        if (options && typeof (options.dismiss) === 'string') {
-            toast.dismiss = options.dismiss;
-        }
-        else if (options && typeof (options.autoDismiss) === 'boolean') {
-            // backward compatibility
-            toast.dismiss = options.autoDismiss ? 'auto' : 'click';
-        }
-        else {
-            toast.dismiss = this.options.dismiss;
-        }
-        if (options && typeof (options.toastLife) === 'number') {
-            toast.dismiss = 'auto';
-            this.createTimeout(toast.id, options.toastLife);
-        }
-        else if (toast.dismiss === 'auto') {
-            this.createTimeout(toast.id);
+        Object.keys(toast.config).forEach(function (k) {
+            if (_this.options.hasOwnProperty(k)) {
+                toast.config[k] = _this.options[k];
+            }
+            if (options && options.hasOwnProperty(k)) {
+                toast.config[k] = options[k];
+            }
+        });
+        if (toast.config.dismiss === 'auto') {
+            toast.timeoutId = this.createTimeout(toast);
         }
         this.container.instance.addToast(toast);
         return toast;
     };
-    ToastsManager.prototype.onToastClicked = function (toast) {
-        if (toast.dismiss === 'click') {
-            this.clearToast(toast.id);
+    ToastsManager.prototype._onToastClicked = function (toast) {
+        this.toastClicked.next(toast);
+        if (toast.config.dismiss === 'click') {
+            this.clearToast(toast);
         }
     };
     ToastsManager.prototype.dismissToast = function (toast) {
-        this.clearToast(toast.id);
+        this.clearToast(toast);
     };
-    ToastsManager.prototype.clearToast = function (toastId) {
+    ToastsManager.prototype.clearToast = function (toast) {
         if (this.container) {
             var instance = this.container.instance;
-            instance.removeToast(toastId);
+            instance.removeToast(toast);
             if (!instance.anyToast()) {
                 this.dispose();
             }
@@ -136,24 +116,29 @@ var ToastsManager = (function () {
         }, 2000);
     };
     ToastsManager.prototype.error = function (message, title, options) {
-        var toast = new toast_1.Toast('error', message, title);
+        var data = options && options.data ? options.data : null;
+        var toast = new toast_1.Toast('error', message, title, data);
         return this.show(toast, options);
     };
     ToastsManager.prototype.info = function (message, title, options) {
-        var toast = new toast_1.Toast('info', message, title);
+        var data = options && options.data ? options.data : null;
+        var toast = new toast_1.Toast('info', message, title, data);
         return this.show(toast, options);
     };
     ToastsManager.prototype.success = function (message, title, options) {
-        var toast = new toast_1.Toast('success', message, title);
+        var data = options && options.data ? options.data : null;
+        var toast = new toast_1.Toast('success', message, title, data);
         return this.show(toast, options);
     };
     ToastsManager.prototype.warning = function (message, title, options) {
-        var toast = new toast_1.Toast('warning', message, title);
+        var data = options && options.data ? options.data : null;
+        var toast = new toast_1.Toast('warning', message, title, data);
         return this.show(toast, options);
     };
     // allow user define custom background color and image
     ToastsManager.prototype.custom = function (message, title, options) {
-        var toast = new toast_1.Toast('custom', message, title);
+        var data = options && options.data ? options.data : null;
+        var toast = new toast_1.Toast('custom', message, title, data);
         return this.show(toast, options);
     };
     ToastsManager = __decorate([

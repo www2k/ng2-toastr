@@ -17,6 +17,8 @@ var app_component_1 = require('./app.component');
 var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
 var config = {
     animate: 'flyRight',
+    newestOnTop: false,
+    showCloseButton: true,
 };
 var AppModule = (function () {
     function AppModule() {

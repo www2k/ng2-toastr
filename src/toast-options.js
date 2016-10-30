@@ -11,8 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var ToastOptions = (function () {
     function ToastOptions(options) {
-        this.enableHTML = false;
+        this.newestOnTop = false;
         this.animate = 'fade';
+        this.enableHTML = false;
+        this.showCloseButton = false;
         Object.assign(this, options);
     }
     ToastOptions = __decorate([

@@ -327,39 +327,47 @@ var _View_ToastContainer1 = (function (_super) {
         this._appEl_2 = new import2.AppElement(2, 0, this, this._anchor_2);
         this._TemplateRef_2_5 = new import18.TemplateRef_(this._appEl_2, viewFactory_ToastContainer2);
         this._NgIf_2_6 = new import21.NgIf(this._appEl_2.vcRef, this._TemplateRef_2_5);
-        this._text_3 = this.renderer.createText(this._el_0, '\n        ', null);
-        this._el_4 = this.renderer.createElement(this._el_0, 'div', null);
-        this._NgSwitch_4_3 = new import22.NgSwitch();
-        this._text_5 = this.renderer.createText(this._el_4, '\n          ', null);
-        this._anchor_6 = this.renderer.createTemplateAnchor(this._el_4, null);
-        this._appEl_6 = new import2.AppElement(6, 4, this, this._anchor_6);
-        this._TemplateRef_6_5 = new import18.TemplateRef_(this._appEl_6, viewFactory_ToastContainer3);
-        this._NgSwitchCase_6_6 = new import22.NgSwitchCase(this._appEl_6.vcRef, this._TemplateRef_6_5, this._NgSwitch_4_3);
-        this._text_7 = this.renderer.createText(this._el_4, '\n          ', null);
-        this._anchor_8 = this.renderer.createTemplateAnchor(this._el_4, null);
-        this._appEl_8 = new import2.AppElement(8, 4, this, this._anchor_8);
+        this._text_3 = this.renderer.createText(this._el_0, ' \n        ', null);
+        this._anchor_4 = this.renderer.createTemplateAnchor(this._el_0, null);
+        this._appEl_4 = new import2.AppElement(4, 0, this, this._anchor_4);
+        this._TemplateRef_4_5 = new import18.TemplateRef_(this._appEl_4, viewFactory_ToastContainer3);
+        this._NgIf_4_6 = new import21.NgIf(this._appEl_4.vcRef, this._TemplateRef_4_5);
+        this._text_5 = this.renderer.createText(this._el_0, '\n        ', null);
+        this._el_6 = this.renderer.createElement(this._el_0, 'div', null);
+        this._NgSwitch_6_3 = new import22.NgSwitch();
+        this._text_7 = this.renderer.createText(this._el_6, '\n          ', null);
+        this._anchor_8 = this.renderer.createTemplateAnchor(this._el_6, null);
+        this._appEl_8 = new import2.AppElement(8, 6, this, this._anchor_8);
         this._TemplateRef_8_5 = new import18.TemplateRef_(this._appEl_8, viewFactory_ToastContainer4);
-        this._NgSwitchDefault_8_6 = new import22.NgSwitchDefault(this._appEl_8.vcRef, this._TemplateRef_8_5, this._NgSwitch_4_3);
-        this._text_9 = this.renderer.createText(this._el_4, '\n        ', null);
-        this._text_10 = this.renderer.createText(this._el_0, '              \n      ', null);
+        this._NgSwitchCase_8_6 = new import22.NgSwitchCase(this._appEl_8.vcRef, this._TemplateRef_8_5, this._NgSwitch_6_3);
+        this._text_9 = this.renderer.createText(this._el_6, '\n          ', null);
+        this._anchor_10 = this.renderer.createTemplateAnchor(this._el_6, null);
+        this._appEl_10 = new import2.AppElement(10, 6, this, this._anchor_10);
+        this._TemplateRef_10_5 = new import18.TemplateRef_(this._appEl_10, viewFactory_ToastContainer5);
+        this._NgSwitchDefault_10_6 = new import22.NgSwitchDefault(this._appEl_10.vcRef, this._TemplateRef_10_5, this._NgSwitch_6_3);
+        this._text_11 = this.renderer.createText(this._el_6, '\n        ', null);
+        this._text_12 = this.renderer.createText(this._el_0, '             \n      ', null);
         this._expr_1 = import7.UNINITIALIZED;
         this._expr_2 = import7.UNINITIALIZED;
         var disposable_0 = this.renderer.listen(this._el_0, 'click', this.eventHandler(this._handle_click_0_0.bind(this)));
         this._expr_3 = import7.UNINITIALIZED;
         this._expr_4 = import7.UNINITIALIZED;
         this._expr_5 = import7.UNINITIALIZED;
+        this._expr_6 = import7.UNINITIALIZED;
         this.init([].concat([this._el_0]), [
             this._el_0,
             this._text_1,
             this._anchor_2,
             this._text_3,
-            this._el_4,
+            this._anchor_4,
             this._text_5,
-            this._anchor_6,
+            this._el_6,
             this._text_7,
             this._anchor_8,
             this._text_9,
-            this._text_10
+            this._anchor_10,
+            this._text_11,
+            this._text_12
         ], [disposable_0], []);
         return null;
     };
@@ -370,20 +378,26 @@ var _View_ToastContainer1 = (function (_super) {
         if (((token === import21.NgIf) && (2 === requestNodeIndex))) {
             return this._NgIf_2_6;
         }
-        if (((token === import18.TemplateRef) && (6 === requestNodeIndex))) {
-            return this._TemplateRef_6_5;
+        if (((token === import18.TemplateRef) && (4 === requestNodeIndex))) {
+            return this._TemplateRef_4_5;
         }
-        if (((token === import22.NgSwitchCase) && (6 === requestNodeIndex))) {
-            return this._NgSwitchCase_6_6;
+        if (((token === import21.NgIf) && (4 === requestNodeIndex))) {
+            return this._NgIf_4_6;
         }
         if (((token === import18.TemplateRef) && (8 === requestNodeIndex))) {
             return this._TemplateRef_8_5;
         }
-        if (((token === import22.NgSwitchDefault) && (8 === requestNodeIndex))) {
-            return this._NgSwitchDefault_8_6;
+        if (((token === import22.NgSwitchCase) && (8 === requestNodeIndex))) {
+            return this._NgSwitchCase_8_6;
         }
-        if (((token === import22.NgSwitch) && ((4 <= requestNodeIndex) && (requestNodeIndex <= 9)))) {
-            return this._NgSwitch_4_3;
+        if (((token === import18.TemplateRef) && (10 === requestNodeIndex))) {
+            return this._TemplateRef_10_5;
+        }
+        if (((token === import22.NgSwitchDefault) && (10 === requestNodeIndex))) {
+            return this._NgSwitchDefault_10_6;
+        }
+        if (((token === import22.NgSwitch) && ((6 <= requestNodeIndex) && (requestNodeIndex <= 11)))) {
+            return this._NgSwitch_6_3;
         }
         return notFoundResult;
     };
@@ -401,20 +415,25 @@ var _View_ToastContainer1 = (function (_super) {
             this.componentType.animations['inOut'](this, this._el_0, oldRenderVar, newRenderVar);
             this._expr_2 = currVal_2;
         }
-        var currVal_3 = this.context.$implicit.title;
+        var currVal_3 = this.context.$implicit.config.showCloseButton;
         if (import4.checkBinding(throwOnChange, this._expr_3, currVal_3)) {
             this._NgIf_2_6.ngIf = currVal_3;
             this._expr_3 = currVal_3;
         }
-        var currVal_4 = this.context.$implicit.enableHTML;
+        var currVal_4 = this.context.$implicit.title;
         if (import4.checkBinding(throwOnChange, this._expr_4, currVal_4)) {
-            this._NgSwitch_4_3.ngSwitch = currVal_4;
+            this._NgIf_4_6.ngIf = currVal_4;
             this._expr_4 = currVal_4;
         }
-        var currVal_5 = true;
+        var currVal_5 = this.context.$implicit.config.enableHTML;
         if (import4.checkBinding(throwOnChange, this._expr_5, currVal_5)) {
-            this._NgSwitchCase_6_6.ngSwitchCase = currVal_5;
+            this._NgSwitch_6_3.ngSwitch = currVal_5;
             this._expr_5 = currVal_5;
+        }
+        var currVal_6 = true;
+        if (import4.checkBinding(throwOnChange, this._expr_6, currVal_6)) {
+            this._NgSwitchCase_8_6.ngSwitchCase = currVal_6;
+            this._expr_6 = currVal_6;
         }
         this.detectContentChildrenChanges(throwOnChange);
         var currVal_1 = import4.interpolate(1, 'toast toast-', this.context.$implicit.type, '');
@@ -444,28 +463,19 @@ var _View_ToastContainer2 = (function (_super) {
     }
     _View_ToastContainer2.prototype.createInternal = function (rootSelector) {
         this._el_0 = this.renderer.createElement(null, 'div', null);
-        this._text_1 = this.renderer.createText(this._el_0, '', null);
-        this._expr_0 = import7.UNINITIALIZED;
-        this._expr_1 = import7.UNINITIALIZED;
+        this.renderer.setElementAttribute(this._el_0, 'class', 'toast-close-button');
+        this._text_1 = this.renderer.createText(this._el_0, '×\n        ', null);
+        var disposable_0 = this.renderer.listen(this._el_0, 'click', this.eventHandler(this._handle_click_0_0.bind(this)));
         this.init([].concat([this._el_0]), [
             this._el_0,
             this._text_1
-        ], [], []);
+        ], [disposable_0], []);
         return null;
     };
-    _View_ToastContainer2.prototype.detectChangesInternal = function (throwOnChange) {
-        this.detectContentChildrenChanges(throwOnChange);
-        var currVal_0 = import4.interpolate(1, '', (this.parent.context.$implicit.titleClass || this.parent.parent.context.titleClass), '');
-        if (import4.checkBinding(throwOnChange, this._expr_0, currVal_0)) {
-            this.renderer.setElementProperty(this._el_0, 'className', currVal_0);
-            this._expr_0 = currVal_0;
-        }
-        var currVal_1 = import4.interpolate(1, '', this.parent.context.$implicit.title, '');
-        if (import4.checkBinding(throwOnChange, this._expr_1, currVal_1)) {
-            this.renderer.setText(this._text_1, currVal_1);
-            this._expr_1 = currVal_1;
-        }
-        this.detectViewChildrenChanges(throwOnChange);
+    _View_ToastContainer2.prototype._handle_click_0_0 = function ($event) {
+        this.markPathToRootAsCheckOnce();
+        var pd_0 = (this.parent.parent.context.removeToast(this.parent.context.$implicit) !== false);
+        return (true && pd_0);
     };
     return _View_ToastContainer2;
 }(import1.AppView));
@@ -478,17 +488,27 @@ var _View_ToastContainer3 = (function (_super) {
         _super.call(this, _View_ToastContainer3, renderType_ToastContainer, import6.ViewType.EMBEDDED, viewUtils, parentInjector, declarationEl, import7.ChangeDetectorStatus.CheckAlways);
     }
     _View_ToastContainer3.prototype.createInternal = function (rootSelector) {
-        this._el_0 = this.renderer.createElement(null, 'span', null);
+        this._el_0 = this.renderer.createElement(null, 'div', null);
+        this._text_1 = this.renderer.createText(this._el_0, '', null);
         this._expr_0 = import7.UNINITIALIZED;
-        this.init([].concat([this._el_0]), [this._el_0], [], []);
+        this._expr_1 = import7.UNINITIALIZED;
+        this.init([].concat([this._el_0]), [
+            this._el_0,
+            this._text_1
+        ], [], []);
         return null;
     };
     _View_ToastContainer3.prototype.detectChangesInternal = function (throwOnChange) {
         this.detectContentChildrenChanges(throwOnChange);
-        var currVal_0 = this.parent.parent.context.sanitizer.bypassSecurityTrustHtml(this.parent.context.$implicit.message);
+        var currVal_0 = import4.interpolate(1, '', (this.parent.context.$implicit.config.titleClass || this.parent.parent.context.titleClass), '');
         if (import4.checkBinding(throwOnChange, this._expr_0, currVal_0)) {
-            this.renderer.setElementProperty(this._el_0, 'innerHTML', this.viewUtils.sanitizer.sanitize(import20.SecurityContext.HTML, currVal_0));
+            this.renderer.setElementProperty(this._el_0, 'className', currVal_0);
             this._expr_0 = currVal_0;
+        }
+        var currVal_1 = import4.interpolate(1, '', this.parent.context.$implicit.title, '');
+        if (import4.checkBinding(throwOnChange, this._expr_1, currVal_1)) {
+            this.renderer.setText(this._text_1, currVal_1);
+            this._expr_1 = currVal_1;
         }
         this.detectViewChildrenChanges(throwOnChange);
     };
@@ -504,6 +524,31 @@ var _View_ToastContainer4 = (function (_super) {
     }
     _View_ToastContainer4.prototype.createInternal = function (rootSelector) {
         this._el_0 = this.renderer.createElement(null, 'span', null);
+        this._expr_0 = import7.UNINITIALIZED;
+        this.init([].concat([this._el_0]), [this._el_0], [], []);
+        return null;
+    };
+    _View_ToastContainer4.prototype.detectChangesInternal = function (throwOnChange) {
+        this.detectContentChildrenChanges(throwOnChange);
+        var currVal_0 = this.parent.parent.context.sanitizer.bypassSecurityTrustHtml(this.parent.context.$implicit.message);
+        if (import4.checkBinding(throwOnChange, this._expr_0, currVal_0)) {
+            this.renderer.setElementProperty(this._el_0, 'innerHTML', this.viewUtils.sanitizer.sanitize(import20.SecurityContext.HTML, currVal_0));
+            this._expr_0 = currVal_0;
+        }
+        this.detectViewChildrenChanges(throwOnChange);
+    };
+    return _View_ToastContainer4;
+}(import1.AppView));
+function viewFactory_ToastContainer4(viewUtils, parentInjector, declarationEl) {
+    return new _View_ToastContainer4(viewUtils, parentInjector, declarationEl);
+}
+var _View_ToastContainer5 = (function (_super) {
+    __extends(_View_ToastContainer5, _super);
+    function _View_ToastContainer5(viewUtils, parentInjector, declarationEl) {
+        _super.call(this, _View_ToastContainer5, renderType_ToastContainer, import6.ViewType.EMBEDDED, viewUtils, parentInjector, declarationEl, import7.ChangeDetectorStatus.CheckAlways);
+    }
+    _View_ToastContainer5.prototype.createInternal = function (rootSelector) {
+        this._el_0 = this.renderer.createElement(null, 'span', null);
         this._text_1 = this.renderer.createText(this._el_0, '', null);
         this._expr_0 = import7.UNINITIALIZED;
         this._expr_1 = import7.UNINITIALIZED;
@@ -513,9 +558,9 @@ var _View_ToastContainer4 = (function (_super) {
         ], [], []);
         return null;
     };
-    _View_ToastContainer4.prototype.detectChangesInternal = function (throwOnChange) {
+    _View_ToastContainer5.prototype.detectChangesInternal = function (throwOnChange) {
         this.detectContentChildrenChanges(throwOnChange);
-        var currVal_0 = import4.interpolate(1, '', (this.parent.context.$implicit.messageClass || this.parent.parent.context.messageClass), '');
+        var currVal_0 = import4.interpolate(1, '', (this.parent.context.$implicit.config.messageClass || this.parent.parent.context.messageClass), '');
         if (import4.checkBinding(throwOnChange, this._expr_0, currVal_0)) {
             this.renderer.setElementProperty(this._el_0, 'className', currVal_0);
             this._expr_0 = currVal_0;
@@ -527,9 +572,9 @@ var _View_ToastContainer4 = (function (_super) {
         }
         this.detectViewChildrenChanges(throwOnChange);
     };
-    return _View_ToastContainer4;
+    return _View_ToastContainer5;
 }(import1.AppView));
-function viewFactory_ToastContainer4(viewUtils, parentInjector, declarationEl) {
-    return new _View_ToastContainer4(viewUtils, parentInjector, declarationEl);
+function viewFactory_ToastContainer5(viewUtils, parentInjector, declarationEl) {
+    return new _View_ToastContainer5(viewUtils, parentInjector, declarationEl);
 }
 //# sourceMappingURL=toast-container.component.ngfactory.js.map

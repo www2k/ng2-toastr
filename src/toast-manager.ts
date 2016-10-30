@@ -5,15 +5,15 @@ import {
 import {ToastContainer} from './toast-container.component';
 import {ToastOptions} from './toast-options';
 import {Toast} from './toast';
+import {Subject, Observable} from 'rxjs/Rx';
 
 @Injectable()
 export class ToastsManager {
   container: ComponentRef<any>;
-  private options: any = {
-    dismiss: 'auto',
-    toastLife: 3000,
-  };
+
+  private options: any = {};
   private index = 0;
+  private toastClicked: Subject<Toast> = new Subject<Toast>();
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
               private appRef: ApplicationRef,
@@ -23,7 +23,11 @@ export class ToastsManager {
     }
   }
 
-  show(toast: Toast, options?: any): Promise<Toast> {
+  onClickToast(): Observable<Toast> {
+    return this.toastClicked.asObservable();
+  }
+
+  show(toast: Toast, options?: Object): Promise<Toast> {
     return new Promise((resolve, reject) => {
       if (!this.container) {
         if (!this.appRef['_rootComponents'].length) {
@@ -45,7 +49,7 @@ export class ToastsManager {
         let childInjector = ReflectiveInjector.fromResolvedProviders(providers, appContainer.parentInjector);
         this.container = appContainer.createComponent(toastFactory, appContainer.length, childInjector);
         this.container.instance.onToastClicked = (toast: Toast) => {
-          this.onToastClicked(toast);
+          this._onToastClicked(toast);
         }
       }
 
@@ -53,70 +57,50 @@ export class ToastsManager {
     });
   }
 
-  createTimeout(toastId: number, timeout?: number) {
-    const life = timeout || this.options.toastLife;
+  createTimeout(toast: Toast): any {
+    const task = setTimeout(() => {
+      this.clearToast(toast);
+    }, toast.config.toastLife);
 
-    setTimeout(() => {
-      this.clearToast(toastId);
-    }, life);
+    return task.toString();
   }
 
-  setupToast(toast: Toast, options?: any): Toast {
-     toast.id = ++this.index;
+  setupToast(toast: Toast, options?: Object): Toast {
+    toast.id = ++this.index;
 
-      if (options && typeof(options.messageClass) === 'string') {
-        toast.messageClass = options.messageClass;
-      } else if (typeof(this.options.messageClass) === 'string') {
-        toast.messageClass = this.options.messageClass;
+    Object.keys(toast.config).forEach(k => {
+      if (this.options.hasOwnProperty(k)) {
+        toast.config[k] = this.options[k];
       }
 
-      if (options && typeof(options.titleClass) === 'string') {
-        toast.titleClass = options.titleClass;
-      } else if (typeof(this.options.titleClass) === 'string') {
-        toast.titleClass = this.options.titleClass;
+      if (options && options.hasOwnProperty(k)) {
+        toast.config[k] = options[k];
       }
+    });
 
-      if (options && typeof(options.enableHTML) === 'boolean') {
-        toast.enableHTML = options.enableHTML;
-      } else if (typeof(this.options.enableHTML) === 'boolean') {
-        toast.enableHTML = this.options.enableHTML;
-      }
+    if (toast.config.dismiss === 'auto') {
+      toast.timeoutId = this.createTimeout(toast);
+    }
 
-      if (options && typeof(options.dismiss) === 'string') {
-        toast.dismiss = options.dismiss;
-      } else if (options && typeof(options.autoDismiss) === 'boolean') {
-        // backward compatibility
-        toast.dismiss = options.autoDismiss ? 'auto' : 'click';
-      } else {
-        toast.dismiss = this.options.dismiss;
-      }
-
-      if (options && typeof(options.toastLife) === 'number') {
-        toast.dismiss = 'auto';
-        this.createTimeout(toast.id, options.toastLife);
-      } else if (toast.dismiss === 'auto') {
-        this.createTimeout(toast.id);
-      }
-
-      this.container.instance.addToast(toast);
-
-      return toast;
+    this.container.instance.addToast(toast);
+    return toast;
   }
 
-  onToastClicked(toast: Toast) {
-    if (toast.dismiss === 'click') {
-      this.clearToast(toast.id);
+  private _onToastClicked(toast: Toast) {
+    this.toastClicked.next(toast);
+    if (toast.config.dismiss === 'click') {
+      this.clearToast(toast);
     }
   }
 
   dismissToast(toast: Toast) {
-    this.clearToast(toast.id);
+    this.clearToast(toast);
   }
 
-  clearToast(toastId: number) {
+  clearToast(toast: Toast) {
     if (this.container) {
       let instance = this.container.instance;
-      instance.removeToast(toastId);
+      instance.removeToast(toast);
       if (!instance.anyToast()) {
         this.dispose();
       }
@@ -142,28 +126,33 @@ export class ToastsManager {
   }
 
   error(message: string, title?: string, options?: any): Promise<Toast> {
-    let toast = new Toast('error', message, title);
+    const data = options && options.data ? options.data : null;
+    const toast = new Toast('error', message, title, data);
     return this.show(toast, options);
   }
 
   info(message: string, title?: string, options?: any): Promise<Toast> {
-    let toast = new Toast('info', message, title);
+    const data = options && options.data ? options.data : null;
+    const toast = new Toast('info', message, title, data);
     return this.show(toast, options);
   }
 
   success(message: string, title?: string, options?: any): Promise<Toast> {
-    let toast = new Toast('success', message, title);
+    const data = options && options.data ? options.data : null;
+    const toast = new Toast('success', message, title, data);
     return this.show(toast, options);
   }
 
   warning(message: string, title?: string, options?: any): Promise<Toast> {
-    let toast = new Toast('warning', message, title);
+    const data = options && options.data ? options.data : null;
+    const toast = new Toast('warning', message, title, data);
     return this.show(toast, options);
   }
 
   // allow user define custom background color and image
   custom(message: string, title?: string, options?: any): Promise<Toast> {
-    let toast = new Toast('custom', message, title);
+    const data = options && options.data ? options.data : null;
+    const toast = new Toast('custom', message, title, data);
     return this.show(toast, options);
   }
 }

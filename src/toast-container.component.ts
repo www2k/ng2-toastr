@@ -6,13 +6,16 @@ import {DomSanitizer} from '@angular/platform-browser';
 @Component({
   selector: 'toast-container',
   template: `
-    <div id="toast-container" [style.position]="position" class="{{positionClass}}">
-      <div *ngFor="let toast of toasts" [@inOut]="animate" class="toast toast-{{toast.type}}" (click)="clicked(toast)">
-        <div *ngIf="toast.title" class="{{toast.titleClass || titleClass}}">{{toast.title}}</div>
-        <div [ngSwitch]="toast.enableHTML">
+    <div #toastContainer id="toast-container" [style.position]="position" class="{{positionClass}}">
+      <div *ngFor="let toast of toasts" [@inOut]="animate" class="toast toast-{{toast.type}}" 
+      (click)="clicked(toast)">
+        <div class="toast-close-button" *ngIf="toast.config.showCloseButton" (click)="removeToast(toast)">&times;
+        </div> 
+        <div *ngIf="toast.title" class="{{toast.config.titleClass || titleClass}}">{{toast.title}}</div>
+        <div [ngSwitch]="toast.config.enableHTML">
           <span *ngSwitchCase="true" [innerHTML]="sanitizer.bypassSecurityTrustHtml(toast.message)"></span>
-          <span *ngSwitchDefault class="{{toast.messageClass || messageClass}}">{{toast.message}}</span>
-        </div>              
+          <span *ngSwitchDefault class="{{toast.config.messageClass || messageClass}}">{{toast.message}}</span>
+        </div>             
       </div>
     </div>
     `,
@@ -94,9 +97,10 @@ export class ToastContainer {
   positionClass = 'toast-top-right';
   toasts: Toast[] = [];
   maxShown = 5;
+  newestOnTop = false;
   animate: string = 'fade';
 
-  public onToastClicked: (toast: Toast) => void;
+  private onToastClicked: (toast: Toast) => void;
 
   constructor(private sanitizer: DomSanitizer,
               @Optional() options: ToastOptions)
@@ -108,21 +112,37 @@ export class ToastContainer {
 
   addToast(toast: Toast) {
     if (this.positionClass.indexOf('top') > 0) {
-      this.toasts.push(toast);
+      if (this.newestOnTop) {
+        this.toasts.unshift(toast);
+      } else {
+        this.toasts.push(toast);
+      }
+
       if (this.toasts.length > this.maxShown) {
-        this.toasts.splice(0, (this.toasts.length - this.maxShown));
+        const diff = this.toasts.length - this.maxShown;
+
+        if (this.newestOnTop) {
+          this.toasts.splice(this.maxShown);
+        } else {
+          this.toasts.splice(0, diff);
+        }
       }
     } else {
       this.toasts.unshift(toast);
       if (this.toasts.length > this.maxShown) {
-        this.toasts.splice(this.maxShown, (this.toasts.length - this.maxShown));
+        this.toasts.splice(this.maxShown);
       }
     }
   }
 
-  removeToast(toastId: number) {
-    this.toasts = this.toasts.filter((toast) => {
-      return toast.id !== toastId;
+  removeToast(toast: Toast) {
+    if (toast.timeoutId) {
+      clearTimeout(toast.timeoutId);
+      toast.timeoutId = null;
+    }
+
+    this.toasts = this.toasts.filter((t) => {
+      return t.id !== toast.id;
     });
   }
 
@@ -148,4 +168,5 @@ export class ToastContainer {
     }
     return null;
   }
+
 }

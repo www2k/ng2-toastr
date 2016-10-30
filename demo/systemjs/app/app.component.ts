@@ -1,14 +1,13 @@
 import {
-  Component, ErrorHandler
+  Component
 } from '@angular/core';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
-import {AppErrorHandler} from './app-error-handler';
 
 @Component({
   selector: 'my-app',
   template:  `
       <h1> Angular 2 Toastr Demo.</h1>
-      <div style="border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;">
+      <div style="border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;" (swipeleft)="swiped($event)" (swiperight)="swiped($event)">
         <button type="button" class="btn btn-success" (click)="showSuccess()">Success</button>
         <button type="button" class="btn btn-info" (click)="showInfo()">Information</button>
         <button type="button" class="btn btn-warning" (click)="showWarning()">Warning</button>
@@ -21,21 +20,17 @@ import {AppErrorHandler} from './app-error-handler';
         <button type="button" class="btn btn-default" (click)="showCustomHTML()">Custom HTML Toast</button>
       </div>
   `,
-  providers: [
-    {
-      provide: ErrorHandler,
-      useClass: AppErrorHandler,
-    },
-  ],
 })
 export class AppComponent {
 
   constructor(private toastr: ToastsManager) {
-
   }
 
   showSuccess() {
-    this.toastr.success('You are awesome!', 'Success!', {toastLife: 3000});
+    this.toastr.success('You are awesome!', 'Success!', {toastLife: 5000, showCloseButton: false})
+      .then( toast => {
+        console.log(toast);
+      });
   }
 
   showError() {
@@ -59,17 +54,24 @@ export class AppComponent {
   }
 
   showControlled() {
-    this.toastr.info('This is toaster that is controlled by developer! Will be dismissed in 5 seconds.', 'Controlled!', {dismiss: 'controlled'})
+    this.toastr.info('This is toaster that is controlled by developer! Will be dismissed in 5 seconds.',
+      'Controlled!', {dismiss: 'controlled',  data: {message: 'hello'}})
       .then((toast: Toast) => {
+        console.log(toast);
         setTimeout(() => {
           this.toastr.dismissToast(toast);
         }, 5000);
       });
   }
 
+  swiped(event: any) {
+    console.log('swiped');
+    console.log(event);
+  }
+
   showCustomHTML() {
     this.toastr.custom('<span style="color: #bd362f">This message should be in red with blank background. Click to dismiss.</span>',
-      'Custom Message', {enableHTML: true, dismiss: 'click'});
+      'Custom Message', {dismiss: 'click'});
     this.toastr.info('<span style="color: #bd362f">This should be red, </span><br/><span>and multi-line message.</span>',
       'Custom Information Message', {enableHTML: true, toastLife: 5000});
   }

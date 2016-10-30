@@ -10,13 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
-var app_error_handler_1 = require('./app-error-handler');
 var AppComponent = (function () {
     function AppComponent(toastr) {
         this.toastr = toastr;
     }
     AppComponent.prototype.showSuccess = function () {
-        this.toastr.success('You are awesome!', 'Success!', { toastLife: 3000 });
+        this.toastr.success('You are awesome!', 'Success!', { toastLife: 5000, showCloseButton: false })
+            .then(function (toast) {
+            console.log(toast);
+        });
     };
     AppComponent.prototype.showError = function () {
         this.toastr.error('This is not good!', 'Oops!');
@@ -35,27 +37,26 @@ var AppComponent = (function () {
     };
     AppComponent.prototype.showControlled = function () {
         var _this = this;
-        this.toastr.info('This is toaster that is controlled by developer! Will be dismissed in 5 seconds.', 'Controlled!', { dismiss: 'controlled' })
+        this.toastr.info('This is toaster that is controlled by developer! Will be dismissed in 5 seconds.', 'Controlled!', { dismiss: 'controlled', data: { message: 'hello' } })
             .then(function (toast) {
+            console.log(toast);
             setTimeout(function () {
                 _this.toastr.dismissToast(toast);
             }, 5000);
         });
     };
+    AppComponent.prototype.swiped = function (event) {
+        console.log('swiped');
+        console.log(event);
+    };
     AppComponent.prototype.showCustomHTML = function () {
-        this.toastr.custom('<span style="color: #bd362f">This message should be in red with blank background. Click to dismiss.</span>', 'Custom Message', { enableHTML: true, dismiss: 'click' });
+        this.toastr.custom('<span style="color: #bd362f">This message should be in red with blank background. Click to dismiss.</span>', 'Custom Message', { dismiss: 'click' });
         this.toastr.info('<span style="color: #bd362f">This should be red, </span><br/><span>and multi-line message.</span>', 'Custom Information Message', { enableHTML: true, toastLife: 5000 });
     };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n      <h1> Angular 2 Toastr Demo.</h1>\n      <div style=\"border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;\">\n        <button type=\"button\" class=\"btn btn-success\" (click)=\"showSuccess()\">Success</button>\n        <button type=\"button\" class=\"btn btn-info\" (click)=\"showInfo()\">Information</button>\n        <button type=\"button\" class=\"btn btn-warning\" (click)=\"showWarning()\">Warning</button>\n        <button type=\"button\" class=\"btn btn-danger\" (click)=\"showError()\">Error</button>\n      </div>\n      <div style=\"border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;\">\n        <button type=\"button\" class=\"btn btn-info\" (click)=\"showClickToDismiss()\">Click to Dismiss</button>\n        <button type=\"button\" class=\"btn btn-warning\" (click)=\"showCustomLife()\">8-second Toast</button>\n        <button type=\"button\" class=\"btn btn-info\" (click)=\"showControlled()\">Developer Controlled Toast</button>\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"showCustomHTML()\">Custom HTML Toast</button>\n      </div>\n  ",
-            providers: [
-                {
-                    provide: core_1.ErrorHandler,
-                    useClass: app_error_handler_1.AppErrorHandler,
-                },
-            ],
+            template: "\n      <h1> Angular 2 Toastr Demo.</h1>\n      <div style=\"border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;\" (swipeleft)=\"swiped($event)\" (swiperight)=\"swiped($event)\">\n        <button type=\"button\" class=\"btn btn-success\" (click)=\"showSuccess()\">Success</button>\n        <button type=\"button\" class=\"btn btn-info\" (click)=\"showInfo()\">Information</button>\n        <button type=\"button\" class=\"btn btn-warning\" (click)=\"showWarning()\">Warning</button>\n        <button type=\"button\" class=\"btn btn-danger\" (click)=\"showError()\">Error</button>\n      </div>\n      <div style=\"border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;\">\n        <button type=\"button\" class=\"btn btn-info\" (click)=\"showClickToDismiss()\">Click to Dismiss</button>\n        <button type=\"button\" class=\"btn btn-warning\" (click)=\"showCustomLife()\">8-second Toast</button>\n        <button type=\"button\" class=\"btn btn-info\" (click)=\"showControlled()\">Developer Controlled Toast</button>\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"showCustomHTML()\">Custom HTML Toast</button>\n      </div>\n  ",
         }), 
         __metadata('design:paramtypes', [ng2_toastr_1.ToastsManager])
     ], AppComponent);
