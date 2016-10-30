@@ -69,11 +69,11 @@ export class ToastsManager {
     toast.id = ++this.index;
 
     Object.keys(toast.config).forEach(k => {
-      if (this.options[k]) {
+      if (this.options.hasOwnProperty(k)) {
         toast.config[k] = this.options[k];
       }
 
-      if (options && options[k]) {
+      if (options && options.hasOwnProperty(k)) {
         toast.config[k] = options[k];
       }
     });

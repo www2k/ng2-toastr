@@ -11,9 +11,6 @@ let config: any = {
   animate: 'flyRight',
   newestOnTop: false,
   showCloseButton: true,
-  enableHTML: true,
-  maxShown: 1,
-  dismiss: 'click',
 };
 
 @NgModule({

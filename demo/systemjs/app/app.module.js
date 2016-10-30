@@ -19,9 +19,6 @@ var config = {
     animate: 'flyRight',
     newestOnTop: false,
     showCloseButton: true,
-    enableHTML: true,
-    maxShown: 1,
-    dismiss: 'click',
 };
 var AppModule = (function () {
     function AppModule() {
