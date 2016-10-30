@@ -19,4 +19,5 @@ export declare class ToastContainer {
     clicked(toast: Toast): void;
     anyToast(): boolean;
     findToast(toastId: number): Toast | void;
+    swiped(event: any): void;
 }

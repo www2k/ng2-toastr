@@ -27,6 +27,9 @@ var ToastsManager = (function () {
             Object.assign(this.options, options);
         }
     }
+    ToastsManager.prototype.onClickToast = function () {
+        return this.toastClicked.asObservable();
+    };
     ToastsManager.prototype.show = function (toast, options) {
         var _this = this;
         return new Promise(function (resolve, reject) {
@@ -47,7 +50,7 @@ var ToastsManager = (function () {
                 var childInjector = core_1.ReflectiveInjector.fromResolvedProviders(providers, appContainer.parentInjector);
                 _this.container = appContainer.createComponent(toastFactory, appContainer.length, childInjector);
                 _this.container.instance.onToastClicked = function (toast) {
-                    _this.onToastClicked(toast);
+                    _this._onToastClicked(toast);
                 };
             }
             resolve(_this.setupToast(toast, options));
@@ -72,7 +75,7 @@ var ToastsManager = (function () {
         this.container.instance.addToast(toast);
         return toast;
     };
-    ToastsManager.prototype.onToastClicked = function (toast) {
+    ToastsManager.prototype._onToastClicked = function (toast) {
         this.toastClicked.next(toast);
         if (toast.config.dismiss === 'click') {
             this.clearToast(toast);

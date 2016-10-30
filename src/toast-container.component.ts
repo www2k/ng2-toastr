@@ -7,7 +7,8 @@ import {DomSanitizer} from '@angular/platform-browser';
   selector: 'toast-container',
   template: `
     <div id="toast-container" [style.position]="position" class="{{positionClass}}">
-      <div *ngFor="let toast of toasts" [@inOut]="animate" class="toast toast-{{toast.type}}" (click)="clicked(toast)">
+      <div *ngFor="let toast of toasts" [@inOut]="animate" class="toast toast-{{toast.type}}" 
+      (click)="clicked(toast)" (swiperight)="swiped($event)">
         <div *ngIf="toast.title" class="{{toast.config.titleClass || titleClass}}">{{toast.title}}</div>
         <div [ngSwitch]="toast.config.enableHTML">
           <span *ngSwitchCase="true" [innerHTML]="sanitizer.bypassSecurityTrustHtml(toast.message)"></span>
@@ -159,5 +160,9 @@ export class ToastContainer {
       }
     }
     return null;
+  }
+
+  swiped(event: any) {
+    console.log(event);
   }
 }

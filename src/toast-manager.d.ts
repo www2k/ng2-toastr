@@ -1,19 +1,20 @@
 import { ComponentRef, ApplicationRef, ComponentFactoryResolver } from '@angular/core';
 import { ToastOptions } from './toast-options';
 import { Toast } from './toast';
-import { Subject } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx';
 export declare class ToastsManager {
     private componentFactoryResolver;
     private appRef;
     container: ComponentRef<any>;
     private options;
     private index;
-    toastClicked: Subject<Toast>;
+    private toastClicked;
     constructor(componentFactoryResolver: ComponentFactoryResolver, appRef: ApplicationRef, options: ToastOptions);
+    onClickToast(): Observable<Toast>;
     show(toast: Toast, options?: Object): Promise<Toast>;
     createTimeout(toast: Toast, timeout?: number): void;
     setupToast(toast: Toast, options?: Object): Toast;
-    onToastClicked(toast: Toast): void;
+    private _onToastClicked(toast);
     dismissToast(toast: Toast): void;
     clearToast(toast: Toast): void;
     clearAllToasts(): void;

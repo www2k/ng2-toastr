@@ -170,7 +170,7 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
           var childInjector = core_1.ReflectiveInjector.fromResolvedProviders(providers, appContainer.parentInjector);
           _this.container = appContainer.createComponent(toastFactory, appContainer.length, childInjector);
           _this.container.instance.onToastClicked = function(toast) {
-            _this.onToastClicked(toast);
+            _this._onToastClicked(toast);
           };
         }
         resolve(_this.setupToast(toast, options));
@@ -216,7 +216,7 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
       this.container.instance.addToast(toast);
       return toast;
     };
-    ToastsManager.prototype.onToastClicked = function(toast) {
+    ToastsManager.prototype._onToastClicked = function(toast) {
       if (toast.dismiss === 'click') {
         this.clearToast(toast.id);
       }

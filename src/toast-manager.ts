@@ -5,7 +5,7 @@ import {
 import {ToastContainer} from './toast-container.component';
 import {ToastOptions} from './toast-options';
 import {Toast} from './toast';
-import {Subject} from 'rxjs/Rx';
+import {Subject, Observable} from 'rxjs/Rx';
 
 @Injectable()
 export class ToastsManager {
@@ -13,7 +13,7 @@ export class ToastsManager {
 
   private options: any = {};
   private index = 0;
-  public toastClicked: Subject<Toast> = new Subject<Toast>();
+  private toastClicked: Subject<Toast> = new Subject<Toast>();
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
               private appRef: ApplicationRef,
@@ -21,6 +21,10 @@ export class ToastsManager {
     if (options) {
       Object.assign(this.options, options);
     }
+  }
+
+  onClickToast(): Observable<Toast> {
+    return this.toastClicked.asObservable();
   }
 
   show(toast: Toast, options?: Object): Promise<Toast> {
@@ -45,7 +49,7 @@ export class ToastsManager {
         let childInjector = ReflectiveInjector.fromResolvedProviders(providers, appContainer.parentInjector);
         this.container = appContainer.createComponent(toastFactory, appContainer.length, childInjector);
         this.container.instance.onToastClicked = (toast: Toast) => {
-          this.onToastClicked(toast);
+          this._onToastClicked(toast);
         }
       }
 
@@ -77,7 +81,7 @@ export class ToastsManager {
     return toast;
   }
 
-  onToastClicked(toast: Toast) {
+  private _onToastClicked(toast: Toast) {
     this.toastClicked.next(toast);
     if (toast.config.dismiss === 'click') {
       this.clearToast(toast);
