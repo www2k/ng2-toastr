@@ -8,7 +8,7 @@ import {AppErrorHandler} from './app-error-handler';
   selector: 'my-app',
   template:  `
       <h1> Angular 2 Toastr Demo.</h1>
-      <div style="border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;">
+      <div style="border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;" (swipeleft)="swiped($event)" (swiperight)="swiped($event)">
         <button type="button" class="btn btn-success" (click)="showSuccess()">Success</button>
         <button type="button" class="btn btn-info" (click)="showInfo()">Information</button>
         <button type="button" class="btn btn-warning" (click)="showWarning()">Warning</button>
@@ -31,13 +31,6 @@ import {AppErrorHandler} from './app-error-handler';
 export class AppComponent {
 
   constructor(private toastr: ToastsManager) {
-    this.toastr.onClickToast()
-      .subscribe(toast => {
-        console.log('clicked: ');
-        if (toast.timeoutId) {
-          clearTimeout(toast.timeoutId.toString());
-        }
-      })
   }
 
   showSuccess() {
@@ -67,7 +60,6 @@ export class AppComponent {
   showControlled() {
     this.toastr.info('This is toaster that is controlled by developer! Will be dismissed in 5 seconds.', 'Controlled!', {dismiss: 'controlled'})
       .then((toast: Toast) => {
-        console.log(toast);
         setTimeout(() => {
           this.toastr.dismissToast(toast);
         }, 5000);

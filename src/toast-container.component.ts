@@ -114,8 +114,9 @@ export class ToastContainer implements AfterViewInit {
 
   ngAfterViewInit() {
     if (Hammer) {
+      console.log(Hammer);
       const mc = new Hammer(this.container.nativeElement);
-      mc.on('swipeleft swiperight', (event) => {
+      mc.on('swipe', (event) => {
         console.log(event);
       })
     }
