@@ -43,6 +43,7 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
           this.toasts.splice(this.maxShown);
         }
       }
+      console.log(this.toasts);
     };
     ToastContainer.prototype.removeToast = function(toast) {
       if (toast.timeoutId) {

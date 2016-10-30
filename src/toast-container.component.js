@@ -41,6 +41,7 @@ var ToastContainer = (function () {
                 this.toasts.splice(this.maxShown);
             }
         }
+        console.log(this.toasts);
     };
     ToastContainer.prototype.removeToast = function (toast) {
         if (toast.timeoutId) {

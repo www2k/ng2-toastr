@@ -133,6 +133,7 @@ export class ToastContainer {
         this.toasts.splice(this.maxShown);
       }
     }
+    console.log(this.toasts);
   }
 
   removeToast(toast: Toast) {
