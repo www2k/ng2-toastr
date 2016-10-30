@@ -1,12 +1,12 @@
-import {Component, Optional, ViewChild, transition, state, trigger, style, animate, AfterViewInit} from '@angular/core';
+import {Component, Optional, transition, state, trigger, style, animate} from '@angular/core';
 import {Toast} from './toast';
 import {ToastOptions} from './toast-options';
-import {DomSanitizer, EventManager} from '@angular/platform-browser';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'toast-container',
   template: `
-    <div #toastContainer id="toast-container" [style.position]="position" class="{{positionClass}}" (swipe)="swiped($event)">
+    <div id="toast-container" [style.position]="position" class="{{positionClass}}" (swipeleft)="swiped($event)" (swiperight)="swiped($event)">
       <div *ngFor="let toast of toasts" [@inOut]="animate" class="toast toast-{{toast.type}}" 
       (click)="clicked(toast)">
         <div *ngIf="toast.title" class="{{toast.config.titleClass || titleClass}}">{{toast.title}}</div>
@@ -88,7 +88,7 @@ import {DomSanitizer, EventManager} from '@angular/platform-browser';
     ]),
   ],
 })
-export class ToastContainer implements AfterViewInit {
+export class ToastContainer {
   position = 'fixed';
   messageClass = 'toast-message';
   titleClass = 'toast-title';
@@ -99,22 +99,13 @@ export class ToastContainer implements AfterViewInit {
   animate: string = 'fade';
 
   public onToastClicked: (toast: Toast) => void;
-  @ViewChild('toastContainer') container;
 
   constructor(private sanitizer: DomSanitizer,
-              private eventManager: EventManager,
               @Optional() options: ToastOptions)
   {
     if (options) {
       Object.assign(this, options);
     }
-  }
-
-  ngAfterViewInit() {
-    console.log(this.container);
-    this.eventManager.addEventListener(this.container.nativeElement, 'swipe', (event) => {
-      console.log(event);
-    });
   }
 
   addToast(toast: Toast) {
