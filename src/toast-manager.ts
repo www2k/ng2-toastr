@@ -78,8 +78,6 @@ export class ToastsManager {
       }
     });
 
-    console.log(toast);
-
     if (toast.config.dismiss === 'auto') {
       toast.timeoutId = this.createTimeout(toast);
     }

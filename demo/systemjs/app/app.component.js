@@ -15,7 +15,10 @@ var AppComponent = (function () {
         this.toastr = toastr;
     }
     AppComponent.prototype.showSuccess = function () {
-        this.toastr.success('You are awesome!', 'Success!', { toastLife: 3000 });
+        this.toastr.success('You are awesome!', 'Success!', { toastLife: 3000, showCloseButton: false });
+        // .then( toast => {
+        //   console.log(toast);
+        // });
     };
     AppComponent.prototype.showError = function () {
         this.toastr.error('This is not good!', 'Oops!');

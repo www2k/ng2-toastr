@@ -9,11 +9,10 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
 let config: any = {
   animate: 'flyRight',
-  positionClass: 'toast-top-center',
   newestOnTop: false,
   showCloseButton: true,
   enableHTML: true,
-  maxShown: 5,
+  maxShown: 1,
   dismiss: 'click',
 };
 

@@ -17,11 +17,10 @@ var app_component_1 = require('./app.component');
 var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
 var config = {
     animate: 'flyRight',
-    positionClass: 'toast-top-center',
     newestOnTop: false,
     showCloseButton: true,
     enableHTML: true,
-    maxShown: 5,
+    maxShown: 1,
     dismiss: 'click',
 };
 var AppModule = (function () {
