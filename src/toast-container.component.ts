@@ -2,7 +2,7 @@ import {Component, Optional, ViewChild, transition, state, trigger, style, anima
 import {Toast} from './toast';
 import {ToastOptions} from './toast-options';
 import {DomSanitizer} from '@angular/platform-browser';
-import {HammerGesturesPlugin} from '@angular/platform-browser/src/dom/events/hammer_gestures';
+// import {HammerGesturesPlugin} from '@angular/platform-browser/src/dom/events/hammer_gestures';
 
 @Component({
   selector: 'toast-container',
@@ -103,7 +103,7 @@ export class ToastContainer implements AfterViewInit {
   @ViewChild('toastContainer') container;
 
   constructor(private sanitizer: DomSanitizer,
-              private gestures: HammerGesturesPlugin,
+              // private gestures: HammerGesturesPlugin,
               @Optional() options: ToastOptions)
   {
     if (options) {

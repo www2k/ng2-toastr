@@ -16,23 +16,22 @@ var import4 = require('@angular/core/src/linker/view_utils');
 var import6 = require('@angular/core/src/linker/view_type');
 var import7 = require('@angular/core/src/change_detection/change_detection');
 var import8 = require('@angular/platform-browser/src/security/dom_sanitization_service');
-var import9 = require('@angular/platform-browser/src/dom/events/hammer_gestures');
-var import10 = require('./toast-options');
-var import11 = require('@angular/core/src/metadata/view');
-var import12 = require('@angular/core/src/linker/component_factory');
-var import13 = require('@angular/core/src/animation/animation_style_util');
-var import14 = require('@angular/core/src/animation/animation_sequence_player');
-var import15 = require('@angular/core/src/animation/animation_styles');
-var import16 = require('@angular/core/src/animation/animation_keyframe');
-var import17 = require('@angular/core/src/animation/animation_player');
-var import18 = require('@angular/core/src/linker/query_list');
-var import19 = require('@angular/common/src/directives/ng_for');
-var import20 = require('@angular/core/src/linker/template_ref');
-var import21 = require('@angular/core/src/change_detection/differs/iterable_differs');
-var import22 = require('@angular/core/src/linker/element_ref');
-var import23 = require('@angular/core/src/security');
-var import24 = require('@angular/common/src/directives/ng_if');
-var import25 = require('@angular/common/src/directives/ng_switch');
+var import9 = require('./toast-options');
+var import10 = require('@angular/core/src/metadata/view');
+var import11 = require('@angular/core/src/linker/component_factory');
+var import12 = require('@angular/core/src/animation/animation_style_util');
+var import13 = require('@angular/core/src/animation/animation_sequence_player');
+var import14 = require('@angular/core/src/animation/animation_styles');
+var import15 = require('@angular/core/src/animation/animation_keyframe');
+var import16 = require('@angular/core/src/animation/animation_player');
+var import17 = require('@angular/core/src/linker/query_list');
+var import18 = require('@angular/common/src/directives/ng_for');
+var import19 = require('@angular/core/src/linker/template_ref');
+var import20 = require('@angular/core/src/change_detection/differs/iterable_differs');
+var import21 = require('@angular/core/src/linker/element_ref');
+var import22 = require('@angular/core/src/security');
+var import23 = require('@angular/common/src/directives/ng_if');
+var import24 = require('@angular/common/src/directives/ng_switch');
 var renderType_ToastContainer_Host = null;
 var _View_ToastContainer_Host0 = (function (_super) {
     __extends(_View_ToastContainer_Host0, _super);
@@ -43,7 +42,7 @@ var _View_ToastContainer_Host0 = (function (_super) {
         this._el_0 = this.selectOrCreateHostElement('toast-container', rootSelector, null);
         this._appEl_0 = new import2.AppElement(0, null, this, this._el_0);
         var compView_0 = viewFactory_ToastContainer0(this.viewUtils, this.injector(0), this._appEl_0);
-        this._ToastContainer_0_4 = new import3.ToastContainer(this.parentInjector.get(import8.DomSanitizer), this.parentInjector.get(import9.HammerGesturesPlugin), this.parentInjector.get(import10.ToastOptions, null));
+        this._ToastContainer_0_4 = new import3.ToastContainer(this.parentInjector.get(import8.DomSanitizer), this.parentInjector.get(import9.ToastOptions, null));
         this._appEl_0.initComponent(this._ToastContainer_0_4, [], compView_0);
         compView_0.create(this._ToastContainer_0_4, this.projectableNodes, null);
         this.init([].concat([this._el_0]), [this._el_0], [], []);
@@ -68,11 +67,11 @@ var _View_ToastContainer_Host0 = (function (_super) {
 }(import1.AppView));
 function viewFactory_ToastContainer_Host0(viewUtils, parentInjector, declarationEl) {
     if ((renderType_ToastContainer_Host === null)) {
-        (renderType_ToastContainer_Host = viewUtils.createRenderComponentType('', 0, import11.ViewEncapsulation.None, [], {}));
+        (renderType_ToastContainer_Host = viewUtils.createRenderComponentType('', 0, import10.ViewEncapsulation.None, [], {}));
     }
     return new _View_ToastContainer_Host0(viewUtils, parentInjector, declarationEl);
 }
-exports.ToastContainerNgFactory = new import12.ComponentFactory('toast-container', viewFactory_ToastContainer_Host0, import3.ToastContainer);
+exports.ToastContainerNgFactory = new import11.ComponentFactory('toast-container', viewFactory_ToastContainer_Host0, import3.ToastContainer);
 var styles_ToastContainer = [];
 var ToastContainer_inOut_states = {
     flyRight: {
@@ -109,28 +108,28 @@ function ToastContainer_inOut_factory(view, element, currentState, nextState) {
     if ((endStateStyles == null)) {
         (endStateStyles = defaultStateStyles);
     }
-    import13.renderStyles(element, view.renderer, import13.clearStyles(startStateStyles));
+    import12.renderStyles(element, view.renderer, import12.clearStyles(startStateStyles));
     if (((player == null) && ((currentState == 'void') && (nextState == 'flyRight')))) {
-        player = new import14.AnimationSequencePlayer([view.renderer.animate(element, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [
                 startStateStyles,
                 {
                     opacity: 0,
                     transform: 'translateX(100%)'
                 }
-            ])), import13.balanceAnimationKeyframes(collectedStyles, endStateStyles, [
-                new import16.AnimationKeyframe(0, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [{}]))),
-                new import16.AnimationKeyframe(1, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [{}])))
+            ])), import12.balanceAnimationKeyframes(collectedStyles, endStateStyles, [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}]))),
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}])))
             ]), 200, 0, 'ease-in')]);
         totalTime = 200;
     }
     if (((player == null) && ((currentState == 'flyRight') && (nextState == 'void')))) {
-        player = new import14.AnimationSequencePlayer([view.renderer.animate(element, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [startStateStyles])), [
-                new import16.AnimationKeyframe(0, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [{
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [startStateStyles])), [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{
                         opacity: 'true',
                         transform: 'true'
                     }
                 ]))),
-                new import16.AnimationKeyframe(1, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [{
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{
                         opacity: 0,
                         transform: 'translateX(100%)'
                     }
@@ -139,26 +138,26 @@ function ToastContainer_inOut_factory(view, element, currentState, nextState) {
         totalTime = 200;
     }
     if (((player == null) && ((currentState == 'void') && (nextState == 'flyLeft')))) {
-        player = new import14.AnimationSequencePlayer([view.renderer.animate(element, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [
                 startStateStyles,
                 {
                     opacity: 0,
                     transform: 'translateX(-100%)'
                 }
-            ])), import13.balanceAnimationKeyframes(collectedStyles, endStateStyles, [
-                new import16.AnimationKeyframe(0, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [{}]))),
-                new import16.AnimationKeyframe(1, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [{}])))
+            ])), import12.balanceAnimationKeyframes(collectedStyles, endStateStyles, [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}]))),
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}])))
             ]), 200, 0, 'ease-in')]);
         totalTime = 200;
     }
     if (((player == null) && ((currentState == 'flyLeft') && (nextState == 'void')))) {
-        player = new import14.AnimationSequencePlayer([view.renderer.animate(element, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [startStateStyles])), [
-                new import16.AnimationKeyframe(0, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [{
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [startStateStyles])), [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{
                         opacity: 'true',
                         transform: 'true'
                     }
                 ]))),
-                new import16.AnimationKeyframe(1, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [{
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{
                         opacity: 0,
                         transform: 'translateX(-100%)'
                     }
@@ -167,43 +166,43 @@ function ToastContainer_inOut_factory(view, element, currentState, nextState) {
         totalTime = 200;
     }
     if (((player == null) && ((currentState == 'void') && (nextState == 'fade')))) {
-        player = new import14.AnimationSequencePlayer([view.renderer.animate(element, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [
                 startStateStyles,
                 { opacity: 0 }
-            ])), import13.balanceAnimationKeyframes(collectedStyles, endStateStyles, [
-                new import16.AnimationKeyframe(0, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [{}]))),
-                new import16.AnimationKeyframe(1, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [{}])))
+            ])), import12.balanceAnimationKeyframes(collectedStyles, endStateStyles, [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}]))),
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}])))
             ]), 300, 0, 'ease-in')]);
         totalTime = 300;
     }
     if (((player == null) && ((currentState == 'fade') && (nextState == 'void')))) {
-        player = new import14.AnimationSequencePlayer([view.renderer.animate(element, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [startStateStyles])), [
-                new import16.AnimationKeyframe(0, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [{ opacity: 'true' }]))),
-                new import16.AnimationKeyframe(1, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [{ opacity: 0 }])))
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [startStateStyles])), [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{ opacity: 'true' }]))),
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{ opacity: 0 }])))
             ], 300, 0, null)]);
         totalTime = 300;
     }
     if (((player == null) && ((currentState == 'void') && (nextState == 'slideDown')))) {
-        player = new import14.AnimationSequencePlayer([view.renderer.animate(element, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [
                 startStateStyles,
                 {
                     opacity: 0,
                     transform: 'translateY(-200%)'
                 }
-            ])), import13.balanceAnimationKeyframes(collectedStyles, endStateStyles, [
-                new import16.AnimationKeyframe(0, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [{}]))),
-                new import16.AnimationKeyframe(1, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [{}])))
+            ])), import12.balanceAnimationKeyframes(collectedStyles, endStateStyles, [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}]))),
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}])))
             ]), 300, 0, 'ease-in')]);
         totalTime = 300;
     }
     if (((player == null) && ((currentState == 'slideDown') && (nextState == 'void')))) {
-        player = new import14.AnimationSequencePlayer([view.renderer.animate(element, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [startStateStyles])), [
-                new import16.AnimationKeyframe(0, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [{
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [startStateStyles])), [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{
                         opacity: 'true',
                         transform: 'true'
                     }
                 ]))),
-                new import16.AnimationKeyframe(1, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [{
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{
                         opacity: 0,
                         transform: 'translateY(-200%)'
                     }
@@ -212,26 +211,26 @@ function ToastContainer_inOut_factory(view, element, currentState, nextState) {
         totalTime = 300;
     }
     if (((player == null) && ((currentState == 'void') && (nextState == 'slideUp')))) {
-        player = new import14.AnimationSequencePlayer([view.renderer.animate(element, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [
                 startStateStyles,
                 {
                     opacity: 0,
                     transform: 'translateY(200%)'
                 }
-            ])), import13.balanceAnimationKeyframes(collectedStyles, endStateStyles, [
-                new import16.AnimationKeyframe(0, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [{}]))),
-                new import16.AnimationKeyframe(1, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [{}])))
+            ])), import12.balanceAnimationKeyframes(collectedStyles, endStateStyles, [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}]))),
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{}])))
             ]), 300, 0, 'ease-in')]);
         totalTime = 300;
     }
     if (((player == null) && ((currentState == 'slideUp') && (nextState == 'void')))) {
-        player = new import14.AnimationSequencePlayer([view.renderer.animate(element, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [startStateStyles])), [
-                new import16.AnimationKeyframe(0, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [{
+        player = new import13.AnimationSequencePlayer([view.renderer.animate(element, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [startStateStyles])), [
+                new import15.AnimationKeyframe(0, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{
                         opacity: 'true',
                         transform: 'true'
                     }
                 ]))),
-                new import16.AnimationKeyframe(1, new import15.AnimationStyles(import13.collectAndResolveStyles(collectedStyles, [{
+                new import15.AnimationKeyframe(1, new import14.AnimationStyles(import12.collectAndResolveStyles(collectedStyles, [{
                         opacity: 0,
                         transform: 'translateY(200%)'
                     }
@@ -240,10 +239,10 @@ function ToastContainer_inOut_factory(view, element, currentState, nextState) {
         totalTime = 300;
     }
     if ((player == null)) {
-        (player = new import17.NoOpAnimationPlayer());
+        (player = new import16.NoOpAnimationPlayer());
     }
     player.onDone(function () {
-        import13.renderStyles(element, view.renderer, import13.prepareFinalAnimationStyles(startStateStyles, endStateStyles));
+        import12.renderStyles(element, view.renderer, import12.prepareFinalAnimationStyles(startStateStyles, endStateStyles));
     });
     view.queueAnimation(element, 'inOut', player, totalTime, currentState, nextState);
 }
@@ -255,21 +254,21 @@ var _View_ToastContainer0 = (function (_super) {
     }
     _View_ToastContainer0.prototype.createInternal = function (rootSelector) {
         var parentRenderNode = this.renderer.createViewRoot(this.declarationAppElement.nativeElement);
-        this._viewQuery_toastContainer_0 = new import18.QueryList();
+        this._viewQuery_toastContainer_0 = new import17.QueryList();
         this._text_0 = this.renderer.createText(parentRenderNode, '\n    ', null);
         this._el_1 = this.renderer.createElement(parentRenderNode, 'div', null);
         this.renderer.setElementAttribute(this._el_1, 'id', 'toast-container');
         this._text_2 = this.renderer.createText(this._el_1, '\n      ', null);
         this._anchor_3 = this.renderer.createTemplateAnchor(this._el_1, null);
         this._appEl_3 = new import2.AppElement(3, 1, this, this._anchor_3);
-        this._TemplateRef_3_5 = new import20.TemplateRef_(this._appEl_3, viewFactory_ToastContainer1);
-        this._NgFor_3_6 = new import19.NgFor(this._appEl_3.vcRef, this._TemplateRef_3_5, this.parentInjector.get(import21.IterableDiffers), this.ref);
+        this._TemplateRef_3_5 = new import19.TemplateRef_(this._appEl_3, viewFactory_ToastContainer1);
+        this._NgFor_3_6 = new import18.NgFor(this._appEl_3.vcRef, this._TemplateRef_3_5, this.parentInjector.get(import20.IterableDiffers), this.ref);
         this._text_4 = this.renderer.createText(this._el_1, '\n    ', null);
         this._text_5 = this.renderer.createText(parentRenderNode, '\n    ', null);
         this._expr_0 = import7.UNINITIALIZED;
         this._expr_1 = import7.UNINITIALIZED;
         this._expr_2 = import7.UNINITIALIZED;
-        this._viewQuery_toastContainer_0.reset([new import22.ElementRef(this._el_1)]);
+        this._viewQuery_toastContainer_0.reset([new import21.ElementRef(this._el_1)]);
         this.context.container = this._viewQuery_toastContainer_0.first;
         this.init([], [
             this._text_0,
@@ -282,10 +281,10 @@ var _View_ToastContainer0 = (function (_super) {
         return null;
     };
     _View_ToastContainer0.prototype.injectorGetInternal = function (token, requestNodeIndex, notFoundResult) {
-        if (((token === import20.TemplateRef) && (3 === requestNodeIndex))) {
+        if (((token === import19.TemplateRef) && (3 === requestNodeIndex))) {
             return this._TemplateRef_3_5;
         }
-        if (((token === import19.NgFor) && (3 === requestNodeIndex))) {
+        if (((token === import18.NgFor) && (3 === requestNodeIndex))) {
             return this._NgFor_3_6;
         }
         return notFoundResult;
@@ -311,7 +310,7 @@ var _View_ToastContainer0 = (function (_super) {
         this.detectContentChildrenChanges(throwOnChange);
         var currVal_0 = this.context.position;
         if (import4.checkBinding(throwOnChange, this._expr_0, currVal_0)) {
-            this.renderer.setElementStyle(this._el_1, 'position', ((this.viewUtils.sanitizer.sanitize(import23.SecurityContext.STYLE, currVal_0) == null) ? null : this.viewUtils.sanitizer.sanitize(import23.SecurityContext.STYLE, currVal_0).toString()));
+            this.renderer.setElementStyle(this._el_1, 'position', ((this.viewUtils.sanitizer.sanitize(import22.SecurityContext.STYLE, currVal_0) == null) ? null : this.viewUtils.sanitizer.sanitize(import22.SecurityContext.STYLE, currVal_0).toString()));
             this._expr_0 = currVal_0;
         }
         var currVal_1 = import4.interpolate(1, '', this.context.positionClass, '');
@@ -325,7 +324,7 @@ var _View_ToastContainer0 = (function (_super) {
 }(import1.AppView));
 function viewFactory_ToastContainer0(viewUtils, parentInjector, declarationEl) {
     if ((renderType_ToastContainer === null)) {
-        (renderType_ToastContainer = viewUtils.createRenderComponentType('/Users/dereks/Documents/PointInside/ng2-toastr/src/toast-container.component.ts class ToastContainer - inline template', 0, import11.ViewEncapsulation.None, styles_ToastContainer, { inOut: ToastContainer_inOut_factory }));
+        (renderType_ToastContainer = viewUtils.createRenderComponentType('/Users/dereks/Documents/PointInside/ng2-toastr/src/toast-container.component.ts class ToastContainer - inline template', 0, import10.ViewEncapsulation.None, styles_ToastContainer, { inOut: ToastContainer_inOut_factory }));
     }
     return new _View_ToastContainer0(viewUtils, parentInjector, declarationEl);
 }
@@ -340,21 +339,21 @@ var _View_ToastContainer1 = (function (_super) {
         this._text_1 = this.renderer.createText(this._el_0, '\n        ', null);
         this._anchor_2 = this.renderer.createTemplateAnchor(this._el_0, null);
         this._appEl_2 = new import2.AppElement(2, 0, this, this._anchor_2);
-        this._TemplateRef_2_5 = new import20.TemplateRef_(this._appEl_2, viewFactory_ToastContainer2);
-        this._NgIf_2_6 = new import24.NgIf(this._appEl_2.vcRef, this._TemplateRef_2_5);
+        this._TemplateRef_2_5 = new import19.TemplateRef_(this._appEl_2, viewFactory_ToastContainer2);
+        this._NgIf_2_6 = new import23.NgIf(this._appEl_2.vcRef, this._TemplateRef_2_5);
         this._text_3 = this.renderer.createText(this._el_0, '\n        ', null);
         this._el_4 = this.renderer.createElement(this._el_0, 'div', null);
-        this._NgSwitch_4_3 = new import25.NgSwitch();
+        this._NgSwitch_4_3 = new import24.NgSwitch();
         this._text_5 = this.renderer.createText(this._el_4, '\n          ', null);
         this._anchor_6 = this.renderer.createTemplateAnchor(this._el_4, null);
         this._appEl_6 = new import2.AppElement(6, 4, this, this._anchor_6);
-        this._TemplateRef_6_5 = new import20.TemplateRef_(this._appEl_6, viewFactory_ToastContainer3);
-        this._NgSwitchCase_6_6 = new import25.NgSwitchCase(this._appEl_6.vcRef, this._TemplateRef_6_5, this._NgSwitch_4_3);
+        this._TemplateRef_6_5 = new import19.TemplateRef_(this._appEl_6, viewFactory_ToastContainer3);
+        this._NgSwitchCase_6_6 = new import24.NgSwitchCase(this._appEl_6.vcRef, this._TemplateRef_6_5, this._NgSwitch_4_3);
         this._text_7 = this.renderer.createText(this._el_4, '\n          ', null);
         this._anchor_8 = this.renderer.createTemplateAnchor(this._el_4, null);
         this._appEl_8 = new import2.AppElement(8, 4, this, this._anchor_8);
-        this._TemplateRef_8_5 = new import20.TemplateRef_(this._appEl_8, viewFactory_ToastContainer4);
-        this._NgSwitchDefault_8_6 = new import25.NgSwitchDefault(this._appEl_8.vcRef, this._TemplateRef_8_5, this._NgSwitch_4_3);
+        this._TemplateRef_8_5 = new import19.TemplateRef_(this._appEl_8, viewFactory_ToastContainer4);
+        this._NgSwitchDefault_8_6 = new import24.NgSwitchDefault(this._appEl_8.vcRef, this._TemplateRef_8_5, this._NgSwitch_4_3);
         this._text_9 = this.renderer.createText(this._el_4, '\n        ', null);
         this._text_10 = this.renderer.createText(this._el_0, '              \n      ', null);
         this._expr_2 = import7.UNINITIALIZED;
@@ -383,25 +382,25 @@ var _View_ToastContainer1 = (function (_super) {
         return null;
     };
     _View_ToastContainer1.prototype.injectorGetInternal = function (token, requestNodeIndex, notFoundResult) {
-        if (((token === import20.TemplateRef) && (2 === requestNodeIndex))) {
+        if (((token === import19.TemplateRef) && (2 === requestNodeIndex))) {
             return this._TemplateRef_2_5;
         }
-        if (((token === import24.NgIf) && (2 === requestNodeIndex))) {
+        if (((token === import23.NgIf) && (2 === requestNodeIndex))) {
             return this._NgIf_2_6;
         }
-        if (((token === import20.TemplateRef) && (6 === requestNodeIndex))) {
+        if (((token === import19.TemplateRef) && (6 === requestNodeIndex))) {
             return this._TemplateRef_6_5;
         }
-        if (((token === import25.NgSwitchCase) && (6 === requestNodeIndex))) {
+        if (((token === import24.NgSwitchCase) && (6 === requestNodeIndex))) {
             return this._NgSwitchCase_6_6;
         }
-        if (((token === import20.TemplateRef) && (8 === requestNodeIndex))) {
+        if (((token === import19.TemplateRef) && (8 === requestNodeIndex))) {
             return this._TemplateRef_8_5;
         }
-        if (((token === import25.NgSwitchDefault) && (8 === requestNodeIndex))) {
+        if (((token === import24.NgSwitchDefault) && (8 === requestNodeIndex))) {
             return this._NgSwitchDefault_8_6;
         }
-        if (((token === import25.NgSwitch) && ((4 <= requestNodeIndex) && (requestNodeIndex <= 9)))) {
+        if (((token === import24.NgSwitch) && ((4 <= requestNodeIndex) && (requestNodeIndex <= 9)))) {
             return this._NgSwitch_4_3;
         }
         return notFoundResult;
@@ -511,7 +510,7 @@ var _View_ToastContainer3 = (function (_super) {
         this.detectContentChildrenChanges(throwOnChange);
         var currVal_0 = this.parent.parent.context.sanitizer.bypassSecurityTrustHtml(this.parent.context.$implicit.message);
         if (import4.checkBinding(throwOnChange, this._expr_0, currVal_0)) {
-            this.renderer.setElementProperty(this._el_0, 'innerHTML', this.viewUtils.sanitizer.sanitize(import23.SecurityContext.HTML, currVal_0));
+            this.renderer.setElementProperty(this._el_0, 'innerHTML', this.viewUtils.sanitizer.sanitize(import22.SecurityContext.HTML, currVal_0));
             this._expr_0 = currVal_0;
         }
         this.detectViewChildrenChanges(throwOnChange);
