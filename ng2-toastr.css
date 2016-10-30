@@ -109,6 +109,10 @@ button.toast-close-button {
     color: #030303;
 }
 
+#toast-container > div.toast-custom .toast-close-button {
+    color: #999999 !important;
+}
+
 #toast-container > :hover {
     -moz-box-shadow: 0 0 12px #000000;
     -webkit-box-shadow: 0 0 12px #000000;

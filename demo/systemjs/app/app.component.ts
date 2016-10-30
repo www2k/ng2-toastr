@@ -47,12 +47,14 @@ export class AppComponent {
   }
 
   showCustomLife() {
-    this.toastr.warning('The toast will auto dismiss in 8 seconds', null, {toastLife: 8000, data: {message: 'hello'}});
+    this.toastr.warning('The toast will auto dismiss in 8 seconds', null, {toastLife: 8000});
   }
 
   showControlled() {
-    this.toastr.info('This is toaster that is controlled by developer! Will be dismissed in 5 seconds.', 'Controlled!', {dismiss: 'controlled'})
+    this.toastr.info('This is toaster that is controlled by developer! Will be dismissed in 5 seconds.',
+      'Controlled!', {dismiss: 'controlled',  data: {message: 'hello'}})
       .then((toast: Toast) => {
+        console.log(toast);
         setTimeout(() => {
           this.toastr.dismissToast(toast);
         }, 5000);

@@ -9,12 +9,12 @@ import {DomSanitizer} from '@angular/platform-browser';
     <div #toastContainer id="toast-container" [style.position]="position" class="{{positionClass}}">
       <div *ngFor="let toast of toasts" [@inOut]="animate" class="toast toast-{{toast.type}}" 
       (click)="clicked(toast)">
+        <div class="toast-close-button" *ngIf="toast.config.showCloseButton" (click)="removeToast(toast)">&times;
+        </div> 
         <div *ngIf="toast.title" class="{{toast.config.titleClass || titleClass}}">{{toast.title}}</div>
         <div [ngSwitch]="toast.config.enableHTML">
           <span *ngSwitchCase="true" [innerHTML]="sanitizer.bypassSecurityTrustHtml(toast.message)"></span>
           <span *ngSwitchDefault class="{{toast.config.messageClass || messageClass}}">{{toast.message}}</span>
-        </div> 
-        <div class="toast-close-button" *ngIf="toast.config.showCloseButton" (click)="removeToast(toast)">&times;
         </div>             
       </div>
     </div>

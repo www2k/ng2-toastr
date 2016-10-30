@@ -333,24 +333,24 @@ class _View_ToastContainer1 extends import1.AppView<any> {
   _TemplateRef_2_5:any;
   _NgIf_2_6:import21.NgIf;
   _text_3:any;
-  _el_4:any;
-  _NgSwitch_4_3:import22.NgSwitch;
+  _anchor_4:any;
+  /*private*/ _appEl_4:import2.AppElement;
+  _TemplateRef_4_5:any;
+  _NgIf_4_6:import21.NgIf;
   _text_5:any;
-  _anchor_6:any;
-  /*private*/ _appEl_6:import2.AppElement;
-  _TemplateRef_6_5:any;
-  _NgSwitchCase_6_6:import22.NgSwitchCase;
+  _el_6:any;
+  _NgSwitch_6_3:import22.NgSwitch;
   _text_7:any;
   _anchor_8:any;
   /*private*/ _appEl_8:import2.AppElement;
   _TemplateRef_8_5:any;
-  _NgSwitchDefault_8_6:import22.NgSwitchDefault;
+  _NgSwitchCase_8_6:import22.NgSwitchCase;
   _text_9:any;
-  _text_10:any;
-  _anchor_11:any;
-  /*private*/ _appEl_11:import2.AppElement;
-  _TemplateRef_11_5:any;
-  _NgIf_11_6:import21.NgIf;
+  _anchor_10:any;
+  /*private*/ _appEl_10:import2.AppElement;
+  _TemplateRef_10_5:any;
+  _NgSwitchDefault_10_6:import22.NgSwitchDefault;
+  _text_11:any;
   _text_12:any;
   /*private*/ _expr_1:any;
   /*private*/ _expr_2:any;
@@ -368,25 +368,25 @@ class _View_ToastContainer1 extends import1.AppView<any> {
     this._appEl_2 = new import2.AppElement(2,0,this,this._anchor_2);
     this._TemplateRef_2_5 = new import18.TemplateRef_(this._appEl_2,viewFactory_ToastContainer2);
     this._NgIf_2_6 = new import21.NgIf(this._appEl_2.vcRef,this._TemplateRef_2_5);
-    this._text_3 = this.renderer.createText(this._el_0,'\n        ',(null as any));
-    this._el_4 = this.renderer.createElement(this._el_0,'div',(null as any));
-    this._NgSwitch_4_3 = new import22.NgSwitch();
-    this._text_5 = this.renderer.createText(this._el_4,'\n          ',(null as any));
-    this._anchor_6 = this.renderer.createTemplateAnchor(this._el_4,(null as any));
-    this._appEl_6 = new import2.AppElement(6,4,this,this._anchor_6);
-    this._TemplateRef_6_5 = new import18.TemplateRef_(this._appEl_6,viewFactory_ToastContainer3);
-    this._NgSwitchCase_6_6 = new import22.NgSwitchCase(this._appEl_6.vcRef,this._TemplateRef_6_5,this._NgSwitch_4_3);
-    this._text_7 = this.renderer.createText(this._el_4,'\n          ',(null as any));
-    this._anchor_8 = this.renderer.createTemplateAnchor(this._el_4,(null as any));
-    this._appEl_8 = new import2.AppElement(8,4,this,this._anchor_8);
+    this._text_3 = this.renderer.createText(this._el_0,' \n        ',(null as any));
+    this._anchor_4 = this.renderer.createTemplateAnchor(this._el_0,(null as any));
+    this._appEl_4 = new import2.AppElement(4,0,this,this._anchor_4);
+    this._TemplateRef_4_5 = new import18.TemplateRef_(this._appEl_4,viewFactory_ToastContainer3);
+    this._NgIf_4_6 = new import21.NgIf(this._appEl_4.vcRef,this._TemplateRef_4_5);
+    this._text_5 = this.renderer.createText(this._el_0,'\n        ',(null as any));
+    this._el_6 = this.renderer.createElement(this._el_0,'div',(null as any));
+    this._NgSwitch_6_3 = new import22.NgSwitch();
+    this._text_7 = this.renderer.createText(this._el_6,'\n          ',(null as any));
+    this._anchor_8 = this.renderer.createTemplateAnchor(this._el_6,(null as any));
+    this._appEl_8 = new import2.AppElement(8,6,this,this._anchor_8);
     this._TemplateRef_8_5 = new import18.TemplateRef_(this._appEl_8,viewFactory_ToastContainer4);
-    this._NgSwitchDefault_8_6 = new import22.NgSwitchDefault(this._appEl_8.vcRef,this._TemplateRef_8_5,this._NgSwitch_4_3);
-    this._text_9 = this.renderer.createText(this._el_4,'\n        ',(null as any));
-    this._text_10 = this.renderer.createText(this._el_0,' \n        ',(null as any));
-    this._anchor_11 = this.renderer.createTemplateAnchor(this._el_0,(null as any));
-    this._appEl_11 = new import2.AppElement(11,0,this,this._anchor_11);
-    this._TemplateRef_11_5 = new import18.TemplateRef_(this._appEl_11,viewFactory_ToastContainer5);
-    this._NgIf_11_6 = new import21.NgIf(this._appEl_11.vcRef,this._TemplateRef_11_5);
+    this._NgSwitchCase_8_6 = new import22.NgSwitchCase(this._appEl_8.vcRef,this._TemplateRef_8_5,this._NgSwitch_6_3);
+    this._text_9 = this.renderer.createText(this._el_6,'\n          ',(null as any));
+    this._anchor_10 = this.renderer.createTemplateAnchor(this._el_6,(null as any));
+    this._appEl_10 = new import2.AppElement(10,6,this,this._anchor_10);
+    this._TemplateRef_10_5 = new import18.TemplateRef_(this._appEl_10,viewFactory_ToastContainer5);
+    this._NgSwitchDefault_10_6 = new import22.NgSwitchDefault(this._appEl_10.vcRef,this._TemplateRef_10_5,this._NgSwitch_6_3);
+    this._text_11 = this.renderer.createText(this._el_6,'\n        ',(null as any));
     this._text_12 = this.renderer.createText(this._el_0,'             \n      ',(null as any));
     this._expr_1 = import7.UNINITIALIZED;
     this._expr_2 = import7.UNINITIALIZED;
@@ -400,14 +400,14 @@ class _View_ToastContainer1 extends import1.AppView<any> {
       this._text_1,
       this._anchor_2,
       this._text_3,
-      this._el_4,
+      this._anchor_4,
       this._text_5,
-      this._anchor_6,
+      this._el_6,
       this._text_7,
       this._anchor_8,
       this._text_9,
-      this._text_10,
-      this._anchor_11,
+      this._anchor_10,
+      this._text_11,
       this._text_12
     ]
     ,[disposable_0],[]);
@@ -416,13 +416,13 @@ class _View_ToastContainer1 extends import1.AppView<any> {
   injectorGetInternal(token:any,requestNodeIndex:number,notFoundResult:any):any {
     if (((token === import18.TemplateRef) && (2 === requestNodeIndex))) { return this._TemplateRef_2_5; }
     if (((token === import21.NgIf) && (2 === requestNodeIndex))) { return this._NgIf_2_6; }
-    if (((token === import18.TemplateRef) && (6 === requestNodeIndex))) { return this._TemplateRef_6_5; }
-    if (((token === import22.NgSwitchCase) && (6 === requestNodeIndex))) { return this._NgSwitchCase_6_6; }
+    if (((token === import18.TemplateRef) && (4 === requestNodeIndex))) { return this._TemplateRef_4_5; }
+    if (((token === import21.NgIf) && (4 === requestNodeIndex))) { return this._NgIf_4_6; }
     if (((token === import18.TemplateRef) && (8 === requestNodeIndex))) { return this._TemplateRef_8_5; }
-    if (((token === import22.NgSwitchDefault) && (8 === requestNodeIndex))) { return this._NgSwitchDefault_8_6; }
-    if (((token === import22.NgSwitch) && ((4 <= requestNodeIndex) && (requestNodeIndex <= 9)))) { return this._NgSwitch_4_3; }
-    if (((token === import18.TemplateRef) && (11 === requestNodeIndex))) { return this._TemplateRef_11_5; }
-    if (((token === import21.NgIf) && (11 === requestNodeIndex))) { return this._NgIf_11_6; }
+    if (((token === import22.NgSwitchCase) && (8 === requestNodeIndex))) { return this._NgSwitchCase_8_6; }
+    if (((token === import18.TemplateRef) && (10 === requestNodeIndex))) { return this._TemplateRef_10_5; }
+    if (((token === import22.NgSwitchDefault) && (10 === requestNodeIndex))) { return this._NgSwitchDefault_10_6; }
+    if (((token === import22.NgSwitch) && ((6 <= requestNodeIndex) && (requestNodeIndex <= 11)))) { return this._NgSwitch_6_3; }
     return notFoundResult;
   }
   detectChangesInternal(throwOnChange:boolean):void {
@@ -435,24 +435,24 @@ class _View_ToastContainer1 extends import1.AppView<any> {
       this.componentType.animations['inOut'](this,this._el_0,oldRenderVar,newRenderVar);
       this._expr_2 = currVal_2;
     }
-    const currVal_3:any = this.context.$implicit.title;
+    const currVal_3:any = this.context.$implicit.config.showCloseButton;
     if (import4.checkBinding(throwOnChange,this._expr_3,currVal_3)) {
       this._NgIf_2_6.ngIf = currVal_3;
       this._expr_3 = currVal_3;
     }
-    const currVal_4:any = this.context.$implicit.config.enableHTML;
+    const currVal_4:any = this.context.$implicit.title;
     if (import4.checkBinding(throwOnChange,this._expr_4,currVal_4)) {
-      this._NgSwitch_4_3.ngSwitch = currVal_4;
+      this._NgIf_4_6.ngIf = currVal_4;
       this._expr_4 = currVal_4;
     }
-    const currVal_5:any = true;
+    const currVal_5:any = this.context.$implicit.config.enableHTML;
     if (import4.checkBinding(throwOnChange,this._expr_5,currVal_5)) {
-      this._NgSwitchCase_6_6.ngSwitchCase = currVal_5;
+      this._NgSwitch_6_3.ngSwitch = currVal_5;
       this._expr_5 = currVal_5;
     }
-    const currVal_6:any = this.context.$implicit.config.showCloseButton;
+    const currVal_6:any = true;
     if (import4.checkBinding(throwOnChange,this._expr_6,currVal_6)) {
-      this._NgIf_11_6.ngIf = currVal_6;
+      this._NgSwitchCase_8_6.ngSwitchCase = currVal_6;
       this._expr_6 = currVal_6;
     }
     this.detectContentChildrenChanges(throwOnChange);
@@ -478,10 +478,37 @@ function viewFactory_ToastContainer1(viewUtils:import4.ViewUtils,parentInjector:
 class _View_ToastContainer2 extends import1.AppView<any> {
   _el_0:any;
   _text_1:any;
+  constructor(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement) {
+    super(_View_ToastContainer2,renderType_ToastContainer,import6.ViewType.EMBEDDED,viewUtils,parentInjector,declarationEl,import7.ChangeDetectorStatus.CheckAlways);
+  }
+  createInternal(rootSelector:string):import2.AppElement {
+    this._el_0 = this.renderer.createElement((null as any),'div',(null as any));
+    this.renderer.setElementAttribute(this._el_0,'class','toast-close-button');
+    this._text_1 = this.renderer.createText(this._el_0,'×\n        ',(null as any));
+    var disposable_0:Function = this.renderer.listen(this._el_0,'click',this.eventHandler(this._handle_click_0_0.bind(this)));
+    this.init([].concat([this._el_0]),[
+      this._el_0,
+      this._text_1
+    ]
+    ,[disposable_0],[]);
+    return (null as any);
+  }
+  private _handle_click_0_0($event:any):boolean {
+    this.markPathToRootAsCheckOnce();
+    const pd_0:any = ((<any>this.parent.parent.context.removeToast(this.parent.context.$implicit)) !== false);
+    return (true && pd_0);
+  }
+}
+function viewFactory_ToastContainer2(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<any> {
+  return new _View_ToastContainer2(viewUtils,parentInjector,declarationEl);
+}
+class _View_ToastContainer3 extends import1.AppView<any> {
+  _el_0:any;
+  _text_1:any;
   /*private*/ _expr_0:any;
   /*private*/ _expr_1:any;
   constructor(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement) {
-    super(_View_ToastContainer2,renderType_ToastContainer,import6.ViewType.EMBEDDED,viewUtils,parentInjector,declarationEl,import7.ChangeDetectorStatus.CheckAlways);
+    super(_View_ToastContainer3,renderType_ToastContainer,import6.ViewType.EMBEDDED,viewUtils,parentInjector,declarationEl,import7.ChangeDetectorStatus.CheckAlways);
   }
   createInternal(rootSelector:string):import2.AppElement {
     this._el_0 = this.renderer.createElement((null as any),'div',(null as any));
@@ -510,14 +537,14 @@ class _View_ToastContainer2 extends import1.AppView<any> {
     this.detectViewChildrenChanges(throwOnChange);
   }
 }
-function viewFactory_ToastContainer2(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<any> {
-  return new _View_ToastContainer2(viewUtils,parentInjector,declarationEl);
+function viewFactory_ToastContainer3(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<any> {
+  return new _View_ToastContainer3(viewUtils,parentInjector,declarationEl);
 }
-class _View_ToastContainer3 extends import1.AppView<any> {
+class _View_ToastContainer4 extends import1.AppView<any> {
   _el_0:any;
   /*private*/ _expr_0:any;
   constructor(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement) {
-    super(_View_ToastContainer3,renderType_ToastContainer,import6.ViewType.EMBEDDED,viewUtils,parentInjector,declarationEl,import7.ChangeDetectorStatus.CheckAlways);
+    super(_View_ToastContainer4,renderType_ToastContainer,import6.ViewType.EMBEDDED,viewUtils,parentInjector,declarationEl,import7.ChangeDetectorStatus.CheckAlways);
   }
   createInternal(rootSelector:string):import2.AppElement {
     this._el_0 = this.renderer.createElement((null as any),'span',(null as any));
@@ -535,16 +562,16 @@ class _View_ToastContainer3 extends import1.AppView<any> {
     this.detectViewChildrenChanges(throwOnChange);
   }
 }
-function viewFactory_ToastContainer3(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<any> {
-  return new _View_ToastContainer3(viewUtils,parentInjector,declarationEl);
+function viewFactory_ToastContainer4(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<any> {
+  return new _View_ToastContainer4(viewUtils,parentInjector,declarationEl);
 }
-class _View_ToastContainer4 extends import1.AppView<any> {
+class _View_ToastContainer5 extends import1.AppView<any> {
   _el_0:any;
   _text_1:any;
   /*private*/ _expr_0:any;
   /*private*/ _expr_1:any;
   constructor(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement) {
-    super(_View_ToastContainer4,renderType_ToastContainer,import6.ViewType.EMBEDDED,viewUtils,parentInjector,declarationEl,import7.ChangeDetectorStatus.CheckAlways);
+    super(_View_ToastContainer5,renderType_ToastContainer,import6.ViewType.EMBEDDED,viewUtils,parentInjector,declarationEl,import7.ChangeDetectorStatus.CheckAlways);
   }
   createInternal(rootSelector:string):import2.AppElement {
     this._el_0 = this.renderer.createElement((null as any),'span',(null as any));
@@ -571,33 +598,6 @@ class _View_ToastContainer4 extends import1.AppView<any> {
       this._expr_1 = currVal_1;
     }
     this.detectViewChildrenChanges(throwOnChange);
-  }
-}
-function viewFactory_ToastContainer4(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<any> {
-  return new _View_ToastContainer4(viewUtils,parentInjector,declarationEl);
-}
-class _View_ToastContainer5 extends import1.AppView<any> {
-  _el_0:any;
-  _text_1:any;
-  constructor(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement) {
-    super(_View_ToastContainer5,renderType_ToastContainer,import6.ViewType.EMBEDDED,viewUtils,parentInjector,declarationEl,import7.ChangeDetectorStatus.CheckAlways);
-  }
-  createInternal(rootSelector:string):import2.AppElement {
-    this._el_0 = this.renderer.createElement((null as any),'div',(null as any));
-    this.renderer.setElementAttribute(this._el_0,'class','toast-close-button');
-    this._text_1 = this.renderer.createText(this._el_0,'×\n        ',(null as any));
-    var disposable_0:Function = this.renderer.listen(this._el_0,'click',this.eventHandler(this._handle_click_0_0.bind(this)));
-    this.init([].concat([this._el_0]),[
-      this._el_0,
-      this._text_1
-    ]
-    ,[disposable_0],[]);
-    return (null as any);
-  }
-  private _handle_click_0_0($event:any):boolean {
-    this.markPathToRootAsCheckOnce();
-    const pd_0:any = ((<any>this.parent.parent.context.removeToast(this.parent.context.$implicit)) !== false);
-    return (true && pd_0);
   }
 }
 function viewFactory_ToastContainer5(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<any> {
