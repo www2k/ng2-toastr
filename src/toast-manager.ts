@@ -58,9 +58,11 @@ export class ToastsManager {
   }
 
   createTimeout(toast: Toast): any {
-    return setTimeout(() => {
+    const task = setTimeout(() => {
       this.clearToast(toast);
     }, toast.config.toastLife);
+
+    return task.toString();
   }
 
   setupToast(toast: Toast, options?: Object): Toast {

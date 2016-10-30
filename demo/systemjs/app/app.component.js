@@ -14,6 +14,13 @@ var app_error_handler_1 = require('./app-error-handler');
 var AppComponent = (function () {
     function AppComponent(toastr) {
         this.toastr = toastr;
+        this.toastr.onClickToast()
+            .subscribe(function (toast) {
+            console.log('clicked: ');
+            if (toast.timeoutId) {
+                clearTimeout(toast.timeoutId.toString());
+            }
+        });
     }
     AppComponent.prototype.showSuccess = function () {
         this.toastr.success('You are awesome!', 'Success!', { toastLife: 3000 });
@@ -37,6 +44,7 @@ var AppComponent = (function () {
         var _this = this;
         this.toastr.info('This is toaster that is controlled by developer! Will be dismissed in 5 seconds.', 'Controlled!', { dismiss: 'controlled' })
             .then(function (toast) {
+            console.log(toast);
             setTimeout(function () {
                 _this.toastr.dismissToast(toast);
             }, 5000);
@@ -52,7 +60,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n      <h1 (swipe)=\"swiped($event)\"> Angular 2 Toastr Demo.</h1>\n      <div style=\"border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;\">\n        <button type=\"button\" class=\"btn btn-success\" (click)=\"showSuccess()\">Success</button>\n        <button type=\"button\" class=\"btn btn-info\" (click)=\"showInfo()\">Information</button>\n        <button type=\"button\" class=\"btn btn-warning\" (click)=\"showWarning()\">Warning</button>\n        <button type=\"button\" class=\"btn btn-danger\" (click)=\"showError()\">Error</button>\n      </div>\n      <div style=\"border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;\">\n        <button type=\"button\" class=\"btn btn-info\" (click)=\"showClickToDismiss()\">Click to Dismiss</button>\n        <button type=\"button\" class=\"btn btn-warning\" (click)=\"showCustomLife()\">8-second Toast</button>\n        <button type=\"button\" class=\"btn btn-info\" (click)=\"showControlled()\">Developer Controlled Toast</button>\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"showCustomHTML()\">Custom HTML Toast</button>\n      </div>\n  ",
+            template: "\n      <h1> Angular 2 Toastr Demo.</h1>\n      <div style=\"border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;\">\n        <button type=\"button\" class=\"btn btn-success\" (click)=\"showSuccess()\">Success</button>\n        <button type=\"button\" class=\"btn btn-info\" (click)=\"showInfo()\">Information</button>\n        <button type=\"button\" class=\"btn btn-warning\" (click)=\"showWarning()\">Warning</button>\n        <button type=\"button\" class=\"btn btn-danger\" (click)=\"showError()\">Error</button>\n      </div>\n      <div style=\"border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;\">\n        <button type=\"button\" class=\"btn btn-info\" (click)=\"showClickToDismiss()\">Click to Dismiss</button>\n        <button type=\"button\" class=\"btn btn-warning\" (click)=\"showCustomLife()\">8-second Toast</button>\n        <button type=\"button\" class=\"btn btn-info\" (click)=\"showControlled()\">Developer Controlled Toast</button>\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"showCustomHTML()\">Custom HTML Toast</button>\n      </div>\n  ",
             providers: [
                 {
                     provide: core_1.ErrorHandler,
