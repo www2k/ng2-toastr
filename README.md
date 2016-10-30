@@ -18,19 +18,11 @@ Please update Angular 2 to latest version to avoid any unexpected issues.
 
 2. Now you can added custom data object to each toast.
 
-3. Each `Toast` instance includes `timeoutId`, which allows developer to stop auto-dismiss.
-
     Following example shows how to allow user to click on toast to navigate to new path:
     
     ```
     this.toastr.onClickToast()
-        .subscribe( toast => {
-            if (toast.timeoutId) {
-              clearTimeout(toast.timeoutId);
-              this.toastr.dismiss(toast);
-             
-            }
-            
+        .subscribe( toast => {            
             if (toast.data && toast.data.url) {
               // navigate to
               this.router.navigate(toast.data.url);
@@ -40,9 +32,20 @@ Please update Angular 2 to latest version to avoid any unexpected issues.
     this.toastr.success('You are awesome! Click to view details.', 'Success!', {data: {url: '/path/to/successUrl'}});
     ```
 
+3. Each `Toast` instance includes `timeoutId`, which allows developer to stop auto-dismiss.
+   
+    ```
+    if (toast.timeoutId) {
+      clearTimeout(toast.timeoutId);
+      // do something before dismiss the toast
+      this.toastr.dismiss(toast);    
+    }
+    ```
+    
+
 4. Removed `autoDismiss` on `ToastOptions`, use `dismiss` instead.
 
-5. Added `newestOnTop' on `ToastOptions`.
+5. Added `newestOnTop` and `showCloseButton` on `ToastOptions`.
 
 ## Usage
 
