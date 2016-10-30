@@ -68,6 +68,12 @@ export class ToastsManager {
   setupToast(toast: Toast, options?: Object): Toast {
     toast.id = ++this.index;
 
+    Object.keys(toast.config).forEach(k => {
+      if (this.options[k]) {
+        toast.config[k] = this.options[k];
+      }
+    });
+
     if (options) {
       Object.keys(toast.config).forEach(k => {
         if (options[k]) {

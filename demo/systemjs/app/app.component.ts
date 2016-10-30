@@ -47,7 +47,7 @@ export class AppComponent {
   }
 
   showCustomLife() {
-    this.toastr.warning('The toast will auto dismiss in 8 seconds', null, {toastLife: 8000});
+    this.toastr.warning('The toast will auto dismiss in 8 seconds', null, {toastLife: 8000, data: {message: 'hello'}});
   }
 
   showControlled() {

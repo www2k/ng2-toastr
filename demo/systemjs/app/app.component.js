@@ -30,7 +30,7 @@ var AppComponent = (function () {
         this.toastr.info('Please click to dismiss', 'No auto dismiss', { dismiss: 'click' });
     };
     AppComponent.prototype.showCustomLife = function () {
-        this.toastr.warning('The toast will auto dismiss in 8 seconds', null, { toastLife: 8000 });
+        this.toastr.warning('The toast will auto dismiss in 8 seconds', null, { toastLife: 8000, data: { message: 'hello' } });
     };
     AppComponent.prototype.showControlled = function () {
         var _this = this;

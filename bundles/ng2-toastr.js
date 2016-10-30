@@ -208,7 +208,13 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
       return task.toString();
     };
     ToastsManager.prototype.setupToast = function(toast, options) {
+      var _this = this;
       toast.id = ++this.index;
+      Object.keys(toast.config).forEach(function(k) {
+        if (_this.options[k]) {
+          toast.config[k] = _this.options[k];
+        }
+      });
       if (options) {
         Object.keys(toast.config).forEach(function(k) {
           if (options[k]) {

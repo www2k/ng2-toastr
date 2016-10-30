@@ -18,6 +18,7 @@ var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
 var config = {
     animate: 'flyRight',
     newestOnTop: true,
+    showCloseButton: true,
 };
 var AppModule = (function () {
     function AppModule() {
