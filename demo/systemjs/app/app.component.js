@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
-var app_error_handler_1 = require('./app-error-handler');
 var AppComponent = (function () {
     function AppComponent(toastr) {
         this.toastr = toastr;
@@ -43,6 +42,7 @@ var AppComponent = (function () {
         });
     };
     AppComponent.prototype.swiped = function (event) {
+        console.log('swiped');
         console.log(event);
     };
     AppComponent.prototype.showCustomHTML = function () {
@@ -53,12 +53,6 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'my-app',
             template: "\n      <h1> Angular 2 Toastr Demo.</h1>\n      <div style=\"border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;\" (swipeleft)=\"swiped($event)\" (swiperight)=\"swiped($event)\">\n        <button type=\"button\" class=\"btn btn-success\" (click)=\"showSuccess()\">Success</button>\n        <button type=\"button\" class=\"btn btn-info\" (click)=\"showInfo()\">Information</button>\n        <button type=\"button\" class=\"btn btn-warning\" (click)=\"showWarning()\">Warning</button>\n        <button type=\"button\" class=\"btn btn-danger\" (click)=\"showError()\">Error</button>\n      </div>\n      <div style=\"border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;\">\n        <button type=\"button\" class=\"btn btn-info\" (click)=\"showClickToDismiss()\">Click to Dismiss</button>\n        <button type=\"button\" class=\"btn btn-warning\" (click)=\"showCustomLife()\">8-second Toast</button>\n        <button type=\"button\" class=\"btn btn-info\" (click)=\"showControlled()\">Developer Controlled Toast</button>\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"showCustomHTML()\">Custom HTML Toast</button>\n      </div>\n  ",
-            providers: [
-                {
-                    provide: core_1.ErrorHandler,
-                    useClass: app_error_handler_1.AppErrorHandler,
-                },
-            ],
         }), 
         __metadata('design:paramtypes', [ng2_toastr_1.ToastsManager])
     ], AppComponent);

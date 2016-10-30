@@ -8,6 +8,6 @@ export declare class ToastOptions {
     dismiss: 'auto' | 'click' | 'controlled';
     messageClass: string;
     titleClass: string;
-    data: any;
+    showCloseButton: boolean;
     constructor(options: Object);
 }

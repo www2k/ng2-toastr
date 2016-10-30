@@ -45,6 +45,10 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
       }
     };
     ToastContainer.prototype.removeToast = function(toast) {
+      if (toast.timeoutId) {
+        clearTimeout(toast.timeoutId);
+        toast.timeoutId = null;
+      }
       this.toasts = this.toasts.filter(function(t) {
         return t.id !== toast.id;
       });
@@ -74,7 +78,7 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
       type: core_1.Component,
       args: [{
         selector: 'toast-container',
-        template: "\n    <div #toastContainer id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" [@inOut]=\"animate\" class=\"toast toast-{{toast.type}}\" \n      (click)=\"clicked(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{toast.config.titleClass || titleClass}}\">{{toast.title}}</div>\n        <div [ngSwitch]=\"toast.config.enableHTML\">\n          <span *ngSwitchCase=\"true\" [innerHTML]=\"sanitizer.bypassSecurityTrustHtml(toast.message)\"></span>\n          <span *ngSwitchDefault class=\"{{toast.config.messageClass || messageClass}}\">{{toast.message}}</span>\n        </div>              \n      </div>\n    </div>\n    ",
+        template: "\n    <div #toastContainer id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" [@inOut]=\"animate\" class=\"toast toast-{{toast.type}}\" \n      (click)=\"clicked(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{toast.config.titleClass || titleClass}}\">{{toast.title}}</div>\n        <div [ngSwitch]=\"toast.config.enableHTML\">\n          <span *ngSwitchCase=\"true\" [innerHTML]=\"sanitizer.bypassSecurityTrustHtml(toast.message)\"></span>\n          <span *ngSwitchDefault class=\"{{toast.config.messageClass || messageClass}}\">{{toast.message}}</span>\n        </div> \n        <div class=\"toast-close-button\" *ngIf=\"toast.config.showCloseButton\" (click)=\"removeToast(toast)\">&times;\n        </div>             \n      </div>\n    </div>\n    ",
         animations: [core_1.trigger('inOut', [core_1.state('flyRight, flyLeft', core_1.style({
           opacity: 1,
           transform: 'translateX(0)'
@@ -136,7 +140,8 @@ System.registerDynamic("ng2-toastr/src/toast", [], true, function($__require, ex
         enableHTML: false,
         titleClass: '',
         messageClass: '',
-        toastLife: 3000
+        toastLife: 3000,
+        showCloseButton: false
       };
     }
     return Toast;
@@ -300,6 +305,7 @@ System.registerDynamic("ng2-toastr/src/toast-options", ["@angular/core"], true, 
       this.newestOnTop = false;
       this.animate = 'fade';
       this.enableHTML = false;
+      this.showCloseButton = false;
       Object.assign(this, options);
     }
     ToastOptions.decorators = [{type: core_1.Injectable}];

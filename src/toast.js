@@ -11,6 +11,7 @@ var Toast = (function () {
             titleClass: '',
             messageClass: '',
             toastLife: 3000,
+            showCloseButton: false,
         };
     }
     return Toast;

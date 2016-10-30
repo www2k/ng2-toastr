@@ -13,7 +13,9 @@ import {DomSanitizer} from '@angular/platform-browser';
         <div [ngSwitch]="toast.config.enableHTML">
           <span *ngSwitchCase="true" [innerHTML]="sanitizer.bypassSecurityTrustHtml(toast.message)"></span>
           <span *ngSwitchDefault class="{{toast.config.messageClass || messageClass}}">{{toast.message}}</span>
-        </div>              
+        </div> 
+        <div class="toast-close-button" *ngIf="toast.config.showCloseButton" (click)="removeToast(toast)">&times;
+        </div>             
       </div>
     </div>
     `,
@@ -134,6 +136,11 @@ export class ToastContainer {
   }
 
   removeToast(toast: Toast) {
+    if (toast.timeoutId) {
+      clearTimeout(toast.timeoutId);
+      toast.timeoutId = null;
+    }
+
     this.toasts = this.toasts.filter((t) => {
       return t.id !== toast.id;
     });

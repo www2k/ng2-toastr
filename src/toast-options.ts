@@ -13,7 +13,7 @@ export class ToastOptions {
   dismiss: 'auto' | 'click' | 'controlled';
   messageClass: string;
   titleClass: string;
-  data: any;
+  showCloseButton: boolean = false;
 
   constructor(options: Object) {
     Object.assign(this, options);

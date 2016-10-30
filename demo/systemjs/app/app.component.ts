@@ -1,8 +1,7 @@
 import {
-  Component, ErrorHandler
+  Component
 } from '@angular/core';
 import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
-import {AppErrorHandler} from './app-error-handler';
 
 @Component({
   selector: 'my-app',
@@ -21,12 +20,6 @@ import {AppErrorHandler} from './app-error-handler';
         <button type="button" class="btn btn-default" (click)="showCustomHTML()">Custom HTML Toast</button>
       </div>
   `,
-  providers: [
-    {
-      provide: ErrorHandler,
-      useClass: AppErrorHandler,
-    },
-  ],
 })
 export class AppComponent {
 
@@ -67,6 +60,7 @@ export class AppComponent {
   }
 
   swiped(event: any) {
+    console.log('swiped');
     console.log(event);
   }
 

@@ -341,13 +341,19 @@ var _View_ToastContainer1 = (function (_super) {
         this._TemplateRef_8_5 = new import18.TemplateRef_(this._appEl_8, viewFactory_ToastContainer4);
         this._NgSwitchDefault_8_6 = new import22.NgSwitchDefault(this._appEl_8.vcRef, this._TemplateRef_8_5, this._NgSwitch_4_3);
         this._text_9 = this.renderer.createText(this._el_4, '\n        ', null);
-        this._text_10 = this.renderer.createText(this._el_0, '              \n      ', null);
+        this._text_10 = this.renderer.createText(this._el_0, ' \n        ', null);
+        this._anchor_11 = this.renderer.createTemplateAnchor(this._el_0, null);
+        this._appEl_11 = new import2.AppElement(11, 0, this, this._anchor_11);
+        this._TemplateRef_11_5 = new import18.TemplateRef_(this._appEl_11, viewFactory_ToastContainer5);
+        this._NgIf_11_6 = new import21.NgIf(this._appEl_11.vcRef, this._TemplateRef_11_5);
+        this._text_12 = this.renderer.createText(this._el_0, '             \n      ', null);
         this._expr_1 = import7.UNINITIALIZED;
         this._expr_2 = import7.UNINITIALIZED;
         var disposable_0 = this.renderer.listen(this._el_0, 'click', this.eventHandler(this._handle_click_0_0.bind(this)));
         this._expr_3 = import7.UNINITIALIZED;
         this._expr_4 = import7.UNINITIALIZED;
         this._expr_5 = import7.UNINITIALIZED;
+        this._expr_6 = import7.UNINITIALIZED;
         this.init([].concat([this._el_0]), [
             this._el_0,
             this._text_1,
@@ -359,7 +365,9 @@ var _View_ToastContainer1 = (function (_super) {
             this._text_7,
             this._anchor_8,
             this._text_9,
-            this._text_10
+            this._text_10,
+            this._anchor_11,
+            this._text_12
         ], [disposable_0], []);
         return null;
     };
@@ -384,6 +392,12 @@ var _View_ToastContainer1 = (function (_super) {
         }
         if (((token === import22.NgSwitch) && ((4 <= requestNodeIndex) && (requestNodeIndex <= 9)))) {
             return this._NgSwitch_4_3;
+        }
+        if (((token === import18.TemplateRef) && (11 === requestNodeIndex))) {
+            return this._TemplateRef_11_5;
+        }
+        if (((token === import21.NgIf) && (11 === requestNodeIndex))) {
+            return this._NgIf_11_6;
         }
         return notFoundResult;
     };
@@ -415,6 +429,11 @@ var _View_ToastContainer1 = (function (_super) {
         if (import4.checkBinding(throwOnChange, this._expr_5, currVal_5)) {
             this._NgSwitchCase_6_6.ngSwitchCase = currVal_5;
             this._expr_5 = currVal_5;
+        }
+        var currVal_6 = this.context.$implicit.config.showCloseButton;
+        if (import4.checkBinding(throwOnChange, this._expr_6, currVal_6)) {
+            this._NgIf_11_6.ngIf = currVal_6;
+            this._expr_6 = currVal_6;
         }
         this.detectContentChildrenChanges(throwOnChange);
         var currVal_1 = import4.interpolate(1, 'toast toast-', this.context.$implicit.type, '');
@@ -531,5 +550,31 @@ var _View_ToastContainer4 = (function (_super) {
 }(import1.AppView));
 function viewFactory_ToastContainer4(viewUtils, parentInjector, declarationEl) {
     return new _View_ToastContainer4(viewUtils, parentInjector, declarationEl);
+}
+var _View_ToastContainer5 = (function (_super) {
+    __extends(_View_ToastContainer5, _super);
+    function _View_ToastContainer5(viewUtils, parentInjector, declarationEl) {
+        _super.call(this, _View_ToastContainer5, renderType_ToastContainer, import6.ViewType.EMBEDDED, viewUtils, parentInjector, declarationEl, import7.ChangeDetectorStatus.CheckAlways);
+    }
+    _View_ToastContainer5.prototype.createInternal = function (rootSelector) {
+        this._el_0 = this.renderer.createElement(null, 'div', null);
+        this.renderer.setElementAttribute(this._el_0, 'class', 'toast-close-button');
+        this._text_1 = this.renderer.createText(this._el_0, '×\n        ', null);
+        var disposable_0 = this.renderer.listen(this._el_0, 'click', this.eventHandler(this._handle_click_0_0.bind(this)));
+        this.init([].concat([this._el_0]), [
+            this._el_0,
+            this._text_1
+        ], [disposable_0], []);
+        return null;
+    };
+    _View_ToastContainer5.prototype._handle_click_0_0 = function ($event) {
+        this.markPathToRootAsCheckOnce();
+        var pd_0 = (this.parent.parent.context.removeToast(this.parent.context.$implicit) !== false);
+        return (true && pd_0);
+    };
+    return _View_ToastContainer5;
+}(import1.AppView));
+function viewFactory_ToastContainer5(viewUtils, parentInjector, declarationEl) {
+    return new _View_ToastContainer5(viewUtils, parentInjector, declarationEl);
 }
 //# sourceMappingURL=toast-container.component.ngfactory.js.map

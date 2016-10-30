@@ -9,6 +9,7 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
 let config: any = {
   animate: 'flyRight',
+  newestOnTop: true,
 };
 
 @NgModule({

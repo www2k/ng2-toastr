@@ -5,6 +5,7 @@ var ToastOptions = (function () {
         this.newestOnTop = false;
         this.animate = 'fade';
         this.enableHTML = false;
+        this.showCloseButton = false;
         Object.assign(this, options);
     }
     ToastOptions.decorators = [
