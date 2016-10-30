@@ -2,12 +2,11 @@
 var core_1 = require('@angular/core');
 var toast_options_1 = require('./toast-options');
 var platform_browser_1 = require('@angular/platform-browser');
-// import {HammerGesturesPlugin} from '@angular/platform-browser/src/dom/events/hammer_gestures';
+var hammer_gestures_1 = require('@angular/platform-browser/src/dom/events/hammer_gestures');
 var ToastContainer = (function () {
-    function ToastContainer(sanitizer, 
-        // private gestures: HammerGesturesPlugin,
-        options) {
+    function ToastContainer(sanitizer, gestures, options) {
         this.sanitizer = sanitizer;
+        this.gestures = gestures;
         this.position = 'fixed';
         this.messageClass = 'toast-message';
         this.titleClass = 'toast-title';
@@ -158,6 +157,7 @@ var ToastContainer = (function () {
     /** @nocollapse */
     ToastContainer.ctorParameters = [
         { type: platform_browser_1.DomSanitizer, },
+        { type: hammer_gestures_1.HammerGesturesPlugin, },
         { type: toast_options_1.ToastOptions, decorators: [{ type: core_1.Optional },] },
     ];
     ToastContainer.propDecorators = {

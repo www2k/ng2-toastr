@@ -7,14 +7,14 @@ import {AppErrorHandler} from './app-error-handler';
 @Component({
   selector: 'my-app',
   template:  `
-      <h1> Angular 2 Toastr Demo.</h1>
+      <h1 (swipe)="swiped($event)"> Angular 2 Toastr Demo.</h1>
       <div style="border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;">
         <button type="button" class="btn btn-success" (click)="showSuccess()">Success</button>
         <button type="button" class="btn btn-info" (click)="showInfo()">Information</button>
         <button type="button" class="btn btn-warning" (click)="showWarning()">Warning</button>
         <button type="button" class="btn btn-danger" (click)="showError()">Error</button>
       </div>
-      <div style="border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;"  (swipe)="swiped($event)">
+      <div style="border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;">
         <button type="button" class="btn btn-info" (click)="showClickToDismiss()">Click to Dismiss</button>
         <button type="button" class="btn btn-warning" (click)="showCustomLife()">8-second Toast</button>
         <button type="button" class="btn btn-info" (click)="showControlled()">Developer Controlled Toast</button>
