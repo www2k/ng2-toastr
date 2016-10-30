@@ -1,12 +1,13 @@
-import {Component, Optional, transition, state, trigger, style, animate} from '@angular/core';
+import {Component, Optional, ViewChild, transition, state, trigger, style, animate, AfterViewInit} from '@angular/core';
 import {Toast} from './toast';
 import {ToastOptions} from './toast-options';
 import {DomSanitizer} from '@angular/platform-browser';
+import {HammerGesturesPlugin} from '@angular/platform-browser/src/dom/events/hammer_gestures';
 
 @Component({
   selector: 'toast-container',
   template: `
-    <div id="toast-container" [style.position]="position" class="{{positionClass}}">
+    <div #toastContainer id="toast-container" [style.position]="position" class="{{positionClass}}">
       <div *ngFor="let toast of toasts" [@inOut]="animate" class="toast toast-{{toast.type}}" 
       (click)="clicked(toast)" (swiperight)="swiped($event)">
         <div *ngIf="toast.title" class="{{toast.config.titleClass || titleClass}}">{{toast.title}}</div>
@@ -88,7 +89,7 @@ import {DomSanitizer} from '@angular/platform-browser';
     ]),
   ],
 })
-export class ToastContainer {
+export class ToastContainer implements AfterViewInit {
   position = 'fixed';
   messageClass = 'toast-message';
   titleClass = 'toast-title';
@@ -99,13 +100,22 @@ export class ToastContainer {
   animate: string = 'fade';
 
   public onToastClicked: (toast: Toast) => void;
+  @ViewChild('toastContainer') container;
 
   constructor(private sanitizer: DomSanitizer,
+              private gestures: HammerGesturesPlugin,
               @Optional() options: ToastOptions)
   {
     if (options) {
       Object.assign(this, options);
     }
+  }
+
+  ngAfterViewInit() {
+    console.log(this.container);
+    // this.gestures.addEventListener(this.container.nativeElement, 'swipe', (event) => {
+    //   console.log(event);
+    // })
   }
 
   addToast(toast: Toast) {

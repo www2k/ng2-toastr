@@ -1,8 +1,11 @@
+import { AfterViewInit } from '@angular/core';
 import { Toast } from './toast';
 import { ToastOptions } from './toast-options';
 import { DomSanitizer } from '@angular/platform-browser';
-export declare class ToastContainer {
+import { HammerGesturesPlugin } from '@angular/platform-browser/src/dom/events/hammer_gestures';
+export declare class ToastContainer implements AfterViewInit {
     private sanitizer;
+    private gestures;
     position: string;
     messageClass: string;
     titleClass: string;
@@ -12,7 +15,9 @@ export declare class ToastContainer {
     newestOnTop: boolean;
     animate: string;
     onToastClicked: (toast: Toast) => void;
-    constructor(sanitizer: DomSanitizer, options: ToastOptions);
+    container: any;
+    constructor(sanitizer: DomSanitizer, gestures: HammerGesturesPlugin, options: ToastOptions);
+    ngAfterViewInit(): void;
     addToast(toast: Toast): void;
     removeToast(toast: Toast): void;
     removeAllToasts(): void;

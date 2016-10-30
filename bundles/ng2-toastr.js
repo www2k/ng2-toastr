@@ -1,4 +1,4 @@
-System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/core", "./toast-options", "@angular/platform-browser"], true, function($__require, exports, module) {
+System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/core", "./toast-options", "@angular/platform-browser", "@angular/platform-browser/src/dom/events/hammer_gestures"], true, function($__require, exports, module) {
   "use strict";
   ;
   var global = this,
@@ -7,36 +7,51 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
   var core_1 = $__require('@angular/core');
   var toast_options_1 = $__require('./toast-options');
   var platform_browser_1 = $__require('@angular/platform-browser');
+  var hammer_gestures_1 = $__require('@angular/platform-browser/src/dom/events/hammer_gestures');
   var ToastContainer = (function() {
-    function ToastContainer(sanitizer, options) {
+    function ToastContainer(sanitizer, gestures, options) {
       this.sanitizer = sanitizer;
+      this.gestures = gestures;
       this.position = 'fixed';
       this.messageClass = 'toast-message';
       this.titleClass = 'toast-title';
       this.positionClass = 'toast-top-right';
       this.toasts = [];
       this.maxShown = 5;
+      this.newestOnTop = false;
       this.animate = 'fade';
       if (options) {
         Object.assign(this, options);
       }
     }
+    ToastContainer.prototype.ngAfterViewInit = function() {
+      console.log(this.container);
+    };
     ToastContainer.prototype.addToast = function(toast) {
       if (this.positionClass.indexOf('top') > 0) {
-        this.toasts.push(toast);
+        if (this.newestOnTop) {
+          this.toasts.unshift(toast);
+        } else {
+          this.toasts.push(toast);
+        }
         if (this.toasts.length > this.maxShown) {
-          this.toasts.splice(0, (this.toasts.length - this.maxShown));
+          var diff = this.toasts.length - this.maxShown;
+          if (this.newestOnTop) {
+            this.toasts.splice(this.maxShown);
+          } else {
+            this.toasts.splice(0, diff);
+          }
         }
       } else {
         this.toasts.unshift(toast);
         if (this.toasts.length > this.maxShown) {
-          this.toasts.splice(this.maxShown, (this.toasts.length - this.maxShown));
+          this.toasts.splice(this.maxShown);
         }
       }
     };
-    ToastContainer.prototype.removeToast = function(toastId) {
-      this.toasts = this.toasts.filter(function(toast) {
-        return toast.id !== toastId;
+    ToastContainer.prototype.removeToast = function(toast) {
+      this.toasts = this.toasts.filter(function(t) {
+        return t.id !== toast.id;
       });
     };
     ToastContainer.prototype.removeAllToasts = function() {
@@ -60,11 +75,14 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
       }
       return null;
     };
+    ToastContainer.prototype.swiped = function(event) {
+      console.log(event);
+    };
     ToastContainer.decorators = [{
       type: core_1.Component,
       args: [{
         selector: 'toast-container',
-        template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" [@inOut]=\"animate\" class=\"toast toast-{{toast.type}}\" (click)=\"clicked(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{toast.titleClass || titleClass}}\">{{toast.title}}</div>\n        <div [ngSwitch]=\"toast.enableHTML\">\n          <span *ngSwitchCase=\"true\" [innerHTML]=\"sanitizer.bypassSecurityTrustHtml(toast.message)\"></span>\n          <span *ngSwitchDefault class=\"{{toast.messageClass || messageClass}}\">{{toast.message}}</span>\n        </div>              \n      </div>\n    </div>\n    ",
+        template: "\n    <div #toastContainer id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" [@inOut]=\"animate\" class=\"toast toast-{{toast.type}}\" \n      (click)=\"clicked(toast)\" (swiperight)=\"swiped($event)\">\n        <div *ngIf=\"toast.title\" class=\"{{toast.config.titleClass || titleClass}}\">{{toast.title}}</div>\n        <div [ngSwitch]=\"toast.config.enableHTML\">\n          <span *ngSwitchCase=\"true\" [innerHTML]=\"sanitizer.bypassSecurityTrustHtml(toast.message)\"></span>\n          <span *ngSwitchDefault class=\"{{toast.config.messageClass || messageClass}}\">{{toast.message}}</span>\n        </div>              \n      </div>\n    </div>\n    ",
         animations: [core_1.trigger('inOut', [core_1.state('flyRight, flyLeft', core_1.style({
           opacity: 1,
           transform: 'translateX(0)'
@@ -98,10 +116,14 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
         }))])])]
       }]
     }];
-    ToastContainer.ctorParameters = [{type: platform_browser_1.DomSanitizer}, {
+    ToastContainer.ctorParameters = [{type: platform_browser_1.DomSanitizer}, {type: hammer_gestures_1.HammerGesturesPlugin}, {
       type: toast_options_1.ToastOptions,
       decorators: [{type: core_1.Optional}]
     }];
+    ToastContainer.propDecorators = {'container': [{
+        type: core_1.ViewChild,
+        args: ['toastContainer']
+      }]};
     return ToastContainer;
   }());
   exports.ToastContainer = ToastContainer;
@@ -116,11 +138,18 @@ System.registerDynamic("ng2-toastr/src/toast", [], true, function($__require, ex
       __define = global.define;
   global.define = undefined;
   var Toast = (function() {
-    function Toast(type, message, title) {
+    function Toast(type, message, title, data) {
       this.type = type;
       this.message = message;
       this.title = title;
-      this.enableHTML = false;
+      this.data = data;
+      this.config = {
+        dismiss: 'auto',
+        enableHTML: false,
+        titleClass: '',
+        messageClass: '',
+        toastLife: 3000
+      };
     }
     return Toast;
   }());
@@ -129,7 +158,7 @@ System.registerDynamic("ng2-toastr/src/toast", [], true, function($__require, ex
   return module.exports;
 });
 
-System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toast-container.component", "./toast-options", "./toast"], true, function($__require, exports, module) {
+System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toast-container.component", "./toast-options", "./toast", "rxjs/Rx"], true, function($__require, exports, module) {
   "use strict";
   ;
   var global = this,
@@ -139,19 +168,21 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
   var toast_container_component_1 = $__require('./toast-container.component');
   var toast_options_1 = $__require('./toast-options');
   var toast_1 = $__require('./toast');
+  var Rx_1 = $__require('rxjs/Rx');
   var ToastsManager = (function() {
     function ToastsManager(componentFactoryResolver, appRef, options) {
       this.componentFactoryResolver = componentFactoryResolver;
       this.appRef = appRef;
-      this.options = {
-        dismiss: 'auto',
-        toastLife: 3000
-      };
+      this.options = {};
       this.index = 0;
+      this.toastClicked = new Rx_1.Subject();
       if (options) {
         Object.assign(this.options, options);
       }
     }
+    ToastsManager.prototype.onClickToast = function() {
+      return this.toastClicked.asObservable();
+    };
     ToastsManager.prototype.show = function(toast, options) {
       var _this = this;
       return new Promise(function(resolve, reject) {
@@ -176,58 +207,38 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
         resolve(_this.setupToast(toast, options));
       });
     };
-    ToastsManager.prototype.createTimeout = function(toastId, timeout) {
+    ToastsManager.prototype.createTimeout = function(toast, timeout) {
       var _this = this;
       var life = timeout || this.options.toastLife;
       setTimeout(function() {
-        _this.clearToast(toastId);
+        _this.clearToast(toast);
       }, life);
     };
     ToastsManager.prototype.setupToast = function(toast, options) {
       toast.id = ++this.index;
-      if (options && typeof(options.messageClass) === 'string') {
-        toast.messageClass = options.messageClass;
-      } else if (typeof(this.options.messageClass) === 'string') {
-        toast.messageClass = this.options.messageClass;
-      }
-      if (options && typeof(options.titleClass) === 'string') {
-        toast.titleClass = options.titleClass;
-      } else if (typeof(this.options.titleClass) === 'string') {
-        toast.titleClass = this.options.titleClass;
-      }
-      if (options && typeof(options.enableHTML) === 'boolean') {
-        toast.enableHTML = options.enableHTML;
-      } else if (typeof(this.options.enableHTML) === 'boolean') {
-        toast.enableHTML = this.options.enableHTML;
-      }
-      if (options && typeof(options.dismiss) === 'string') {
-        toast.dismiss = options.dismiss;
-      } else if (options && typeof(options.autoDismiss) === 'boolean') {
-        toast.dismiss = options.autoDismiss ? 'auto' : 'click';
-      } else {
-        toast.dismiss = this.options.dismiss;
-      }
-      if (options && typeof(options.toastLife) === 'number') {
-        toast.dismiss = 'auto';
-        this.createTimeout(toast.id, options.toastLife);
-      } else if (toast.dismiss === 'auto') {
-        this.createTimeout(toast.id);
+      if (options) {
+        Object.keys(toast.config).forEach(function(k) {
+          if (options[k]) {
+            toast.config[k] = options[k];
+          }
+        });
       }
       this.container.instance.addToast(toast);
       return toast;
     };
     ToastsManager.prototype._onToastClicked = function(toast) {
-      if (toast.dismiss === 'click') {
-        this.clearToast(toast.id);
+      this.toastClicked.next(toast);
+      if (toast.config.dismiss === 'click') {
+        this.clearToast(toast);
       }
     };
     ToastsManager.prototype.dismissToast = function(toast) {
-      this.clearToast(toast.id);
+      this.clearToast(toast);
     };
-    ToastsManager.prototype.clearToast = function(toastId) {
+    ToastsManager.prototype.clearToast = function(toast) {
       if (this.container) {
         var instance = this.container.instance;
-        instance.removeToast(toastId);
+        instance.removeToast(toast);
         if (!instance.anyToast()) {
           this.dispose();
         }
@@ -250,23 +261,28 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
       }, 2000);
     };
     ToastsManager.prototype.error = function(message, title, options) {
-      var toast = new toast_1.Toast('error', message, title);
+      var data = options && options.data ? options.data : null;
+      var toast = new toast_1.Toast('error', message, title, data);
       return this.show(toast, options);
     };
     ToastsManager.prototype.info = function(message, title, options) {
-      var toast = new toast_1.Toast('info', message, title);
+      var data = options && options.data ? options.data : null;
+      var toast = new toast_1.Toast('info', message, title, data);
       return this.show(toast, options);
     };
     ToastsManager.prototype.success = function(message, title, options) {
-      var toast = new toast_1.Toast('success', message, title);
+      var data = options && options.data ? options.data : null;
+      var toast = new toast_1.Toast('success', message, title, data);
       return this.show(toast, options);
     };
     ToastsManager.prototype.warning = function(message, title, options) {
-      var toast = new toast_1.Toast('warning', message, title);
+      var data = options && options.data ? options.data : null;
+      var toast = new toast_1.Toast('warning', message, title, data);
       return this.show(toast, options);
     };
     ToastsManager.prototype.custom = function(message, title, options) {
-      var toast = new toast_1.Toast('custom', message, title);
+      var data = options && options.data ? options.data : null;
+      var toast = new toast_1.Toast('custom', message, title, data);
       return this.show(toast, options);
     };
     ToastsManager.decorators = [{type: core_1.Injectable}];
@@ -290,8 +306,9 @@ System.registerDynamic("ng2-toastr/src/toast-options", ["@angular/core"], true, 
   var core_1 = $__require('@angular/core');
   var ToastOptions = (function() {
     function ToastOptions(options) {
-      this.enableHTML = false;
+      this.newestOnTop = false;
       this.animate = 'fade';
+      this.enableHTML = false;
       Object.assign(this, options);
     }
     ToastOptions.decorators = [{type: core_1.Injectable}];
