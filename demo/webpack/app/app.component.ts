@@ -7,7 +7,7 @@ import {ToastsManager} from 'ng2-toastr/ng2-toastr';
   selector: 'my-app',
   template:  `
       <h1> Angular 2 Toastr Demo.</h1>
-      <div style="border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;">
+      <div style="border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;" (swipe)="swiped($event)">
         <button type="button" class="btn btn-success" (click)="showSuccess()">Success</button>
         <button type="button" class="btn btn-info" (click)="showInfo()">Information</button>
         <button type="button" class="btn btn-warning" (click)="showWarning()">Warning</button>
@@ -55,6 +55,10 @@ export class AppComponent {
       'Custom Message', {enableHTML: true, dismiss: 'click'});
     this.toastr.info('<span style="color: #bd362f">This should be red, </span><br/><span style="color: #bd362f">and multi-line message.</span>',
       'Custom Information Message', {enableHTML: true, toastLife: 5000});
+  }
+
+  swiped(event: any) {
+    console.log(event);
   }
 
 }

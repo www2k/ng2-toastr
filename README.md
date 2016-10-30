@@ -1,7 +1,7 @@
 Angular 2: Toastr
 ===================
 
-[![](https://img.shields.io/badge/npm-v1.2.1-brightgreen.svg)](https://www.npmjs.com/package/ng2-toastr)
+[![](https://img.shields.io/badge/npm-v1.3.0-brightgreen.svg)](https://www.npmjs.com/package/ng2-toastr)
 
 NOTE: Since version 1.1.0, ng2-toastr has added animation for displaying/dismissing toasts. 
 For configuration, see [Choose animation option](#animate-option). 
@@ -12,6 +12,37 @@ The lib is inspired by [angular-toastr] (https://github.com/Foxandxss/angular-to
 Please update Angular 2 to latest version to avoid any unexpected issues.
 
 ![Examples](toastr-examples.jpg?raw=true "Bootstrap Toasts")
+
+## What's New (v1.3.0)
+1. Added `onClickToast` observable on `ToastManager` instance.
+
+2. Now you can added custom data object to each toast.
+
+3. Each `Toast` instance includes `timeoutId`, which allows developer to stop auto-dismiss.
+
+    Following example shows how to allow user to click on toast to navigate to new path:
+    
+    ```
+    this.toastr.onClickToast()
+        .subscribe( toast => {
+            if (toast.timeoutId) {
+              clearTimeout(toast.timeoutId);
+              this.toastr.dismiss(toast);
+             
+            }
+            
+            if (toast.data && toast.data.url) {
+              // navigate to
+              this.router.navigate(toast.data.url);
+            }
+        });
+        
+    this.toastr.success('You are awesome! Click to view details.', 'Success!', {data: {url: '/path/to/successUrl'}});
+    ```
+
+4. Removed `autoDismiss` on `ToastOptions`, use `dismiss` instead.
+
+5. Added `newestOnTop' on `ToastOptions`.
 
 ## Usage
 
@@ -109,8 +140,8 @@ Determine how a displayed toaster can be dismissed. Allowed values are: 'auto', 
 * click: Toaster will be dismissed when user click on it.
 * controlled: Toaster will be dismissed based on specific logic.
  
-##### autoDismiss: (boolean) DEPRECATED! Use 'dismiss' instead.
-Determines whether toast should dismiss itself. If false, the toast will be dismissed when user tap on toast. Defaults to true.
+##### newestOnTop: (boolean) 
+Determines whether new toast should show up on top of previous toast Defaults to false.
 
 ##### maxShown: (number)
 Determines maximum number of toasts can be shown on the page in the same time. Defaults to 5.

@@ -9,4 +9,5 @@ export declare class AppComponent {
     showClickToDismiss(): void;
     showCustomLife(): void;
     showCustomHTML(): void;
+    swiped(event: any): void;
 }

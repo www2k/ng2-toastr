@@ -1,8 +1,7 @@
-import { AfterViewInit } from '@angular/core';
 import { Toast } from './toast';
 import { ToastOptions } from './toast-options';
 import { DomSanitizer } from '@angular/platform-browser';
-export declare class ToastContainer implements AfterViewInit {
+export declare class ToastContainer {
     private sanitizer;
     position: string;
     messageClass: string;
@@ -12,15 +11,12 @@ export declare class ToastContainer implements AfterViewInit {
     maxShown: number;
     newestOnTop: boolean;
     animate: string;
-    onToastClicked: (toast: Toast) => void;
-    container: any;
+    private onToastClicked;
     constructor(sanitizer: DomSanitizer, options: ToastOptions);
-    ngAfterViewInit(): void;
     addToast(toast: Toast): void;
     removeToast(toast: Toast): void;
     removeAllToasts(): void;
     clicked(toast: Toast): void;
     anyToast(): boolean;
     findToast(toastId: number): Toast | void;
-    swiped(event: any): void;
 }
