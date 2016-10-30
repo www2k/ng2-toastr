@@ -17,6 +17,14 @@ var ToastContainer = (function () {
             Object.assign(this, options);
         }
     }
+    ToastContainer.prototype.ngAfterViewInit = function () {
+        if (Hammer) {
+            var mc = new Hammer(this.container.nativeElement);
+            mc.on('swipeleft swiperight', function (event) {
+                console.log(event);
+            });
+        }
+    };
     ToastContainer.prototype.addToast = function (toast) {
         if (this.positionClass.indexOf('top') > 0) {
             if (this.newestOnTop) {
@@ -73,7 +81,7 @@ var ToastContainer = (function () {
     ToastContainer.decorators = [
         { type: core_1.Component, args: [{
                     selector: 'toast-container',
-                    template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\" (swipeleft)=\"swiped($event)\" (swiperight)=\"swiped($event)\">\n      <div *ngFor=\"let toast of toasts\" [@inOut]=\"animate\" class=\"toast toast-{{toast.type}}\" \n      (click)=\"clicked(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{toast.config.titleClass || titleClass}}\">{{toast.title}}</div>\n        <div [ngSwitch]=\"toast.config.enableHTML\">\n          <span *ngSwitchCase=\"true\" [innerHTML]=\"sanitizer.bypassSecurityTrustHtml(toast.message)\"></span>\n          <span *ngSwitchDefault class=\"{{toast.config.messageClass || messageClass}}\">{{toast.message}}</span>\n        </div>              \n      </div>\n    </div>\n    ",
+                    template: "\n    <div #toastContainer id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\" (swipeleft)=\"swiped($event)\" (swiperight)=\"swiped($event)\">\n      <div *ngFor=\"let toast of toasts\" [@inOut]=\"animate\" class=\"toast toast-{{toast.type}}\" \n      (click)=\"clicked(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{toast.config.titleClass || titleClass}}\">{{toast.title}}</div>\n        <div [ngSwitch]=\"toast.config.enableHTML\">\n          <span *ngSwitchCase=\"true\" [innerHTML]=\"sanitizer.bypassSecurityTrustHtml(toast.message)\"></span>\n          <span *ngSwitchDefault class=\"{{toast.config.messageClass || messageClass}}\">{{toast.message}}</span>\n        </div>              \n      </div>\n    </div>\n    ",
                     animations: [
                         core_1.trigger('inOut', [
                             core_1.state('flyRight, flyLeft', core_1.style({ opacity: 1, transform: 'translateX(0)' })),
@@ -151,6 +159,9 @@ var ToastContainer = (function () {
         { type: platform_browser_1.DomSanitizer, },
         { type: toast_options_1.ToastOptions, decorators: [{ type: core_1.Optional },] },
     ];
+    ToastContainer.propDecorators = {
+        'container': [{ type: core_1.ViewChild, args: ['toastContainer',] },],
+    };
     return ToastContainer;
 }());
 exports.ToastContainer = ToastContainer;

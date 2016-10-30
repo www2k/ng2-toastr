@@ -1,7 +1,8 @@
+import { AfterViewInit } from '@angular/core';
 import { Toast } from './toast';
 import { ToastOptions } from './toast-options';
 import { DomSanitizer } from '@angular/platform-browser';
-export declare class ToastContainer {
+export declare class ToastContainer implements AfterViewInit {
     private sanitizer;
     position: string;
     messageClass: string;
@@ -12,7 +13,9 @@ export declare class ToastContainer {
     newestOnTop: boolean;
     animate: string;
     onToastClicked: (toast: Toast) => void;
+    container: any;
     constructor(sanitizer: DomSanitizer, options: ToastOptions);
+    ngAfterViewInit(): void;
     addToast(toast: Toast): void;
     removeToast(toast: Toast): void;
     removeAllToasts(): void;

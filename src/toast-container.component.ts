@@ -1,12 +1,14 @@
-import {Component, Optional, transition, state, trigger, style, animate} from '@angular/core';
+import {Component, Optional, transition, state, trigger, style, animate, AfterViewInit, ViewChild} from '@angular/core';
 import {Toast} from './toast';
 import {ToastOptions} from './toast-options';
 import {DomSanitizer} from '@angular/platform-browser';
 
+declare var Hammer;
+
 @Component({
   selector: 'toast-container',
   template: `
-    <div id="toast-container" [style.position]="position" class="{{positionClass}}" (swipeleft)="swiped($event)" (swiperight)="swiped($event)">
+    <div #toastContainer id="toast-container" [style.position]="position" class="{{positionClass}}" (swipeleft)="swiped($event)" (swiperight)="swiped($event)">
       <div *ngFor="let toast of toasts" [@inOut]="animate" class="toast toast-{{toast.type}}" 
       (click)="clicked(toast)">
         <div *ngIf="toast.title" class="{{toast.config.titleClass || titleClass}}">{{toast.title}}</div>
@@ -88,7 +90,7 @@ import {DomSanitizer} from '@angular/platform-browser';
     ]),
   ],
 })
-export class ToastContainer {
+export class ToastContainer implements AfterViewInit {
   position = 'fixed';
   messageClass = 'toast-message';
   titleClass = 'toast-title';
@@ -100,11 +102,22 @@ export class ToastContainer {
 
   public onToastClicked: (toast: Toast) => void;
 
+  @ViewChild('toastContainer') container;
+
   constructor(private sanitizer: DomSanitizer,
               @Optional() options: ToastOptions)
   {
     if (options) {
       Object.assign(this, options);
+    }
+  }
+
+  ngAfterViewInit() {
+    if (Hammer) {
+      const mc = new Hammer(this.container.nativeElement);
+      mc.on('swipeleft swiperight', (event) => {
+        console.log(event);
+      })
     }
   }
 
