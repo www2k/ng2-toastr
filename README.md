@@ -146,6 +146,9 @@ Determine how a displayed toaster can be dismissed. Allowed values are: 'auto', 
 ##### newestOnTop: (boolean) 
 Determines whether new toast should show up on top of previous toast Defaults to false.
 
+##### showCloseButton: (boolean)
+Determines whether toast should include 'x' close button. Defaults to false.
+
 ##### maxShown: (number)
 Determines maximum number of toasts can be shown on the page in the same time. Defaults to 5.
 
