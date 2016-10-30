@@ -43,7 +43,6 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
           this.toasts.splice(this.maxShown);
         }
       }
-      console.log(this.toasts);
     };
     ToastContainer.prototype.removeToast = function(toast) {
       if (toast.timeoutId) {
@@ -215,14 +214,11 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
         if (_this.options[k]) {
           toast.config[k] = _this.options[k];
         }
+        if (options && options[k]) {
+          toast.config[k] = options[k];
+        }
       });
-      if (options) {
-        Object.keys(toast.config).forEach(function(k) {
-          if (options[k]) {
-            toast.config[k] = options[k];
-          }
-        });
-      }
+      console.log(toast);
       if (toast.config.dismiss === 'auto') {
         toast.timeoutId = this.createTimeout(toast);
       }

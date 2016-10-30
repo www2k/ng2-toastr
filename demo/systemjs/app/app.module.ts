@@ -14,6 +14,7 @@ let config: any = {
   showCloseButton: true,
   enableHTML: true,
   maxShown: 5,
+  dismiss: 'click',
 };
 
 @NgModule({

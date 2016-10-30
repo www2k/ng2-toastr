@@ -22,6 +22,7 @@ var config = {
     showCloseButton: true,
     enableHTML: true,
     maxShown: 5,
+    dismiss: 'click',
 };
 var AppModule = (function () {
     function AppModule() {

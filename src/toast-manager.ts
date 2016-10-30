@@ -72,15 +72,13 @@ export class ToastsManager {
       if (this.options[k]) {
         toast.config[k] = this.options[k];
       }
+
+      if (options && options[k]) {
+        toast.config[k] = options[k];
+      }
     });
 
-    if (options) {
-      Object.keys(toast.config).forEach(k => {
-        if (options[k]) {
-          toast.config[k] = options[k];
-        }
-      });
-    }
+    console.log(toast);
 
     if (toast.config.dismiss === 'auto') {
       toast.timeoutId = this.createTimeout(toast);
