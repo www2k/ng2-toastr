@@ -1,8 +1,7 @@
 import {Component, Optional, ViewChild, transition, state, trigger, style, animate, AfterViewInit} from '@angular/core';
 import {Toast} from './toast';
 import {ToastOptions} from './toast-options';
-import {DomSanitizer} from '@angular/platform-browser';
-import {HammerGesturesPlugin} from '@angular/platform-browser/src/dom/events/hammer_gestures';
+import {DomSanitizer, EventManager} from '@angular/platform-browser';
 
 @Component({
   selector: 'toast-container',
@@ -103,7 +102,7 @@ export class ToastContainer implements AfterViewInit {
   @ViewChild('toastContainer') container;
 
   constructor(private sanitizer: DomSanitizer,
-              private gestures: HammerGesturesPlugin,
+              private eventManager: EventManager,
               @Optional() options: ToastOptions)
   {
     if (options) {
@@ -113,9 +112,9 @@ export class ToastContainer implements AfterViewInit {
 
   ngAfterViewInit() {
     console.log(this.container);
-    // this.gestures.addEventListener(this.container.nativeElement, 'swipe', (event) => {
-    //   console.log(event);
-    // })
+    this.eventManager.addEventListener(this.container.nativeElement, 'swipe', (event) => {
+      console.log(event);
+    });
   }
 
   addToast(toast: Toast) {

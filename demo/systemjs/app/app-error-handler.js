@@ -27,9 +27,10 @@ var AppErrorHandler = (function (_super) {
     };
     AppErrorHandler = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [ng2_toastr_1.ToastsManager])
+        __metadata('design:paramtypes', [(typeof (_a = typeof ng2_toastr_1.ToastsManager !== 'undefined' && ng2_toastr_1.ToastsManager) === 'function' && _a) || Object])
     ], AppErrorHandler);
     return AppErrorHandler;
+    var _a;
 }(core_1.ErrorHandler));
 exports.AppErrorHandler = AppErrorHandler;
 //# sourceMappingURL=app-error-handler.js.map

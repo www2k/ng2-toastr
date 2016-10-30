@@ -16,7 +16,7 @@ var import4 = require('@angular/core/src/linker/view_utils');
 var import6 = require('@angular/core/src/linker/view_type');
 var import7 = require('@angular/core/src/change_detection/change_detection');
 var import8 = require('@angular/platform-browser/src/security/dom_sanitization_service');
-var import9 = require('@angular/platform-browser/src/dom/events/hammer_gestures');
+var import9 = require('@angular/platform-browser/src/dom/events/event_manager');
 var import10 = require('./toast-options');
 var import11 = require('@angular/core/src/metadata/view');
 var import12 = require('@angular/core/src/linker/component_factory');
@@ -43,7 +43,7 @@ var _View_ToastContainer_Host0 = (function (_super) {
         this._el_0 = this.selectOrCreateHostElement('toast-container', rootSelector, null);
         this._appEl_0 = new import2.AppElement(0, null, this, this._el_0);
         var compView_0 = viewFactory_ToastContainer0(this.viewUtils, this.injector(0), this._appEl_0);
-        this._ToastContainer_0_4 = new import3.ToastContainer(this.parentInjector.get(import8.DomSanitizer), this.parentInjector.get(import9.HammerGesturesPlugin), this.parentInjector.get(import10.ToastOptions, null));
+        this._ToastContainer_0_4 = new import3.ToastContainer(this.parentInjector.get(import8.DomSanitizer), this.parentInjector.get(import9.EventManager), this.parentInjector.get(import10.ToastOptions, null));
         this._appEl_0.initComponent(this._ToastContainer_0_4, [], compView_0);
         compView_0.create(this._ToastContainer_0_4, this.projectableNodes, null);
         this.init([].concat([this._el_0]), [this._el_0], [], []);

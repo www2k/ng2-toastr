@@ -1,4 +1,4 @@
-System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/core", "./toast-options", "@angular/platform-browser", "@angular/platform-browser/src/dom/events/hammer_gestures"], true, function($__require, exports, module) {
+System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/core", "./toast-options", "@angular/platform-browser"], true, function($__require, exports, module) {
   "use strict";
   ;
   var global = this,
@@ -7,11 +7,10 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
   var core_1 = $__require('@angular/core');
   var toast_options_1 = $__require('./toast-options');
   var platform_browser_1 = $__require('@angular/platform-browser');
-  var hammer_gestures_1 = $__require('@angular/platform-browser/src/dom/events/hammer_gestures');
   var ToastContainer = (function() {
-    function ToastContainer(sanitizer, gestures, options) {
+    function ToastContainer(sanitizer, eventManager, options) {
       this.sanitizer = sanitizer;
-      this.gestures = gestures;
+      this.eventManager = eventManager;
       this.position = 'fixed';
       this.messageClass = 'toast-message';
       this.titleClass = 'toast-title';
@@ -26,6 +25,9 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
     }
     ToastContainer.prototype.ngAfterViewInit = function() {
       console.log(this.container);
+      this.eventManager.addEventListener(this.container.nativeElement, 'swipe', function(event) {
+        console.log(event);
+      });
     };
     ToastContainer.prototype.addToast = function(toast) {
       if (this.positionClass.indexOf('top') > 0) {
@@ -116,7 +118,7 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
         }))])])]
       }]
     }];
-    ToastContainer.ctorParameters = [{type: platform_browser_1.DomSanitizer}, {type: hammer_gestures_1.HammerGesturesPlugin}, {
+    ToastContainer.ctorParameters = [{type: platform_browser_1.DomSanitizer}, {type: platform_browser_1.EventManager}, {
       type: toast_options_1.ToastOptions,
       decorators: [{type: core_1.Optional}]
     }];

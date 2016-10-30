@@ -2,11 +2,10 @@
 var core_1 = require('@angular/core');
 var toast_options_1 = require('./toast-options');
 var platform_browser_1 = require('@angular/platform-browser');
-var hammer_gestures_1 = require('@angular/platform-browser/src/dom/events/hammer_gestures');
 var ToastContainer = (function () {
-    function ToastContainer(sanitizer, gestures, options) {
+    function ToastContainer(sanitizer, eventManager, options) {
         this.sanitizer = sanitizer;
-        this.gestures = gestures;
+        this.eventManager = eventManager;
         this.position = 'fixed';
         this.messageClass = 'toast-message';
         this.titleClass = 'toast-title';
@@ -21,9 +20,9 @@ var ToastContainer = (function () {
     }
     ToastContainer.prototype.ngAfterViewInit = function () {
         console.log(this.container);
-        // this.gestures.addEventListener(this.container.nativeElement, 'swipe', (event) => {
-        //   console.log(event);
-        // })
+        this.eventManager.addEventListener(this.container.nativeElement, 'swipe', function (event) {
+            console.log(event);
+        });
     };
     ToastContainer.prototype.addToast = function (toast) {
         if (this.positionClass.indexOf('top') > 0) {
@@ -157,7 +156,7 @@ var ToastContainer = (function () {
     /** @nocollapse */
     ToastContainer.ctorParameters = [
         { type: platform_browser_1.DomSanitizer, },
-        { type: hammer_gestures_1.HammerGesturesPlugin, },
+        { type: platform_browser_1.EventManager, },
         { type: toast_options_1.ToastOptions, decorators: [{ type: core_1.Optional },] },
     ];
     ToastContainer.propDecorators = {
