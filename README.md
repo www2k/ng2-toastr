@@ -60,6 +60,8 @@ Please update Angular 2 to latest version to avoid any unexpected issues.
     <script src="node_modules/ng2-toastr/bundles/ng2-toastr.min.js"></script>
     
     ```
+    
+    NOTE: If you are using angular-cli you do not need to include 'node_modules/ng2-toastr/bundles/ng2-toastr.min.js', since adding 'import {ToastModule} from 'ng2-toastr/ng2-toastr';' to your module file (below) will allow it to be autoloaded.
 
 3. Add ToastModule into your AppModule class. `app.module.ts` would look like this:
 
@@ -186,10 +188,10 @@ Use dependency inject for custom configurations. You can either inject into `app
     import {AppComponent} from './app.component';
     import {ToastModule, ToastOptions} from 'ng2-toastr/ng2-toastr';
     
-    let options: any = {
+    let options: ToastOptions = new ToastOptions({
       animate: 'flyRight',
       positionClass: 'toast-bottom-right',
-    };
+    });
         
     @NgModule({
       imports: [BrowserModule, 

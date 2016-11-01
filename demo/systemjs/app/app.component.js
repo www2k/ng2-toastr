@@ -13,12 +13,10 @@ var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
 var AppComponent = (function () {
     function AppComponent(toastr) {
         this.toastr = toastr;
+        // this.toastr.onClickToast()
     }
     AppComponent.prototype.showSuccess = function () {
-        this.toastr.success('You are awesome!', 'Success!', { toastLife: 5000, showCloseButton: false })
-            .then(function (toast) {
-            console.log(toast);
-        });
+        this.toastr.success('You are awesome!', 'Success!', { toastLife: 5000, showCloseButton: false });
     };
     AppComponent.prototype.showError = function () {
         this.toastr.error('This is not good!', 'Oops!');
