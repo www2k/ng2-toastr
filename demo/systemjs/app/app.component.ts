@@ -24,13 +24,11 @@ import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 export class AppComponent {
 
   constructor(private toastr: ToastsManager) {
+    // this.toastr.onClickToast()
   }
 
   showSuccess() {
-    this.toastr.success('You are awesome!', 'Success!', {toastLife: 5000, showCloseButton: false})
-      .then( toast => {
-        console.log(toast);
-      });
+    this.toastr.success('You are awesome!', 'Success!', {toastLife: 5000, showCloseButton: false});
   }
 
   showError() {

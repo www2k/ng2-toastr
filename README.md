@@ -188,10 +188,10 @@ Use dependency inject for custom configurations. You can either inject into `app
     import {AppComponent} from './app.component';
     import {ToastModule, ToastOptions} from 'ng2-toastr/ng2-toastr';
     
-    let options: any = {
+    let options: ToastOptions = new ToastOptions({
       animate: 'flyRight',
       positionClass: 'toast-bottom-right',
-    };
+    });
         
     @NgModule({
       imports: [BrowserModule, 
