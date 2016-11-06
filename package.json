@@ -14,7 +14,7 @@
     "ngc": "ngc",
     "lite": "lite-server",
     "start": "concurrently \"npm run tsc:w\" \"npm run lite\" ",
-    "prepublish": "gulp clean && ngc && node make.js && gulp bundle-css"
+    "prepublish": "gulp clean && node make.js && gulp bundle-css"
   },
   "repository": {
     "type": "git",
