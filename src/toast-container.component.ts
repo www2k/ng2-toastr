@@ -1,4 +1,4 @@
-import {Component, Optional, transition, state, trigger, style, animate} from '@angular/core';
+import {Component, Optional, transition, state, trigger, style, animate, ChangeDetectorRef} from '@angular/core';
 import {Toast} from './toast';
 import {ToastOptions} from './toast-options';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -103,6 +103,7 @@ export class ToastContainer {
   private onToastClicked: (toast: Toast) => void;
 
   constructor(private sanitizer: DomSanitizer,
+              private cdr: ChangeDetectorRef,
               @Optional() options: ToastOptions)
   {
     if (options) {
@@ -133,6 +134,7 @@ export class ToastContainer {
         this.toasts.splice(this.maxShown);
       }
     }
+    this.cdr.detectChanges();
   }
 
   removeToast(toast: Toast) {
