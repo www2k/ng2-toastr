@@ -15,8 +15,9 @@ var core_1 = require('@angular/core');
 var toast_options_1 = require('./toast-options');
 var platform_browser_1 = require('@angular/platform-browser');
 var ToastContainer = (function () {
-    function ToastContainer(sanitizer, options) {
+    function ToastContainer(sanitizer, cdr, options) {
         this.sanitizer = sanitizer;
+        this.cdr = cdr;
         this.position = 'fixed';
         this.messageClass = 'toast-message';
         this.titleClass = 'toast-title';
@@ -53,6 +54,7 @@ var ToastContainer = (function () {
                 this.toasts.splice(this.maxShown);
             }
         }
+        this.cdr.detectChanges();
     };
     ToastContainer.prototype.removeToast = function (toast) {
         if (toast.timeoutId) {
@@ -158,8 +160,8 @@ var ToastContainer = (function () {
                 ]),
             ],
         }),
-        __param(1, core_1.Optional()), 
-        __metadata('design:paramtypes', [platform_browser_1.DomSanitizer, toast_options_1.ToastOptions])
+        __param(2, core_1.Optional()), 
+        __metadata('design:paramtypes', [platform_browser_1.DomSanitizer, core_1.ChangeDetectorRef, toast_options_1.ToastOptions])
     ], ToastContainer);
     return ToastContainer;
 }());

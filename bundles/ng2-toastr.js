@@ -8,8 +8,9 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
   var toast_options_1 = $__require('./toast-options');
   var platform_browser_1 = $__require('@angular/platform-browser');
   var ToastContainer = (function() {
-    function ToastContainer(sanitizer, options) {
+    function ToastContainer(sanitizer, cdr, options) {
       this.sanitizer = sanitizer;
+      this.cdr = cdr;
       this.position = 'fixed';
       this.messageClass = 'toast-message';
       this.titleClass = 'toast-title';
@@ -43,6 +44,7 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
           this.toasts.splice(this.maxShown);
         }
       }
+      this.cdr.detectChanges();
     };
     ToastContainer.prototype.removeToast = function(toast) {
       if (toast.timeoutId) {
@@ -112,7 +114,7 @@ System.registerDynamic("ng2-toastr/src/toast-container.component", ["@angular/co
         }))])])]
       }]
     }];
-    ToastContainer.ctorParameters = [{type: platform_browser_1.DomSanitizer}, {
+    ToastContainer.ctorParameters = [{type: platform_browser_1.DomSanitizer}, {type: core_1.ChangeDetectorRef}, {
       type: toast_options_1.ToastOptions,
       decorators: [{type: core_1.Optional}]
     }];
@@ -173,6 +175,9 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
         Object.assign(this.options, options);
       }
     }
+    ToastsManager.prototype.setRootViewContainerRef = function(vRef) {
+      this._rootViewContainerRef = vRef;
+    };
     ToastsManager.prototype.onClickToast = function() {
       return this.toastClicked.asObservable();
     };
@@ -185,14 +190,16 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
             console.error(err);
             reject(err);
           }
-          var appContainer = _this.appRef['_rootComponents'][0]['_hostElement'].vcRef;
+          if (!_this._rootViewContainerRef) {
+            _this._rootViewContainerRef = _this.appRef['_rootComponents'][0]['_hostElement'].vcRef;
+          }
           var providers = core_1.ReflectiveInjector.resolve([{
             provide: toast_options_1.ToastOptions,
             useValue: _this.options
           }]);
           var toastFactory = _this.componentFactoryResolver.resolveComponentFactory(toast_container_component_1.ToastContainer);
-          var childInjector = core_1.ReflectiveInjector.fromResolvedProviders(providers, appContainer.parentInjector);
-          _this.container = appContainer.createComponent(toastFactory, appContainer.length, childInjector);
+          var childInjector = core_1.ReflectiveInjector.fromResolvedProviders(providers, _this._rootViewContainerRef.parentInjector);
+          _this.container = _this._rootViewContainerRef.createComponent(toastFactory, _this._rootViewContainerRef.length, childInjector);
           _this.container.instance.onToastClicked = function(toast) {
             _this._onToastClicked(toast);
           };
