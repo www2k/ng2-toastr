@@ -13,20 +13,16 @@ var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
 var AppComponent = (function () {
     function AppComponent(toastr, containerRef) {
         this.toastr = toastr;
-        this.ts = [];
         this.toastr.setRootViewContainerRef(containerRef);
     }
     AppComponent.prototype.showSuccess = function () {
         this.toastr.success('You are awesome!', 'Success!', { toastLife: 5000, showCloseButton: false });
-        this.ts.push('success');
     };
     AppComponent.prototype.showError = function () {
         this.toastr.error('This is not good!', 'Oops!');
-        this.ts.push('error');
     };
     AppComponent.prototype.showWarning = function () {
         this.toastr.warning('You are being warned.', 'Alert!');
-        this.ts.push('warning');
     };
     AppComponent.prototype.showInfo = function () {
         this.toastr.info('Just some information for you.');
@@ -58,12 +54,11 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n      <h1> Angular 2 Toastr Demo.</h1>\n      <div style=\"border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;\" (swipeleft)=\"swiped($event)\" (swiperight)=\"swiped($event)\">\n        <button type=\"button\" class=\"btn btn-success\" (click)=\"showSuccess()\">Success</button>\n        <button type=\"button\" class=\"btn btn-info\" (click)=\"showInfo()\">Information</button>\n        <button type=\"button\" class=\"btn btn-warning\" (click)=\"showWarning()\">Warning</button>\n        <button type=\"button\" class=\"btn btn-danger\" (click)=\"showError()\">Error</button>\n      </div>\n      <div style=\"border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;\">\n        <button type=\"button\" class=\"btn btn-info\" (click)=\"showClickToDismiss()\">Click to Dismiss</button>\n        <button type=\"button\" class=\"btn btn-warning\" (click)=\"showCustomLife()\">8-second Toast</button>\n        <button type=\"button\" class=\"btn btn-info\" (click)=\"showControlled()\">Developer Controlled Toast</button>\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"showCustomHTML()\">Custom HTML Toast</button>\n      </div>\n      <div *ngFor=\"let t of ts\">{{t}}</div>\n  ",
+            template: "\n      <h1> Angular 2 Toastr Demo.</h1>\n      <div style=\"border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;\" (swipeleft)=\"swiped($event)\" (swiperight)=\"swiped($event)\">\n        <button type=\"button\" class=\"btn btn-success\" (click)=\"showSuccess()\">Success</button>\n        <button type=\"button\" class=\"btn btn-info\" (click)=\"showInfo()\">Information</button>\n        <button type=\"button\" class=\"btn btn-warning\" (click)=\"showWarning()\">Warning</button>\n        <button type=\"button\" class=\"btn btn-danger\" (click)=\"showError()\">Error</button>\n      </div>\n      <div style=\"border: .2rem solid #f7f7f9; position: relative; margin: 1rem -1rem; padding: 10px;\">\n        <button type=\"button\" class=\"btn btn-info\" (click)=\"showClickToDismiss()\">Click to Dismiss</button>\n        <button type=\"button\" class=\"btn btn-warning\" (click)=\"showCustomLife()\">8-second Toast</button>\n        <button type=\"button\" class=\"btn btn-info\" (click)=\"showControlled()\">Developer Controlled Toast</button>\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"showCustomHTML()\">Custom HTML Toast</button>\n      </div>\n  ",
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof ng2_toastr_1.ToastsManager !== 'undefined' && ng2_toastr_1.ToastsManager) === 'function' && _a) || Object, core_1.ViewContainerRef])
+        __metadata('design:paramtypes', [ng2_toastr_1.ToastsManager, core_1.ViewContainerRef])
     ], AppComponent);
     return AppComponent;
-    var _a;
 }());
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

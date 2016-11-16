@@ -2,7 +2,6 @@ import { ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 export declare class AppComponent {
     private toastr;
-    ts: string[];
     constructor(toastr: ToastsManager, containerRef: ViewContainerRef);
     showSuccess(): void;
     showError(): void;

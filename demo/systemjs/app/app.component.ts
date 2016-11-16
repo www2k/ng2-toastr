@@ -19,11 +19,9 @@ import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
         <button type="button" class="btn btn-info" (click)="showControlled()">Developer Controlled Toast</button>
         <button type="button" class="btn btn-default" (click)="showCustomHTML()">Custom HTML Toast</button>
       </div>
-      <div *ngFor="let t of ts">{{t}}</div>
   `,
 })
 export class AppComponent {
-  ts: string[] = [];
 
   constructor(private toastr: ToastsManager, containerRef: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(containerRef);
@@ -31,18 +29,15 @@ export class AppComponent {
 
   showSuccess() {
     this.toastr.success('You are awesome!', 'Success!', {toastLife: 5000, showCloseButton: false});
-    this.ts.push('success');
   }
 
   showError() {
     this.toastr.error('This is not good!', 'Oops!');
-    this.ts.push('error');
 
   }
 
   showWarning() {
     this.toastr.warning('You are being warned.', 'Alert!');
-    this.ts.push('warning');
 
   }
 
