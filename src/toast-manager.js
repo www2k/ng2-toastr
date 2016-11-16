@@ -27,6 +27,9 @@ var ToastsManager = (function () {
             Object.assign(this.options, options);
         }
     }
+    ToastsManager.prototype.setRootViewContainerRef = function (vRef) {
+        this._rootViewContainerRef = vRef;
+    };
     ToastsManager.prototype.onClickToast = function () {
         return this.toastClicked.asObservable();
     };
@@ -40,15 +43,17 @@ var ToastsManager = (function () {
                     reject(err);
                 }
                 // get app root view component ref
-                var appContainer = _this.appRef['_rootComponents'][0]['_hostElement'].vcRef;
+                if (!_this._rootViewContainerRef) {
+                    _this._rootViewContainerRef = _this.appRef['_rootComponents'][0]['_hostElement'].vcRef;
+                }
                 // get options providers
                 var providers = core_1.ReflectiveInjector.resolve([
                     { provide: toast_options_1.ToastOptions, useValue: _this.options }
                 ]);
                 // create and load ToastContainer
                 var toastFactory = _this.componentFactoryResolver.resolveComponentFactory(toast_container_component_1.ToastContainer);
-                var childInjector = core_1.ReflectiveInjector.fromResolvedProviders(providers, appContainer.parentInjector);
-                _this.container = appContainer.createComponent(toastFactory, appContainer.length, childInjector);
+                var childInjector = core_1.ReflectiveInjector.fromResolvedProviders(providers, _this._rootViewContainerRef.parentInjector);
+                _this.container = _this._rootViewContainerRef.createComponent(toastFactory, _this._rootViewContainerRef.length, childInjector);
                 _this.container.instance.onToastClicked = function (toast) {
                     _this._onToastClicked(toast);
                 };

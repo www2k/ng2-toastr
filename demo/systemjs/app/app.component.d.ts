@@ -1,6 +1,7 @@
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 export declare class AppComponent {
     private toastr;
+    ts: string[];
     constructor(toastr: ToastsManager);
     showSuccess(): void;
     showError(): void;

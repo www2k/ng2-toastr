@@ -14,6 +14,7 @@ export class ToastsManager {
   private options: any = {};
   private index = 0;
   private toastClicked: Subject<Toast> = new Subject<Toast>();
+  private _rootViewContainerRef: ViewContainerRef;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
               private appRef: ApplicationRef,
@@ -21,6 +22,10 @@ export class ToastsManager {
     if (options) {
       Object.assign(this.options, options);
     }
+  }
+
+  setRootViewContainerRef(vRef: ViewContainerRef) {
+    this._rootViewContainerRef = vRef;
   }
 
   onClickToast(): Observable<Toast> {
@@ -37,7 +42,9 @@ export class ToastsManager {
         }
 
         // get app root view component ref
-        let appContainer: ViewContainerRef = this.appRef['_rootComponents'][0]['_hostElement'].vcRef;
+        if (!this._rootViewContainerRef) {
+          this._rootViewContainerRef = this.appRef['_rootComponents'][0]['_hostElement'].vcRef;
+        }
 
         // get options providers
         let providers = ReflectiveInjector.resolve([
@@ -46,8 +53,8 @@ export class ToastsManager {
 
         // create and load ToastContainer
         let toastFactory = this.componentFactoryResolver.resolveComponentFactory(ToastContainer);
-        let childInjector = ReflectiveInjector.fromResolvedProviders(providers, appContainer.parentInjector);
-        this.container = appContainer.createComponent(toastFactory, appContainer.length, childInjector);
+        let childInjector = ReflectiveInjector.fromResolvedProviders(providers, this._rootViewContainerRef.parentInjector);
+        this.container = this._rootViewContainerRef.createComponent(toastFactory, this._rootViewContainerRef.length, childInjector);
         this.container.instance.onToastClicked = (toast: Toast) => {
           this._onToastClicked(toast);
         }
