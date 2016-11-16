@@ -15,13 +15,13 @@ Please update Angular 2 to latest version to avoid any unexpected issues.
 
 ## Breaking change solution for Angular v2.2.x
 
-    ```
-    // AppComponent.ts (Root component of your app)
     
-    constructor(public toastr: ToastsManager, vRef: ViewContainerRef) {
-        this.toastr.setRootViewContainerRef(vRef);
-              }
-    ```
+        // AppComponent.ts (Root component of your app)
+    
+        constructor(public toastr: ToastsManager, vRef: ViewContainerRef) {
+            this.toastr.setRootViewContainerRef(vRef);
+        }
+    
 
 ## What's New
 1. Added `onClickToast` observable on `ToastManager` instance.
