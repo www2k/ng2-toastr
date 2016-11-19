@@ -5,7 +5,8 @@ import {
 import {ToastContainer} from './toast-container.component';
 import {ToastOptions} from './toast-options';
 import {Toast} from './toast';
-import {Subject, Observable} from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class ToastsManager {
