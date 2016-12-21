@@ -15,11 +15,11 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var app_component_1 = require('./app.component');
 var ng2_toastr_1 = require('ng2-toastr/ng2-toastr');
-var config = {
+var config = new ng2_toastr_1.ToastOptions({
     animate: 'flyRight',
     newestOnTop: false,
     showCloseButton: true,
-};
+});
 var AppModule = (function () {
     function AppModule() {
     }
