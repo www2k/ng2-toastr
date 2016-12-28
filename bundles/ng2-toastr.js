@@ -153,7 +153,7 @@ System.registerDynamic("ng2-toastr/src/toast", [], true, function($__require, ex
   return module.exports;
 });
 
-System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toast-container.component", "./toast-options", "./toast", "rxjs/Rx"], true, function($__require, exports, module) {
+System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toast-container.component", "./toast-options", "./toast", "rxjs/Subject"], true, function($__require, exports, module) {
   "use strict";
   ;
   var global = this,
@@ -163,14 +163,14 @@ System.registerDynamic("ng2-toastr/src/toast-manager", ["@angular/core", "./toas
   var toast_container_component_1 = $__require('./toast-container.component');
   var toast_options_1 = $__require('./toast-options');
   var toast_1 = $__require('./toast');
-  var Rx_1 = $__require('rxjs/Rx');
+  var Subject_1 = $__require('rxjs/Subject');
   var ToastsManager = (function() {
     function ToastsManager(componentFactoryResolver, appRef, options) {
       this.componentFactoryResolver = componentFactoryResolver;
       this.appRef = appRef;
       this.options = {};
       this.index = 0;
-      this.toastClicked = new Rx_1.Subject();
+      this.toastClicked = new Subject_1.Subject();
       if (options) {
         Object.assign(this.options, options);
       }
