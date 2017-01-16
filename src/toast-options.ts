@@ -1,21 +1,30 @@
 import {Injectable} from '@angular/core';
 
-@Injectable()
-export class ToastOptions {
+export interface ToastConfigurableOptions {
   positionClass?: string;
   maxShown?: number;
-  newestOnTop?: boolean = false;
-  animate?: string = 'fade';
+  newestOnTop?: boolean;
+  animate?: string;
 
   // override-able properties
   toastLife?: number;
-  enableHTML?: boolean = false;
+  enableHTML?: boolean;
   dismiss?: 'auto' | 'click' | 'controlled';
   messageClass?: string;
   titleClass?: string;
-  showCloseButton?: boolean = false;
+  showCloseButton?: boolean;
+}
 
-  constructor(options: Object) {
+@Injectable()
+export class ToastOptions implements ToastConfigurableOptions {
+  newestOnTop = false;
+  animate = 'fade';
+
+  // override-able properties
+  enableHTML = false;
+  showCloseButton = false;
+
+  constructor(options: ToastConfigurableOptions) {
     Object.assign(this, options);
   }
 }
